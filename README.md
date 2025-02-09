@@ -1,2 +1,2 @@
 # FitNexus
-your neighborhood gym tracker!
+Your Friendly Neighborhood gym tracker!
