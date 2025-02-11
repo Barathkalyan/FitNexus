@@ -1,3 +1,10 @@
+html:
+    <button class="button" data-text="Awesome">
+        <span class="actual-text">&nbsp;Login&nbsp;</span>
+    <span aria-hidden="true" class="hover-text">&nbsp;Login&nbsp;</span>
+</button>
+
+css:
 
 .button {
     margin: 0;
