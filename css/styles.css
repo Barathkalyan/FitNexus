@@ -57,6 +57,11 @@ input:focus {
     box-shadow: 0 0 5px cyan;
 }
 .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 40px;
     margin: 0;
     height: auto;
     background: transparent;
