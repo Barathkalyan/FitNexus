@@ -6,19 +6,23 @@
     font-family: Arial, sans-serif;
 }
 body {
-    background: url('../assets/login\ bg.jpeg') no-repeat center center/cover;
-    position: relative;
+    background: url('../assets/login\ bg.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin:0;
+    padding: 0;
 }
 
 body::before {
     content: "";
     position: absolute;
-    
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Dark overlay for transparency */
+    filter: blur(10px) brightness(50%);
 }
 
 /* Center Content */
@@ -49,6 +53,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    z-index: 10;
 }
 
 /* Heading */
@@ -65,7 +71,7 @@ h2 {
 form {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Adjusted spacing */
+    gap: 12px; 
 }
 
 label {
