@@ -48,7 +48,7 @@ h2 {
 form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 12px; /* Adjusted spacing */
 }
 
 label {
@@ -68,6 +68,10 @@ input {
 input:focus {
     outline: none;
     box-shadow: 0 0 5px cyan;
+}
+
+.place{
+    font-size: 15px;
 }
 
 /* Login Button */
