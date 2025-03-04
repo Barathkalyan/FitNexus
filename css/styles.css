@@ -78,20 +78,25 @@ input:focus {
     transition: all 0.3s ease-in-out;
 }
 
+.button span{
+    position: relative;
+    z-index: 1;
+    display: block;
+}
+
+
 /* Hover Effect */
 .button::before {
-    content: "LOGIN"; /* Ensures only one text layer */
+    content: "";
     position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #37FF8B;
-    transition: transform 0.3s ease-in-out;
+    width: 0%;
+    height: 100%;
+    background: rgba(55,255,139,0.2);
+    transition: width 0.5s ease-in-out;
 }
 
 .button:hover::before {
-    transform: scale(1.1);
+    width:100%;
     filter: drop-shadow(0 0 10px #37FF8B);
 }
 
