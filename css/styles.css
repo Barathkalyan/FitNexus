@@ -54,12 +54,19 @@ h2 {
 
 /* Form Inputs */
 input {
-    width: 90%; /* Reduced width */
+    width: 100%; /* Reduced width */
     padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
     border: none;
     border-radius: 20px;
     background: #2a2a2a;
     color: white;
+}
+
+label{
+    display: flex;
+    padding-bottom: 2px;
 }
 
 input:focus {
@@ -69,22 +76,19 @@ input:focus {
 
 /* Fix Button Text Duplication */
 .button {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    margin: 15px auto; 
+    text-align: center;
     width: 140px;
     height: 45px;
     font-size: 1.2em;
-    letter-spacing: 2px;
     border-radius: 25px;
     border: 2px solid #37FF8B;
     cursor: pointer;
     background: transparent;
     color: #37FF8B;
-    overflow: hidden;
     text-transform: uppercase;
-    transition: 0.3s;
+    position: relative;
 }
 
 /* Remove duplicate text */
