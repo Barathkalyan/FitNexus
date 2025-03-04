@@ -6,6 +6,7 @@
     font-family: Arial, sans-serif;
 }
 
+/* Center Content */
 body {
     display: flex;
     justify-content: center;
@@ -17,7 +18,7 @@ body {
 /* Main Container */
 .container {
     display: flex;
-    width: 700px; /* Reduced size */
+    width: 700px;
     height: 400px;
     background: #1a1a1a;
     border-radius: 10px;
@@ -33,21 +34,25 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
+
 }
 
 h2 {
-    text-align: center;
-    margin-bottom: 15px;
-    font-size: 20px;
+    margin-bottom: 45px;
+    display: flex;
+    font-size: 25px;
+    color: red;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Form Inputs */
 input {
-    width: 100%;
-    padding: 8px;
-    margin: 8px 0;
+    width: 90%; /* Reduced width */
+    padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     background: #2a2a2a;
     color: white;
 }
@@ -57,47 +62,36 @@ input:focus {
     box-shadow: 0 0 5px cyan;
 }
 
-/* Login Button */
+/* Fix Button Text Duplication */
 .button {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 120px;
-    height: 40px;
+    width: 140px;
+    height: 45px;
     font-size: 1.2em;
-    letter-spacing: 1px;
-    border-radius: 20px;
+    letter-spacing: 2px;
+    border-radius: 25px;
     border: 2px solid #37FF8B;
     cursor: pointer;
     background: transparent;
-    position: relative;
-    overflow: hidden;
-    margin: 15px auto;
-    text-transform: uppercase;
     color: #37FF8B;
-    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    text-transform: uppercase;
+    transition: 0.3s;
 }
 
-.button span{
+/* Remove duplicate text */
+.button span {
     position: relative;
     z-index: 1;
-    display: block;
 }
 
-
-/* Hover Effect */
-.button::before {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 100%;
-    background: rgba(55,255,139,0.2);
-    transition: width 0.5s ease-in-out;
-}
-
-.button:hover::before {
-    width:100%;
-    filter: drop-shadow(0 0 10px #37FF8B);
+/* Hover Glow Effect */
+.button:hover {
+    box-shadow: 0 0 15px #37FF8B;
+    background: rgba(55, 255, 139, 0.2);
 }
 
 /* Signup Link */
