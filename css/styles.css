@@ -47,6 +47,11 @@ h2 {
     justify-content: center;
 }
 
+.place{
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
 /* Form Inputs */
 input {
     width: 90%; /* Reduced width */
