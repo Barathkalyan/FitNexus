@@ -34,61 +34,46 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
-
 }
 
+/* Heading */
 h2 {
-    margin-bottom: 45px;
-    display: flex;
-    font-size: 25px;
+    margin-bottom: 25px;
+    font-size: 24px;
     color: red;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
 }
 
-.place{
-    padding-bottom: 15px;
-    margin-bottom: 15px;
+/* Input Fields */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-/* Form Inputs */
+label {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
 input {
     width: 100%;
-    padding: 8px;
-    margin: 2px 0 8px 0;
-    border-radius: 5px;
+    padding: 10px;
+    border-radius: 20px;
     background: #2a2a2a;
     color: white;
+    border: none;
 }
-
-label{
-    padding-bottom: 2px;
-    font-size: 14px;
-}
-
-button{
-    display: block;
-    margin: 10px auto 0 auto;
-    padding:10px 20px;
-}
-
 
 input:focus {
     outline: none;
     box-shadow: 0 0 5px cyan;
 }
 
-form{
-    display: flex;
-    flex-direction: column;
-    gap:8px;
-}
-
-/* Fix Button Text Duplication */
+/* Login Button */
 .button {
     display: block;
-    margin: 15px auto; 
+    margin: 15px auto;
     text-align: center;
     width: 140px;
     height: 45px;
@@ -99,16 +84,10 @@ form{
     background: transparent;
     color: #37FF8B;
     text-transform: uppercase;
-    position: relative;
+    transition: 0.3s;
 }
 
-/* Remove duplicate text */
-.button span {
-    position: relative;
-    z-index: 1;
-}
-
-/* Hover Glow Effect */
+/* Hover Effect */
 .button:hover {
     box-shadow: 0 0 15px #37FF8B;
     background: rgba(55, 255, 139, 0.2);
