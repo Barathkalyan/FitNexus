@@ -39,9 +39,11 @@ body {
 /* Heading */
 h2 {
     margin-bottom: 25px;
-    font-size: 24px;
+    font-size: 30px;
     color: red;
     text-align: center;
+    font-family:"Helvetica",sans-serif;
+    letter-spacing: 2px;
 }
 
 /* Input Fields */
@@ -52,8 +54,14 @@ form {
 }
 
 label {
-    font-size: 14px;
+    font-size: 18px;
     margin-bottom: 4px;
+    color:cyan;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+    font-family:"Roboto",sans-serif;
+
 }
 
 input {
