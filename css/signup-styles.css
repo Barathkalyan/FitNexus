@@ -1,4 +1,4 @@
-/* General Page Styling */
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -9,114 +9,137 @@
 body {
     background: url('../assets/login\ bg.jpeg') no-repeat center center fixed;
     background-size: cover;
-    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    overflow: hidden;
-    margin:0;
-    padding: 0;
+    background-color: black;
 }
 
 /* Main Container */
 .container {
     display: flex;
-    max-width: 750px;
-    width: 90%;
-    background: rgba(0, 0, 0, 0.8);
+    width: 800px;
+    height: 600px;
+    background: #1a1a1a;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Signup Section */
+/* Left Section - Signup */
 .signup-section {
-    flex: 1;
+    width: 50%;
     padding: 20px;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
 }
 
-.signup-section h2 {
-    text-align: center;
+/* Heading */
+h2 {
+    margin-bottom: 25px;
+    font-size: 30px;
     color: red;
-    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Helvetica", sans-serif;
+    letter-spacing: 2px;
 }
 
-/* Labels and Inputs */
-.signup-section label {
-    display: block;
-    font-weight: bold;
+/* Input Fields */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+label {
+    font-size: 18px;
+    margin-bottom: 4px;
     color: cyan;
-    margin-top: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+    font-family: "Roboto", sans-serif;
 }
 
-.signup-section input {
+input {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid cyan;
-    border-radius: 5px;
-    background: #222;
+    padding: 15px;
+    border-radius: 20px;
+    font-size: 17px;
+    background: #2a2a2a;
     color: white;
+    border: none;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 5px cyan;
 }
 
 /* Signup Button */
 .button {
-    width: 100%;
-    background: black;
-    color: cyan;
-    border: 2px solid cyan;
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 15px;
+    display: block;
+    margin: 15px auto;
+    text-align: center;
+    width: 140px;
+    height: 45px;
+    font-size: 1.4em;
+    border-radius: 25px;
+    border: 2px solid #37FF8B;
     cursor: pointer;
+    background: transparent;
+    color: #37FF8B;
+    text-transform: uppercase;
     transition: 0.3s;
 }
 
+/* Hover Effect */
 .button:hover {
-    background: cyan;
-    color: black;
+    box-shadow: 0 0 15px #37FF8B;
+    background: rgba(55, 255, 139, 0.2);
+}
+
+.holder{
+    font-size: 18px;
+    letter-spacing: 1px;
 }
 
 /* Login Link */
 .login-link {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 1px;
+    font-size: 18px;
 }
 
 .login-link a {
     color: cyan;
     text-decoration: none;
+    font-size: 18px;
 }
 
 .login-link a:hover {
     text-decoration: underline;
 }
 
-/* Branding Section */
+/* Right Section - Branding */
 .branding-section {
-    flex: 1;
+    width: 50%;
+    background: #181818;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.1);
-    text-align: center;
 }
 
 .logo {
-    font-size: 2rem;
-    color: cyan;
+    font-size: 28px;
+    color: white;
 }
 
 .logo span {
-    color: red;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .branding-section {
-        padding: 20px;
-    }
+    color: cyan;
 }

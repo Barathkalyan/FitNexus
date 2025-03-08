@@ -79,11 +79,12 @@ label {
 
 input {
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     border-radius: 20px;
     background: #2a2a2a;
     color: white;
     border: none;
+    font-size: 17px;
 }
 
 input:focus {
@@ -92,7 +93,8 @@ input:focus {
 }
 
 .place{
-    font-size: 15px;
+    font-size: 18px;
+    letter-spacing: 1px;
 }
 
 /* Login Button */
@@ -102,7 +104,7 @@ input:focus {
     text-align: center;
     width: 140px;
     height: 45px;
-    font-size: 1.2em;
+    font-size: 1.4em;
     border-radius: 25px;
     border: 2px solid #37FF8B;
     cursor: pointer;
@@ -122,12 +124,13 @@ input:focus {
 .signup-link {
     text-align: center;
     margin-top: 10px;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .signup-link a {
     color: cyan;
     text-decoration: none;
+    font-size: 18px;
 }
 
 .signup-link a:hover {
