@@ -1,0 +1,122 @@
+/* General Page Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: url('../assets/login\ bg.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin:0;
+    padding: 0;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    max-width: 750px;
+    width: 90%;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+/* Signup Section */
+.signup-section {
+    flex: 1;
+    padding: 20px;
+    color: white;
+}
+
+.signup-section h2 {
+    text-align: center;
+    color: red;
+    margin-bottom: 20px;
+}
+
+/* Labels and Inputs */
+.signup-section label {
+    display: block;
+    font-weight: bold;
+    color: cyan;
+    margin-top: 10px;
+}
+
+.signup-section input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid cyan;
+    border-radius: 5px;
+    background: #222;
+    color: white;
+}
+
+/* Signup Button */
+.button {
+    width: 100%;
+    background: black;
+    color: cyan;
+    border: 2px solid cyan;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: cyan;
+    color: black;
+}
+
+/* Login Link */
+.login-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.login-link a {
+    color: cyan;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Branding Section */
+.branding-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.logo {
+    font-size: 2rem;
+    color: cyan;
+}
+
+.logo span {
+    color: red;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .branding-section {
+        padding: 20px;
+    }
+}

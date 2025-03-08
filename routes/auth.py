@@ -12,12 +12,12 @@ def get_db_connection():
 @auth.route("/signup", methods=["POST"])
 def signup():
     data = request.json
-    name= data.get("name")
+    name = data.get("name")
     email = data.get("email")
     password = data.get("password")
 
     if not name or not email or not password:
-        return jsonify({"error": "Name, Email and password are required!"}), 400
+        return jsonify({"error": "Name, email, and password are required!"}), 400
 
     hashed_password = generate_password_hash(password)
 
@@ -25,12 +25,10 @@ def signup():
     cursor = db.cursor()
 
     try:
-        # Check if email already exists
         cursor.execute("SELECT email FROM users WHERE email = %s", (email,))
         if cursor.fetchone():
             return jsonify({"error": "Email already registered!"}), 409
 
-        # Insert new user
         cursor.execute("INSERT INTO users (name, email, password_hash) VALUES (%s, %s, %s)", (name, email, hashed_password))
         db.commit()
         return jsonify({"message": "User registered successfully!"})

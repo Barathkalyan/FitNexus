@@ -8,18 +8,23 @@
 </head>
 <body>
     <div class="container">
-        <!--LEFT SIDE-->
+        <!-- LEFT SIDE -->
         <div class="login-section">
             <h2 id="form-title">LOGIN</h2>
 
-            <!-- LOGIN FORM -->
+            <!-- LOGIN/SIGNUP FORM -->
             <form id="authForm">
+                <div id="nameField" style="display: none;">
+                    <label for="name" class="place">NAME:</label>
+                    <input type="text" id="name" placeholder="Enter your name">
+                </div>
+
                 <label for="email" class="place">EMAIL:</label>
                 <input type="email" id="email" placeholder="Enter your email" required>
 
                 <label for="password" class="place">PASSWORD:</label>
                 <input type="password" id="password" placeholder="Enter your password" required>
-                
+
                 <button class="button" id="submitBtn">Login</button>
             </form>
 
@@ -34,47 +39,51 @@
     </div>
 
     <script>
-        document.getElementById("authForm").addEventListener("submit", async function(event){
+        document.getElementById("authForm").addEventListener("submit", async function(event) {
             event.preventDefault();
-
-            let email = document.getElementById("email").value;
-            let password = document.getElementById("password").value;
+    
             let isSignup = document.getElementById("submitBtn").innerText === "Signup";
-
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+    
+            if (!email || !password) {
+                alert("Please enter email and password.");
+                return;
+            }
+    
             let apiUrl = isSignup ? "http://127.0.0.1:5000/auth/signup" : "http://127.0.0.1:5000/auth/login";
-
-            let response = await fetch(apiUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password })
-            });
-
-            let result = await response.json();
-
-            if (response.ok) {
-                alert(result.message);
-                if (!isSignup) {
-                    window.location.href = "dashboard.html"; // Redirect after login
+            let requestData = { email, password };
+    
+            try {
+                let response = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(requestData)
+                });
+    
+                let result = await response.json();
+    
+                if (response.ok) {
+                    alert(result.message);
+                    if (!isSignup) {
+                        window.location.href = "dashboard.html"; // Redirect after login
+                    } else {
+                        window.location.href = "signup.html"; // Redirect to signup page
+                    }
+                } else {
+                    alert(result.error || "Something went wrong");
                 }
-            } else {
-                alert(result.error || "Something went wrong");
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Failed to connect to the server.");
             }
         });
-
-        document.getElementById("toggleForm").addEventListener("click", function() {
-            let title = document.getElementById("form-title");
-            let submitBtn = document.getElementById("submitBtn");
-
-            if (submitBtn.innerText === "Login") {
-                title.innerText = "SIGNUP";
-                submitBtn.innerText = "Signup";
-                this.innerText = "Already have an account? Login!";
-            } else {
-                title.innerText = "LOGIN";
-                submitBtn.innerText = "Login";
-                this.innerText = "Don't have an account? Signup!";
-            }
+    
+        document.getElementById("toggleForm").addEventListener("click", function(event) {
+            event.preventDefault();
+            window.location.href = "signup.html"; // Redirects to signup page
         });
-    </script>    
+    </script>
+    
 </body>
 </html>
