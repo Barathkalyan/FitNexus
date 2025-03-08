@@ -22,3 +22,12 @@ def login():
     email=data["email"]
     password=data["password"]
     
+    cursor=db.cursor()
+    cursor.execute("SELECT password_hash from users where email=%s", (email,))
+    user=cursor.fetchone()
+    
+    if user and check_password_hash(user[0],password):
+        return jsonify({"message":"Welcome to FitNexus!! Login Successful!"})
+    else:
+        return jsonify({"error":"Invalid Credentials!"}), 401
+    
