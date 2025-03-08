@@ -12,11 +12,12 @@ def get_db_connection():
 @auth.route("/signup", methods=["POST"])
 def signup():
     data = request.json
+    name= data.get("name")
     email = data.get("email")
     password = data.get("password")
 
-    if not email or not password:
-        return jsonify({"error": "Email and password are required!"}), 400
+    if not name or not email or not password:
+        return jsonify({"error": "Name, Email and password are required!"}), 400
 
     hashed_password = generate_password_hash(password)
 
@@ -30,7 +31,7 @@ def signup():
             return jsonify({"error": "Email already registered!"}), 409
 
         # Insert new user
-        cursor.execute("INSERT INTO users (email, password_hash) VALUES (%s, %s)", (email, hashed_password))
+        cursor.execute("INSERT INTO users (name, email, password_hash) VALUES (%s, %s, %s)", (name, email, hashed_password))
         db.commit()
         return jsonify({"message": "User registered successfully!"})
     except mysql.connector.Error as e:
@@ -52,11 +53,11 @@ def login():
     cursor = db.cursor()
 
     try:
-        cursor.execute("SELECT password_hash FROM users WHERE email = %s", (email,))
+        cursor.execute("SELECT name, password_hash FROM users WHERE email = %s", (email,))
         user = cursor.fetchone()
 
-        if user and check_password_hash(user[0], password):
-            return jsonify({"message": "Welcome to FitNexus! Login Successful!"})
+        if user and check_password_hash(user[1], password):
+            return jsonify({"message": f"Welcome to FitNexus {user[0]}! Login Successful!"})
         else:
             return jsonify({"error": "Invalid Credentials!"}), 401
     except mysql.connector.Error as e:
