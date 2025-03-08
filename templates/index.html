@@ -36,7 +36,7 @@
 
     <script>
         document.querySelector("form").addEventListener("submit",async function(event){
-            event.preventDefault():
+            event.preventDefault();
 
             let email= document.getElementById("email").value;
             let password=document.getElementById("password").value;
@@ -47,8 +47,16 @@
                 body: JSON.stringify({ email, password })
             });
 
-            let result= await response.json():
-        })
+            let result= await response.json();
+
+            if(response.ok){
+                alert(result.message);
+                window.location.href= "dashboard.html";
+            } else{
+                alert(result.error);
+            }
+        });
+    </script>    
     
 </body>
 </html>
