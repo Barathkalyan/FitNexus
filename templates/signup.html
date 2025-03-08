@@ -11,7 +11,7 @@
         <div class="signup-section">
             <h2>SIGNUP</h2>
 
-            <!-- LOGIN FORM -->
+            <!-- SIGNUP FORM -->
             <form id="signupForm">
                 <label for="name">NAME:</label>
                 <input type="email" id="email" placeholder="Enter your email" required>
@@ -28,7 +28,6 @@
                 <button class="button" id="submitBtn">Signup</button>
             </form>
             <p class="login-link">Already have an account? <a href="login.html">Login!</a></p>
-
         </div>
 
         <div class="branding-section">
@@ -50,11 +49,11 @@
                 return;
             }
 
-            
-            let response = await fetch("http://127.0.0.1:5000/auth/signup", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email, password })
+            try{
+                let response = await fetch("http://127.0.0.1:5000/auth/signup", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, password })
             });
 
             let result = await response.json();
@@ -67,7 +66,11 @@
             } else {
                 alert(result.error || "Something went wrong");
             }
-        });
+        } catch(error){
+            console.error("Error:", error);
+            alert("Failed to connect to the server");
+        }
+    });
 
     </script>    
 </body>
