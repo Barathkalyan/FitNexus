@@ -37,19 +37,24 @@
     </div>
 
     <script>
-        document.getElementById("authForm").addEventListener("submit", async function(event){
+        document.getElementById("signupForm").addEventListener("submit", async function(event){
             event.preventDefault();
 
+            let name = document.getElementById("name").value;
             let email = document.getElementById("email").value;
             let password = document.getElementById("password").value;
-            let isSignup = document.getElementById("submitBtn").innerText === "Signup";
+            let confirmPassword= document.getElementById("confirmPassword").value;
 
-            let apiUrl = isSignup ? "http://127.0.0.1:5000/auth/signup" : "http://127.0.0.1:5000/auth/login";
+            if (password !== confirmPassword){
+                alert("Passwords do not match!");
+                return;
+            }
 
-            let response = await fetch(apiUrl, {
+            
+            let response = await fetch("http://127.0.0.1:5000/auth/signup", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({ name, email, password })
             });
 
             let result = await response.json();
@@ -57,27 +62,13 @@
             if (response.ok) {
                 alert(result.message);
                 if (!isSignup) {
-                    window.location.href = "dashboard.html"; // Redirect after login
+                    window.location.href = "login.html";
                 }
             } else {
                 alert(result.error || "Something went wrong");
             }
         });
 
-        document.getElementById("toggleForm").addEventListener("click", function() {
-            let title = document.getElementById("form-title");
-            let submitBtn = document.getElementById("submitBtn");
-
-            if (submitBtn.innerText === "Login") {
-                title.innerText = "SIGNUP";
-                submitBtn.innerText = "Signup";
-                this.innerText = "Already have an account? Login!";
-            } else {
-                title.innerText = "LOGIN";
-                submitBtn.innerText = "Login";
-                this.innerText = "Don't have an account? Signup!";
-            }
-        });
     </script>    
 </body>
 </html>
