@@ -10,33 +10,35 @@
     <div class="container">
         <div class="left">
             <div class="quote-container">
-            <p id="quote"> Your Only Limit is YOU.</p>
+                <p id="quote">Your Only Limit is YOU.</p>
             </div>
-        <div class="features">
-            <ul>
-                <li> Track Workouts</li>
-                <li> Log Calories</li>
-                <li> Monitor Progress</li>
-                <li> Set Fitness goals</li>
-            </ul>
+            <div class="features">
+                <ul>
+                    <li>Track Workouts</li>
+                    <li>Log Calories</li>
+                    <li>Monitor Progress</li>
+                    <li>Set Fitness Goals</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="slant"></div> <!-- Slanting Line -->
+
+        <div class="right">
+            <div class="slideshow">
+                <img class="slide" src="{{ url_for('static', filename='images/slide1.jpg') }}" alt="Fitness 1">
+                <img class="slide" src="{{ url_for('static', filename='images/slide2.jpg') }}" alt="Fitness 2">
+                <img class="slide" src="{{ url_for('static', filename='images/slide3.jpg') }}" alt="Fitness 3">
+            </div>
         </div>
     </div>
 
-    <div class="right">
-        <div class="slideshow">
-            <img class="slide" src="{{ url_for('static', filename='images/slide1.jpg') }}" alt="Fitness 1">
-            <img class="slide" src="{{ url_for('static', filename='images/slide2.jpg') }}" alt="Fitness 2">
-            <img class="slide" src="{{ url_for('static', filename='images/slide3.jpg') }}" alt="Fitness 3">
-        </div>
+    <div class="welcome">
+        <h1>Welcome to FitNexus, {{ user }}!</h1>
+        <p>Let's crush today's goals!</p>
+        <button id="get-started">Get Started</button>
     </div>
-</div>
 
-<div class="welcome">
-    <h1>Welcome to FitNexus, {{ user }}!</h1>
-    <p>Let's crush today's goals!</p>
-    <button id="get-started">Get Started</button>
-</div>
-<script src="{{ url_for('static', filename='js/landing-script.js') }}"></script>
-    
+    <script src="{{ url_for('static', filename='js/landing-script.js') }}"></script>
 </body>
 </html>
