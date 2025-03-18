@@ -1,19 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Slideshow Logic
-    const slides = document.querySelectorAll(".slide");
-    let currentSlide = 0;
-
+    let slides = document.querySelectorAll(".slide");
+    let index = 0;
+    
     function showSlide() {
-        slides.forEach((slide, index) => {
-            slide.classList.remove("active");
-            if (index === currentSlide) {
-                slide.classList.add("active");
-            }
-        });
-        currentSlide = (currentSlide + 1) % slides.length;
+        slides.forEach(slide => slide.style.display = "none");
+        slides[index].style.display = "block";
+        index = (index + 1) % slides.length;
     }
-
-    setInterval(showSlide, 3000); // Change every 3 seconds
+    
+    showSlide();
+    setInterval(showSlide, 3000); // Changes image every 3 seconds
+    
 
     // Get Started Button Logic
     document.getElementById("get-started").addEventListener("click", function () {
