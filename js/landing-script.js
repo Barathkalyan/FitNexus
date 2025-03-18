@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     showSlide(); // Show first image
     setInterval(showSlide, 3000);
     
-
     // Get Started Button Logic
     document.getElementById("get-started").addEventListener("click", function () {
         fetch("/check-profile")

@@ -25,13 +25,12 @@
         <div class="slant"></div>
 
         <div class="right">
-            <div class="slideshow">
-                <img class="slide" src="../assets/slideshow/img1.jpeg" alt="Fitness 1">
-                <img class="slide" src="../assets/slideshow/img2.jpeg" alt="Fitness 2">
-                <img class="slide" src="../assets/slideshow/img3.jpeg" alt="Fitness 3">
-                <img class="slide" src="../assets/slideshow/img4.jpeg" alt="Fitness 4">
+            <div class="slideshow-container">
+                <img class="slide active" src="{{ url_for('static', filename='slideshow/img1.jpeg') }}" alt="Fitness 1">
+                <img class="slide" src="{{ url_for('static', filename='slideshow/img2.jpeg') }}" alt="Fitness 2">
+                <img class="slide" src="{{ url_for('static', filename='slideshow/img3.jpeg') }}" alt="Fitness 3">
+                <img class="slide" src="{{ url_for('static', filename='slideshow/img4.jpeg') }}" alt="Fitness 4">
             </div>
-            
         </div>
     </div>
 
@@ -41,6 +40,6 @@
         <button id="get-started">Get Started</button>
     </div>
 
-    <script src="{{ url_for('static', filename='js/landing-script.js') }}"></script>
+    <script src="../js/landing-script.js"></script>
 </body>
 </html>
