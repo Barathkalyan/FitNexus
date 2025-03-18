@@ -3,13 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let index = 0;
     
     function showSlide() {
-        slides.forEach(slide => slide.style.display = "none");
-        slides[index].style.display = "block";
+        slides.forEach(slide => slide.classList.remove("active"));
+        slides[index].classList.add("active");
         index = (index + 1) % slides.length;
     }
     
-    showSlide();
-    setInterval(showSlide, 3000); // Changes image every 3 seconds
+    showSlide(); // Show first image
+    setInterval(showSlide, 3000);
     
 
     // Get Started Button Logic
