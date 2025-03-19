@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/signup-styles.css">
+    <link rel="stylesheet" href="../static/css/signup-styles.css">
     <title>FitNexus - Signup</title>
 </head>
 <body>
@@ -27,7 +27,7 @@
 
                 <button class="button" id="submitBtn">SIGNUP</button>
             </form>
-            <p class="login-link">Already have an account? <a href="login.html">Login!</a></p>
+            <p class="login-link">Already have an account? <p class="login-link">Already have an account? <a href="{{ url_for('auth.login_page') }}">Login!</a></p>
         </div>
 
         <div class="branding-section">
@@ -38,40 +38,37 @@
     <script>
         document.getElementById("signupForm").addEventListener("submit", async function(event){
             event.preventDefault();
-
+        
             let name = document.getElementById("name").value;
             let email = document.getElementById("email").value;
             let password = document.getElementById("password").value;
-            let confirmPassword= document.getElementById("confirmPassword").value;
-
+            let confirmPassword = document.getElementById("confirmPassword").value;
+        
             if (password !== confirmPassword){
                 alert("Passwords do not match!");
                 return;
             }
-
+        
             try{
                 let response = await fetch("http://127.0.0.1:5000/auth/signup", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name, email, password })
-            });
-
-            let result = await response.json();
-
-            if (response.ok) {
-                alert(result.message);
-                if (!isSignup) {
-                    window.location.href = "login.html";
+                });
+        
+                let result = await response.json();
+        
+                if (response.ok) {
+                    alert(result.message);
+                    window.location.href = "{{ url_for('auth.login_page') }}"; // Redirect to login page
+                } else {
+                    alert(result.error || "Something went wrong");
                 }
-            } else {
-                alert(result.error || "Something went wrong");
+            } catch(error){
+                console.error("Error:", error);
+                alert("Failed to connect to the server");
             }
-        } catch(error){
-            console.error("Error:", error);
-            alert("Failed to connect to the server");
-        }
-    });
-
-    </script>    
+        });
+        </script>  
 </body>
 </html>

@@ -1,10 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, session, redirect, url_for
 import mysql.connector
 from config import DB_CONFIG
 from routes.auth import auth
 from flask_cors import CORS
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
+app.secret_key = "your_secret_key"
 CORS(app)
 
 # DATABASE CONNECTION
@@ -17,16 +18,19 @@ except mysql.connector.Error as err:
     db = None
 
 # REGISTERING AUTH BLUEPRINT
-def register_blueprints():
-    from routes.auth import auth
-    app.register_blueprint(auth, url_prefix="/auth")
+app.register_blueprint(auth, url_prefix="/auth")
 
-register_blueprints()
-
-# ROUTE FOR LANDING PAGE
+# ROUTE FOR LANDING PAGE (AFTER LOGIN)
 @app.route('/')
 def index():
-    return render_template('index.html', user="bk")  # Change "YourName" as needed
+    if "user" not in session:
+        return redirect(url_for("login"))
+    return render_template("index.html", user=session["user"])
+
+# ROUTE FOR LOGIN PAGE
+@app.route('/login')
+def login():
+    return render_template("login.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

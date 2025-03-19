@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
     <title>FitNexus</title>
 </head>
 <body>
+    <h2 id="welcomeMessage"></h2>
+
     <div class="container">
         <!-- LEFT SIDE -->
         <div class="login-section">
@@ -29,8 +31,10 @@
             </form>
 
             <p class="signup-link">
-                Don't have an account? <a href="#" id="toggleForm">Signup!</a>
+                Don't have an account? <a href="{{ url_for('auth.signup_page') }}">Signup!</a>
+
             </p>
+            
         </div>
 
         <div class="branding-section">
@@ -41,49 +45,55 @@
     <script>
         document.getElementById("authForm").addEventListener("submit", async function(event) {
             event.preventDefault();
-    
+        
             let isSignup = document.getElementById("submitBtn").innerText === "Signup";
+            let name = document.getElementById("name") ? document.getElementById("name").value.trim() : "";
             let email = document.getElementById("email").value.trim();
             let password = document.getElementById("password").value.trim();
-    
-            if (!email || !password) {
-                alert("Please enter email and password.");
+        
+            if (!email || !password || (isSignup && !name)) {
+                alert("Please fill all fields.");
                 return;
             }
-    
-            let apiUrl = isSignup ? "http://127.0.0.1:5000/auth/signup" : "http://127.0.0.1:5000/auth/login";
-            let requestData = { email, password };
-    
+        
+            let apiUrl = isSignup ? "/auth/signup" : "/auth/login";
+            let requestData = isSignup ? { name, email, password } : { email, password };
+        
             try {
                 let response = await fetch(apiUrl, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(requestData)
                 });
-    
+        
                 let result = await response.json();
-    
+        
                 if (response.ok) {
                     alert(result.message);
-                    if (!isSignup) {
-                        window.location.href = "dashboard.html"; // Redirect after login
-                    } else {
-                        window.location.href = "signup.html"; // Redirect to signup page
-                    }
+                    window.location.href = result.redirect; // Redirect to landing page
                 } else {
-                    alert(result.error || "Something went wrong");
+                    alert(result.error);
                 }
             } catch (error) {
                 console.error("Error:", error);
-                alert("Failed to connect to the server.");
+                alert("Server connection failed.");
             }
         });
-    
+        
         document.getElementById("toggleForm").addEventListener("click", function(event) {
             event.preventDefault();
-            window.location.href = "signup.html"; // Redirects to signup page
+            window.location.href = "{{ url_for('auth.signup_page') }}"; // Use Flask route
+        });
+    
+        // Display username if logged in
+        document.addEventListener("DOMContentLoaded", function () {
+            let username = localStorage.getItem("username");
+            if (username) {
+                document.getElementById("welcomeMessage").innerText = `Welcome to FitNexus, ${username}!`;
+            }
         });
     </script>
+    
     
 </body>
 </html>
