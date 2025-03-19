@@ -78,15 +78,14 @@ body {
     font-weight: bold;
     color: cyan;
     min-height: 50px;
-    margin-bottom: 20px;
     width: 100%;
+    margin-top:-80px;
 }
 
 .quote {
-    position: absolute;
     opacity: 0;
     width: 100%;
-    transition: opacity 1s ease-in-out;
+    position: absolute;
     top: 0;
     left: 0;
     line-height: 50px;
@@ -100,38 +99,77 @@ body {
 
 .quote.active {
     opacity: 1;
+    position: relative;
+    animation: typewriter 2s steps(40, end) forwards, fadeIn 0.5s ease-in forwards;
+}
+
+.highlight {
+    color: red;
+    font-size: 28px;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgb(17, 17, 17);
+    text-transform:lowercase;
+}
+
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* Branding Box */
 .branding-container {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-    text-align: left;
-    width: 80%;
+    margin-top: 50px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid cyan;
+    box-shadow: 0 0 15px cyan;
+    text-align: center;
+    transition: 0.3s;
+    width: 100%;
+    max-width: 400px;
+}
+
+.branding-container:hover {
+    box-shadow: 0 0 25px cyan, 0 0 35px red;
+    transform: scale(1.05);
 }
 
 /* Features List */
 .features {
     list-style: none;
-    padding-left: 10px;
+    padding:0;
 }
 
 .features li {
-    font-size: 20px;
+    font-size: 18px;
     color: lime;
     text-shadow: 0 0 5px lime;
-    margin-bottom: 8px;
-    transition: transform 0.2s ease-in-out;
+    margin-bottom: 10px;
+    transition: 0.3s;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
 }
 
 .features li:hover {
     transform: translateX(10px);
     color: white;
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 10px cyan;
 }
 
 /* Slideshow Container */
@@ -153,6 +191,10 @@ body {
 /* Slideshow Glow */
 .slideshow-container {
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+.slideshow-container:hover{
+    box-shadow: 0 0 25px cyan, 0 0 35px red;
+    transform: scale(1.0);
 }
 
 .slideshow-container img {
@@ -207,6 +249,6 @@ body {
 }
 
 #get-started:hover {
-    background: linear-gradient(45deg, cyan, red);
-    transform: scale(1.1);
+    box-shadow: 0 0 25px cyan, 0 0 35px red;
+    transform: scale(1.05);
 }
