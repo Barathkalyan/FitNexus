@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitNexus-Welcome</title>
-    <link rel="stylesheet" href="../static/css/landing-styles.css">
+    <title>FitNexus - Welcome</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing-styles.css') }}">
+    <link rel="icon" type="image/x-icon" href="data:,">
 </head>
 <body>
     <div class="container">
         <div class="left">
+            <h1 class="welcome-text">Welcome to FitNexus, <span id="username">{{ user }}</span>!</h1>
             <div class="quote-container">
-                <p id="quote">Your Only Limit is YOU.</p>
+                <p class="quote active">"Your only limit is YOU."</p>
+                <p class="quote">"Push harder than yesterday if you want a different tomorrow."</p>
+                <p class="quote">"The pain you feel today will be the strength you feel tomorrow."</p>
+                <p class="quote">"Sweat, sacrifice, success. Keep going!"</p>
             </div>
-            <div class="features">
-                <ul>
+            <div class="branding-container">
+                <ul class="features">
                     <li>Track Workouts</li>
                     <li>Log Calories</li>
                     <li>Monitor Progress</li>
@@ -21,9 +26,7 @@
                 </ul>
             </div>
         </div>
-
         <div class="slant"></div>
-
         <div class="right">
             <div class="slideshow-container">
                 <img class="slide active" src="{{ url_for('static', filename='slideshow/img1.jpeg') }}" alt="Fitness 1">
@@ -33,13 +36,8 @@
             </div>
         </div>
     </div>
+    <button id="get-started">Get Started</button>
 
-    <div class="welcome">
-        <h1>Welcome to FitNexus, {{ user }}!</h1>
-        <p>Let's crush today's goals!</p>
-        <button id="get-started">Get Started</button>
-    </div>
-
-    <script src="../static/js/landing-script.js"></script>
+    <script src="{{ url_for('static', filename='js/landing-script.js') }}"></script>
 </body>
 </html>

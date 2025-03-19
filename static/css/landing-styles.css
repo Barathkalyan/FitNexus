@@ -1,11 +1,12 @@
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    height:auto;
 }
 
+/* Body Styling */
 body {
     background: black;
     color: white;
@@ -17,15 +18,17 @@ body {
     justify-content: center;
 }
 
+/* Container */
 .container {
     width: 100%;
     height: 80vh;
     display: flex;
     position: relative;
     background: #0d0d0d;
-    overflow: hidden;
+    overflow: visible;
 }
 
+/* Left & Right Section */
 .left, .right {
     width: 50%;
     padding: 40px;
@@ -36,43 +39,128 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
     padding-left: 60px;
+    width: 50%;
+    overflow: visible;
+    min-height: 100%;
+    box-sizing: border-box;
 }
 
 .right {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
 }
 
+/* Welcome Text */
+.welcome-text {
+    font-size: 48px;
+    font-weight: bold;
+    color: cyan;
+    text-shadow: 0 0 5px cyan;
+    margin-bottom: 150px;
+}
+
+#username {
+    font-size: 56px;
+    color: rgb(252, 4, 4);
+    text-shadow: 0 0 15px rgb(8, 8, 8);
+}
+
+/* Quotes Section */
+.quote-container {
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    font-size: 22px;
+    font-weight: bold;
+    color: cyan;
+    min-height: 50px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.quote {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    transition: opacity 1s ease-in-out;
+    top: 0;
+    left: 0;
+    line-height: 50px;
+    margin: 0;
+    padding: 0;
+    color: cyan;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.quote.active {
+    opacity: 1;
+}
+
+/* Branding Box */
+.branding-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    text-align: left;
+    width: 80%;
+}
+
+/* Features List */
+.features {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.features li {
+    font-size: 20px;
+    color: lime;
+    text-shadow: 0 0 5px lime;
+    margin-bottom: 8px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.features li:hover {
+    transform: translateX(10px);
+    color: white;
+}
+
+/* Slideshow Container */
 .slideshow-container {
     width: 100%;
-    height:100%;
+    height: 100%;
     max-width: 700px;
     aspect-ratio: 16 / 9;
     position: relative;
     overflow: hidden;
     border-radius: 15px;
     border: 2px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.1); /* Frosted glass effect */
-    backdrop-filter: blur(40px); /* Glass blur */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(40px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
+
+/* Slideshow Glow */
 .slideshow-container {
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); /* Cyan glow */
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
 }
 
-
-
-.slideshow-container img{
+.slideshow-container img {
     width: 100%;
     height: 100%;
     border-radius: 10px;
     object-fit: cover;
 }
-
 
 .slide {
     width: 100%;
@@ -89,23 +177,7 @@ body {
     opacity: 1;
 }
 
-.quote-container {
-    font-size: 24px;
-    font-weight: bold;
-    color: cyan;
-    margin-bottom: 20px;
-}
-
-.features ul {
-    list-style: none;
-    font-size: 18px;
-}
-
-.features li {
-    margin: 10px 0;
-    color: lime;
-}
-
+/* Slanting Line */
 .slant {
     position: absolute;
     top: 0;
@@ -114,23 +186,10 @@ body {
     height: 100%;
     background: linear-gradient(180deg, red, cyan);
     transform: skewX(-10deg);
+    z-index: 1;
 }
 
-.welcome {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.welcome h1 {
-    font-size: 28px;
-    color: cyan;
-}
-
-.welcome p {
-    font-size: 18px;
-    color: lime;
-}
-
+/* Get Started Button */
 #get-started {
     background: linear-gradient(45deg, red, cyan);
     border: none;
@@ -139,8 +198,12 @@ body {
     font-size: 20px;
     cursor: pointer;
     border-radius: 8px;
-    margin-top: 10px;
+    margin-top: 20px;
     transition: 0.3s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
 }
 
 #get-started:hover {
