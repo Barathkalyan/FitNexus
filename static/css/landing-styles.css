@@ -46,8 +46,8 @@ body {
 }
 
 .slideshow-container {
-    width: 400px;  /* Fixed width */
-    height: 300px; /* Fixed height */
+    width: 600px;  /* Fixed width */
+    height: 600px; /* Fixed height */
     position: relative;
     overflow: hidden;
     border-radius: 10px;
