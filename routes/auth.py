@@ -2,6 +2,8 @@ from flask import Blueprint, request, jsonify, session, render_template, redirec
 import mysql.connector
 from config import DB_CONFIG
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import login_required
+
 
 auth = Blueprint("auth", __name__)
 
@@ -59,12 +61,14 @@ def login():
     cursor = db.cursor()
 
     try:
-        cursor.execute("SELECT name, password_hash FROM users WHERE email = %s", (email,))
+        cursor.execute("SELECT id, name, password_hash FROM users WHERE email = %s", (email,))
         user = cursor.fetchone()
 
-        if user and check_password_hash(user[1], password):
-            session["user"] = user[0]
+        if user and check_password_hash(user[2], password):
+            session["id"] = user[0]  # Store user ID in session
+            session["name"] = user[1]  # Store name in session
             return jsonify({"message": "Login successful!", "redirect": url_for("index")}), 200
+
         else:
             return jsonify({"error": "Invalid Credentials!"}), 401
     except mysql.connector.Error as e:
@@ -75,5 +79,12 @@ def login():
 
 @auth.route("/logout")
 def logout():
-    session.pop("user", None)
-    return redirect(url_for("auth.login_page"))  # Redirect to login page after logout
+    session.clear()
+    return redirect(url_for("auth.login_page"))
+
+@auth.route("/check_profile")
+@login_required
+def check_profile():
+    user = User.query.filter_by(id=session.get("user_id")).first()
+    return jsonify({"complete": bool(user and user.profile_completed)})
+

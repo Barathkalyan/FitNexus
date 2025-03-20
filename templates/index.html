@@ -37,7 +37,18 @@
             </div>
         </div>
     </div>
-    <button id="get-started">Get Started</button>
+
+    <div style="display: flex; gap: 100px; align-items: center;">
+
+    <a href="{{ url_for('auth.check_profile') }}">
+    <button id="get-started" class="btn">Get Started</button>
+    </a>
+
+    <a href="{{ url_for('auth.logout') }}">
+    <button id="logout" class="btn"> Logout </button>
+    </a>
+
+    </div>
 
     <script src="{{ url_for('static', filename='js/landing-script.js') }}"></script>
 </body>

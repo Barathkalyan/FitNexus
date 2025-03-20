@@ -231,8 +231,8 @@ body {
     z-index: 1;
 }
 
-/* Get Started Button */
-#get-started {
+#get-started, #logout {
+    display: inline-block;
     background: linear-gradient(45deg, red, cyan);
     border: none;
     color: rgb(2, 2, 2);
@@ -241,15 +241,17 @@ body {
     font-size: 22px;
     cursor: pointer;
     border-radius: 15px;
-    margin-top: 20px;
     transition: 0.3s;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
     width: fit-content;
+    text-align: center;
+    margin-top: 20px;
 }
 
-#get-started:hover {
+#get-started {
+    margin-right: 20px; /* Adds space between buttons */
+}
+
+#get-started:hover, #logout:hover {
     box-shadow: 0 0 25px cyan, 0 0 35px red;
     transform: scale(1.05);
 }

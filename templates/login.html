@@ -46,8 +46,9 @@
         document.getElementById("authForm").addEventListener("submit", async function(event) {
             event.preventDefault();
         
-            let isSignup = document.getElementById("submitBtn").innerText === "Signup";
-            let name = document.getElementById("name") ? document.getElementById("name").value.trim() : "";
+            let isSignup = document.getElementById("submitBtn").innerText.trim().toLowerCase() === "signup";
+            let nameField = document.getElementById("name");
+            let name = nameField ? nameField.value.trim() : "";
             let email = document.getElementById("email").value.trim();
             let password = document.getElementById("password").value.trim();
         
@@ -70,7 +71,12 @@
         
                 if (response.ok) {
                     alert(result.message);
-                    window.location.href = result.redirect; // Redirect to landing page
+    
+                    if (!isSignup) {
+                        localStorage.setItem("username", result.username); // Store username after login
+                    }
+    
+                    window.location.href = result.redirect; // Redirect after login/signup
                 } else {
                     alert(result.error);
                 }
@@ -79,20 +85,26 @@
                 alert("Server connection failed.");
             }
         });
-        
+    
         document.getElementById("toggleForm").addEventListener("click", function(event) {
             event.preventDefault();
-            window.location.href = "{{ url_for('auth.signup_page') }}"; // Use Flask route
+            let isLogin = document.getElementById("submitBtn").innerText.trim().toLowerCase() === "login";
+            let targetPage = isLogin ? "{{ url_for('auth.signup_page') }}" : "{{ url_for('auth.login_page') }}";
+            window.location.href = targetPage;
         });
     
         // Display username if logged in
         document.addEventListener("DOMContentLoaded", function () {
             let username = localStorage.getItem("username");
             if (username) {
-                document.getElementById("welcomeMessage").innerText = `Welcome to FitNexus, ${username}!`;
+                let welcomeMessage = document.getElementById("welcomeMessage");
+                if (welcomeMessage) {
+                    welcomeMessage.innerText = `Welcome to FitNexus, ${username}!`;
+                }
             }
         });
     </script>
+    
     
     
 </body>
