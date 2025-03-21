@@ -2,13 +2,37 @@ from flask import Blueprint, request, jsonify, session, render_template, redirec
 import mysql.connector
 from config import DB_CONFIG
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_required
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
 
 auth = Blueprint("auth", __name__)
 
+# Initialize Flask-Login
+login_manager = LoginManager()
+login_manager.login_view = "auth.login_page"
+
 def get_db_connection():
     return mysql.connector.connect(**DB_CONFIG)
+
+# User Model
+class User(UserMixin):
+    def __init__(self, id, name, email):
+        self.id = id
+        self.name = name
+        self.email = email
+
+@login_manager.user_loader
+def load_user(user_id):
+    db = get_db_connection()
+    cursor = db.cursor()
+    cursor.execute("SELECT id, name, email FROM users WHERE id = %s", (user_id,))
+    user = cursor.fetchone()
+    cursor.close()
+    db.close()
+    
+    if user:
+        return User(id=user[0], name=user[1], email=user[2])
+    return None
 
 @auth.route("/signup")
 def signup_page():
@@ -61,12 +85,14 @@ def login():
     cursor = db.cursor()
 
     try:
-        cursor.execute("SELECT id, name, password_hash FROM users WHERE email = %s", (email,))
+        cursor.execute("SELECT id, name, email, password_hash FROM users WHERE email = %s", (email,))
         user = cursor.fetchone()
 
-        if user and check_password_hash(user[2], password):
-            session["id"] = user[0]  # Store user ID in session
-            session["name"] = user[1]  # Store name in session
+        if user and check_password_hash(user[3], password):
+            user_obj = User(id=user[0], name=user[1], email=user[2])
+            login_user(user_obj)
+            session["id"] = user[0]
+            session["name"] = user[1]
             return jsonify({"message": "Login successful!", "redirect": url_for("index")}), 200
 
         else:
@@ -78,13 +104,17 @@ def login():
         db.close()
 
 @auth.route("/logout")
+@login_required
 def logout():
+    logout_user()
     session.clear()
     return redirect(url_for("auth.login_page"))
+
+
 
 @auth.route("/check_profile")
 @login_required
 def check_profile():
-    user = User.query.filter_by(id=session.get("user_id")).first()
-    return jsonify({"complete": bool(user and user.profile_completed)})
+    return jsonify({"complete": bool(current_user.profile_completed)})
+
 
