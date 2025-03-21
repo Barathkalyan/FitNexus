@@ -20,7 +20,6 @@ def load_user(user_id):
     db = mysql.connector.connect(**DB_CONFIG)
     cursor = db.cursor(dictionary=True)
     
-    # ✅ Fixed: Changed 'username' to 'name'
     cursor.execute("SELECT id, name, email, profile_completed FROM users WHERE id = %s", (user_id,))
     user_data = cursor.fetchone()
     
@@ -37,9 +36,17 @@ app.register_blueprint(auth, url_prefix="/auth")
 def index():
     if "id" not in session:
         return redirect(url_for("auth.login_page"))
-    return render_template("index.html", user=session["name"]) 
+    return render_template("index.html", user=session["name"])
+
+@app.route('/login')
 def login():
     return render_template("login.html")
+
+@app.route("/dashboard")
+def dashboard():
+    if "id" not in session:
+        return redirect(url_for("auth.login_page"))
+    return render_template("dashboard.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

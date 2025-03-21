@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitNexus Dashboard</title>
+    <link rel="stylesheet" href="../static/css/dashboard-styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <h2>FitNexus</h2>
+            <ul>
+                <li><a href="#">🏠 Dashboard</a></li>
+                <li><a href="#">💪 Workouts</a></li>
+                <li><a href="#">🍽 Meals</a></li>
+                <li><a href="#">📊 Progress</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main">
+            <header>
+                <div class="profile">
+                    <span class="username">John Doe</span>
+                    <div class="profile-icon" onclick="toggleMenu()">👤</div>
+                    <div class="dropdown" id="dropdownMenu">
+                        <a href="#">View Profile</a>
+                        <a href="#">Edit Profile</a>
+                        <a href="#">Logout</a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Cards -->
+            <div class="cards">
+                <div class="card blue">
+                    <h3>Today's Calories</h3>
+                    <p>1800 kcal / 2200 kcal</p>
+                </div>
+                <div class="card green">
+                    <h3>Workout Completed</h3>
+                    <p>60 min / 90 min</p>
+                </div>
+                <div class="card yellow">
+                    <h3>Steps Taken</h3>
+                    <p>7500 / 10000</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.profile-icon')) {
+                document.getElementById("dropdownMenu").classList.remove("show");
+            }
+        }
+    </script>
+</body>
+</html>
