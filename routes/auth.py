@@ -120,4 +120,42 @@ def logout():
 def check_profile():
     return jsonify({"complete": bool(current_user.profile_completed)})
 
+@auth.route("/complete_profile", methods=["POST"])
+@login_required
+def complete_profile():
+    data = request.json
+    email = current_user.email  # Get the logged-in user's email
+
+    db = get_db_connection()
+    cursor = db.cursor()
+
+    try:
+        # Insert profile data
+        cursor.execute("""
+            INSERT INTO profile (email, age, gender, height, weight, fitness_goal, 
+                                 target_weight, diet_preference, workout_time, workout_days)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            ON DUPLICATE KEY UPDATE 
+                age=VALUES(age), gender=VALUES(gender), height=VALUES(height),
+                weight=VALUES(weight), fitness_goal=VALUES(fitness_goal),
+                target_weight=VALUES(target_weight), diet_preference=VALUES(diet_preference),
+                workout_time=VALUES(workout_time), workout_days=VALUES(workout_days)
+        """, (email, data["age"], data["gender"], data["height"], data["weight"], 
+              data["fitness_goal"], data["target_weight"], data["diet_preference"], 
+              data["workout_time"], data["workout_days"]))
+
+        # Mark profile as completed
+        cursor.execute("UPDATE users SET profile_completed = TRUE WHERE email = %s", (email,))
+        db.commit()
+
+        return jsonify({"message": "Profile completed successfully!", "redirect": "/dashboard"}), 200
+
+    except mysql.connector.Error as e:
+        db.rollback()
+        return jsonify({"error": str(e)}), 500
+    finally:
+        cursor.close()
+        db.close()
+
+
 
