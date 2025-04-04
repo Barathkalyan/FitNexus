@@ -124,7 +124,7 @@ def check_profile():
 @login_required
 def complete_profile():
     data = request.json
-    email = current_user.email  # Get the logged-in user's email
+    email = current_user.email  
 
     db = get_db_connection()
     cursor = db.cursor()
