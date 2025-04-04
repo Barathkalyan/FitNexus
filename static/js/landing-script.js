@@ -36,13 +36,15 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("get-started").addEventListener("click", function () {
         this.textContent = "Loading...";
         this.disabled = true;
-        fetch("/check-profile")
+    
+        fetch("/auth/check_profile")  // Fixed URL
             .then(response => response.json())
             .then(data => {
+                console.log("Profile Check Response:", data); // Debugging
                 if (data.complete) {
-                    window.location.href = "/workout-log";
+                    window.location.href = "/dashboard";
                 } else {
-                    window.location.href = "/profile-setup";
+                    window.location.href = "/profile_complete.html";
                 }
             })
             .catch(error => {
@@ -52,3 +54,4 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 });
+    

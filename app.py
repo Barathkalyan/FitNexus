@@ -1,8 +1,8 @@
-from flask import Flask, render_template, session, redirect, url_for
+from flask import Flask, render_template, session, redirect, url_for, request
 import mysql.connector
 from config import DB_CONFIG
 from flask_cors import CORS
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 from models.user import User
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
@@ -19,34 +19,75 @@ login_manager.login_view = "auth.login_page"
 def load_user(user_id):
     db = mysql.connector.connect(**DB_CONFIG)
     cursor = db.cursor(dictionary=True)
-    
+
     cursor.execute("SELECT id, name, email, profile_completed FROM users WHERE id = %s", (user_id,))
     user_data = cursor.fetchone()
-    
+
     cursor.close()
     db.close()
 
-    return User(user_data["id"], user_data["name"], user_data["email"], user_data["profile_completed"]) if user_data else None
+    if user_data:
+        user = User(user_data["id"], user_data["name"], user_data["email"], user_data["profile_completed"])
+        session["profile_completed"] = bool(user_data["profile_completed"])  # Store as boolean
+        return user
+    return None
 
 # Import blueprints
 from routes.auth import auth
 app.register_blueprint(auth, url_prefix="/auth")
 
 @app.route('/')
-def index():
+def home():
+    """Redirect to login if not logged in, otherwise go to landing or dashboard."""
     if "id" not in session:
-        return redirect(url_for("auth.login_page"))
-    return render_template("index.html", user=session["name"])
+        return redirect(url_for("auth.login_page"))  # Ensure login page appears first
 
-@app.route('/login')
-def login():
-    return render_template("login.html")
+    if session.get("profile_completed"):
+        return redirect(url_for("dashboard"))  # Go to dashboard if profile is complete
+    return redirect(url_for("profile_complete"))  # Else, go to profile completion
+
+@app.route('/landing')
+def landing_page():
+    return render_template("index.html")  # Separate route for the landing page
+
+@app.route('/get-started')
+def get_started():
+    if "id" not in session:
+        return redirect(url_for("auth.login_page"))  # Redirect to login if not logged in
+
+    if session.get("profile_completed"):
+        return redirect(url_for("dashboard"))  # Redirect to dashboard if profile is complete
+    return redirect(url_for("profile_complete"))  # Else, go to profile completion page
 
 @app.route("/dashboard")
 def dashboard():
     if "id" not in session:
         return redirect(url_for("auth.login_page"))
+    
+    if not session.get("profile_completed"):
+        return redirect(url_for("profile_complete"))
+
     return render_template("dashboard.html")
+
+@app.route("/profile-complete", methods=["GET", "POST"])
+def profile_complete():
+    if "id" not in session:
+        return redirect(url_for("auth.login_page"))
+
+    if request.method == "POST":
+        # Update profile completion in DB
+        db = mysql.connector.connect(**DB_CONFIG)
+        cursor = db.cursor()
+        cursor.execute("UPDATE users SET profile_completed = 1 WHERE id = %s", (session["id"],))
+        db.commit()
+        cursor.close()
+        db.close()
+
+        # Update session
+        session["profile_completed"] = True
+        return redirect(url_for("dashboard"))
+
+    return render_template("profile_complete.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

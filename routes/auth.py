@@ -16,23 +16,25 @@ def get_db_connection():
 
 # User Model
 class User(UserMixin):
-    def __init__(self, id, name, email):
+    def __init__(self, id, name, email,profile_completed=False):
         self.id = id
         self.name = name
         self.email = email
+        self.profile_completed= profile_completed
 
 @login_manager.user_loader
 def load_user(user_id):
     db = get_db_connection()
     cursor = db.cursor()
-    cursor.execute("SELECT id, name, email FROM users WHERE id = %s", (user_id,))
+    cursor.execute("SELECT id, name, email, profile_completed FROM users WHERE id = %s", (user_id,))
     user = cursor.fetchone()
     cursor.close()
     db.close()
     
     if user:
-        return User(id=user[0], name=user[1], email=user[2])
+        return User(id=user[0], name=user[1], email=user[2], profile_completed=bool(user[3])) 
     return None
+
 
 @auth.route("/signup")
 def signup_page():
@@ -85,15 +87,15 @@ def login():
     cursor = db.cursor()
 
     try:
-        cursor.execute("SELECT id, name, email, password_hash FROM users WHERE email = %s", (email,))
+        cursor.execute("SELECT id, name, email, password_hash, profile_completed FROM users WHERE email = %s", (email,))
         user = cursor.fetchone()
 
         if user and check_password_hash(user[3], password):
-            user_obj = User(id=user[0], name=user[1], email=user[2])
+            user_obj = User(id=user[0], name=user[1], email=user[2], profile_completed=bool(user[4]))  # Include profile_completed
             login_user(user_obj)
             session["id"] = user[0]
             session["name"] = user[1]
-            return jsonify({"message": "Login successful!", "redirect": url_for("index")}), 200
+            return jsonify({"message": "Login successful!", "redirect": url_for("landing_page")}), 200
 
         else:
             return jsonify({"error": "Invalid Credentials!"}), 401
@@ -102,6 +104,7 @@ def login():
     finally:
         cursor.close()
         db.close()
+
 
 @auth.route("/logout")
 @login_required
