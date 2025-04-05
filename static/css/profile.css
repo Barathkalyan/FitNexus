@@ -10,6 +10,7 @@ body {
     align-items: center;
     min-height: 100vh;
     overflow-x: hidden;
+    padding: 20px;
 }
 
 .form-container {
@@ -22,15 +23,17 @@ body {
     display: flex;
     justify-content: space-between;
     position: relative;
+    justify-items: center;
     margin-bottom: 20px;
+    padding: 0 30px;
 }
 
 .progress-bar::before {
     content: "";
     position: absolute;
     top: 50%;
-    left: 15%;
-    width: 70%;
+    left: 12%;
+    width: 76%;
     height: 4px;
     background: #333;
     z-index: 0;
@@ -38,15 +41,15 @@ body {
 }
 
 .progress-step {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     background: #333;
     color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     position: relative;
     z-index: 1;
     transition: background-color 0.4s, box-shadow 0.4s;
@@ -55,7 +58,7 @@ body {
 .progress-step.active {
     background: #00ffe7;
     color: #0d0d0d;
-    box-shadow: 0 0 12px #00ffe7;
+    box-shadow: 0 0 10px #00ffe7;
 }
 
 .progress-step.completed {
@@ -66,23 +69,26 @@ body {
 /* Form Card */
 .form-card {
     background: #1a1a1a;
-    padding: 2.5rem 2rem;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0, 255, 200, 0.08); /* reduced blur */
+    position: relative;
+    justify-content: center;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 255, 200, 0.06);
     width: 100%;
-    min-height: 400px; /* increased height */
+    min-height: 340px;
 }
 
 h2 {
     text-align: center;
     color: #00ffe7;
     font-weight: 500;
+    margin-bottom: 2rem;
 }
 
 /* Form Steps */
 .form-step {
     display: none;
-    animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 0.4s ease-in-out;
 }
 
 .form-step.active {
@@ -91,51 +97,27 @@ h2 {
 
 /* Form Group */
 .form-group {
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: #00ffe7;
+    margin-bottom: 0.3rem;
 }
 
 .form-group input,
 .form-group select {
     background: #222;
     border: 2px solid #555;
-    padding: 0.75rem;
+    padding: 0.65rem;
     width: 100%;
     color: #f0f0f0;
-    font-size: 1rem;
+    font-size: 0.95rem;
     border-radius: 10px;
     transition: border-color 0.3s ease;
     appearance: none;
-}
-
-/* Fix select dropdown cursor */
-.form-group select {
-    cursor: pointer;
-}
-
-/* Floating Labels */
-.form-group label {
-    position: absolute;
-    top: 14px;
-    left: 16px;
-    font-size: 0.85rem;
-    color: #888;
-    pointer-events: none;
-    transition: 0.3s ease all;
-    background-color: #1a1a1a;
-    padding: 0 5px;
-}
-
-
-
-/* Float effect when active */
-.form-group input:focus ~ label,
-.form-group input:not(:placeholder-shown) ~ label,
-.form-group select:focus ~ label,
-.form-group select:valid ~ label {
-    top: -10px;
-    left: 12px;
-    font-size: 0.75rem;
-    color: #00ffe7;
 }
 
 /* Slider Group */
@@ -146,12 +128,11 @@ h2 {
 input[type="range"] {
     width: 100%;
     appearance: none;
-    -webkit-appearance: none;
     height: 8px;
     background: #333;
     border-radius: 5px;
     outline: none;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -172,14 +153,13 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .button-group {
     display: flex;
     justify-content: center;
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
     gap: 1rem;
-    position: relative;
 }
 
 button {
-    padding: 0.75rem 1.5rem;
-    font-size: 20px;
+    padding: 0.6rem 1.4rem;
+    font-size: 18px;
     border: none;
     background: #00ffe7;
     color: #0d0d0d;
@@ -200,39 +180,8 @@ button:active {
     transform: scale(0.95);
 }
 
-button::after {
-    content: "";
-    position: absolute;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transform: scale(0);
-    transition: transform 0.3s ease-out;
-    z-index: 0;
-}
-
-button:active::after {
-    width: 100px;
-    height: 100px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    animation: ripple 0.6s linear;
-}
-
-button span {
-    position: relative;
-    z-index: 2;
-}
-
 /* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes ripple {
-    to {
-        transform: translate(-50%, -50%) scale(4);
-        opacity: 0;
-    }
 }

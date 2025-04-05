@@ -1,110 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Complete Your Profile</title>
-  <link rel="stylesheet" href="../static/css/profile.css">
+  <link rel="stylesheet" href="../static/css/profile.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="form-container">
-    <div class="progress-bar">
-      <div class="progress"></div>
-      <div class="progress-step active" data-step="1"></div>
-      <div class="progress-step" data-step="2"></div>
-      <div class="progress-step" data-step="3"></div>
-      <div class="progress-step" data-step="4"></div>
-    </div>
-    
-    <div class="form-card">
-      <form id="profile-form">
-        <!-- Step 1 -->
-        <div class="form-step active">
-          <h2>Step 1: Basic Info</h2>
-          <div class="form-group">
-            <input type="number" name="age" required placeholder=" " />
-            <label>Age</label>
-          </div>
-          <div class="form-group">
-            <select name="gender" required>
-              <option value="" disabled selected></option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </select>
-            <label>Gender</label>
-          </div>
-          <div class="button-group">
-            <button type="button" class="next">Next</button>
-          </div>
-        </div>
+  <div class="form-wrapper">
+    <div class="form-container">
+      <div class="progress-bar">
+        <div class="progress"></div>
+        <div class="progress-step active" data-step="1"></div>
+        <div class="progress-step" data-step="2"></div>
+        <div class="progress-step" data-step="3"></div>
+        <div class="progress-step" data-step="4"></div>
+      </div>
 
-        <!-- Step 2 -->
-        <div class="form-step">
-          <h2>Step 2: Body Stats</h2>
-          <div class="slider-group">
-            <label>Height (cm): <span id="height-val">170</span></label>
-            <input type="range" name="height" min="130" max="220" value="170" id="height-slider" />
-          </div>
-          <div class="slider-group">
-            <label>Weight (kg): <span id="weight-val">65</span></label>
-            <input type="range" name="weight" min="30" max="150" value="65" id="weight-slider" />
-          </div>
-          <div class="button-group">
-            <button type="button" class="prev">Back</button>
-            <button type="button" class="next">Next</button>
-          </div>
-        </div>
+      <div class="form-card">
+        <form id="profile-form">
 
-        <!-- Step 3 -->
-        <div class="form-step">
-          <h2>Step 3: Fitness Goals</h2>
-          <div class="form-group">
-            <select name="fitness_goal" required>
-              <option value="" disabled selected></option>
-              <option value="Lose Weight">Lose Weight</option>
-              <option value="Build Muscle">Build Muscle</option>
-              <option value="Stay Fit">Stay Fit</option>
-            </select>
-            <label>Fitness Goal</label>
+          <!-- Step 1 -->
+          <div class="form-step active">
+            <h2>Step 1: Basic Info</h2>
+            <div class="form-group">
+              <input type="number" name="age" required placeholder=" " />
+              <label>Age</label>
+            </div>
+            <div class="form-group">
+              <select name="gender" required>
+                <option value="" disabled selected></option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+              <label>Gender</label>
+            </div>
+            <div class="button-group">
+              <button type="button" class="next">Next</button>
+            </div>
           </div>
-          <div class="form-group">
-            <input type="number" name="target_weight" required placeholder=" " />
-            <label>Target Weight (kg)</label>
-          </div>
-          <div class="button-group">
-            <button type="button" class="prev">Back</button>
-            <button type="button" class="next">Next</button>
-          </div>
-        </div>
 
-        <!-- Step 4 -->
-        <div class="form-step">
-          <h2>Step 4: Preferences</h2>
-          <div class="form-group">
-            <select name="diet_preference" required>
-              <option value="" disabled selected></option>
-              <option value="Vegetarian">Vegetarian</option>
-              <option value="Non-Vegetarian">Non-Vegetarian</option>
-              <option value="Vegan">Vegan</option>
-            </select>
-            <label>Diet Preference</label>
+          <!-- Step 2 -->
+          <div class="form-step">
+            <h2>Step 2: Body Stats</h2>
+            <div class="slider-group">
+              <label>Height (cm): <span id="height-val">170</span></label>
+              <input type="range" name="height" min="130" max="220" value="170" id="height-slider" />
+            </div>
+            <div class="slider-group">
+              <label>Weight (kg): <span id="weight-val">65</span></label>
+              <input type="range" name="weight" min="30" max="150" value="65" id="weight-slider" />
+            </div>
+            <div class="button-group">
+              <button type="button" class="prev">Back</button>
+              <button type="button" class="next">Next</button>
+            </div>
           </div>
-          <div class="slider-group">
-            <label>Workout Time (min): <span id="time-val">30</span></label>
-            <input type="range" name="workout_time" min="10" max="120" value="30" id="time-slider" />
+
+          <!-- Step 3 -->
+          <div class="form-step">
+            <h2>Step 3: Fitness Goals</h2>
+            <div class="form-group">
+              <select name="fitness_goal" required>
+                <option value="" disabled selected></option>
+                <option value="Lose Weight">Lose Weight</option>
+                <option value="Build Muscle">Build Muscle</option>
+                <option value="Stay Fit">Stay Fit</option>
+              </select>
+              <label>Fitness Goal</label>
+            </div>
+            <div class="form-group">
+              <input type="number" name="target_weight" required placeholder=" " />
+              <label>Target Weight (kg)</label>
+            </div>
+            <div class="button-group">
+              <button type="button" class="prev">Back</button>
+              <button type="button" class="next">Next</button>
+            </div>
           </div>
-          <div class="slider-group">
-            <label>Workout Days/Week: <span id="days-val">3</span></label>
-            <input type="range" name="workout_days" min="1" max="7" value="3" id="days-slider" />
+
+          <!-- Step 4 -->
+          <div class="form-step">
+            <h2>Step 4: Preferences</h2>
+            <div class="form-group">
+              <select name="diet_preference" required>
+                <option value="" disabled selected></option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Non-Vegetarian">Non-Vegetarian</option>
+                <option value="Vegan">Vegan</option>
+              </select>
+              <label>Diet Preference</label>
+            </div>
+            <div class="slider-group">
+              <label>Workout Time (min): <span id="time-val">30</span></label>
+              <input type="range" name="workout_time" min="10" max="120" value="30" id="time-slider" />
+            </div>
+            <div class="slider-group">
+              <label>Workout Days/Week: <span id="days-val">3</span></label>
+              <input type="range" name="workout_days" min="1" max="7" value="3" id="days-slider" />
+            </div>
+            <div class="button-group">
+              <button type="button" class="prev">Back</button>
+              <button type="submit">Submit</button>
+            </div>
           </div>
-          <div class="button-group">
-            <button type="button" class="prev">Back</button>
-            <button type="submit">Submit</button>
-          </div>
-        </div>
-      </form>
+
+        </form>
+      </div>
     </div>
   </div>
 
