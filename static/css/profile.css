@@ -14,7 +14,7 @@ body {
 
 .form-container {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
 }
 
 /* Progress Bar */
@@ -49,7 +49,7 @@ body {
     font-size: 0.9rem;
     position: relative;
     z-index: 1;
-    transition: background 0.4s, box-shadow 0.4s;
+    transition: background-color 0.4s, box-shadow 0.4s;
 }
 
 .progress-step.active {
@@ -66,10 +66,11 @@ body {
 /* Form Card */
 .form-card {
     background: #1a1a1a;
-    padding: 2rem;
+    padding: 2.5rem 2rem;
     border-radius: 20px;
-    box-shadow: 0 0 30px rgba(0, 255, 200, 0.1);
-    transition: all 0.4s ease;
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.08); /* reduced blur */
+    width: 100%;
+    min-height: 400px; /* increased height */
 }
 
 h2 {
@@ -88,54 +89,51 @@ h2 {
     display: block;
 }
 
-/* Input Group */
+/* Form Group */
 .form-group {
-    position: relative;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .form-group input,
 .form-group select {
-    background: transparent;
+    background: #222;
     border: 2px solid #555;
     padding: 0.75rem;
     width: 100%;
     color: #f0f0f0;
     font-size: 1rem;
-    border-radius: 8px;
+    border-radius: 10px;
     transition: border-color 0.3s ease;
     appearance: none;
 }
 
-/* Fix select dropdown */
+/* Fix select dropdown cursor */
 .form-group select {
-    background: #222;
     cursor: pointer;
 }
 
-/* Adjust Select Box Padding */
-.form-group select {
-    padding: 12px;
-    border-radius: 8px;
-}
-
-/* Ensure label moves correctly */
+/* Floating Labels */
 .form-group label {
     position: absolute;
-    top: 12px;
-    left: 12px;
+    top: 14px;
+    left: 16px;
     font-size: 0.85rem;
-    transition: all 0.3s ease;
     color: #888;
+    pointer-events: none;
+    transition: 0.3s ease all;
+    background-color: #1a1a1a;
+    padding: 0 5px;
 }
 
-/* Floating Labels */
+
+
+/* Float effect when active */
 .form-group input:focus ~ label,
 .form-group input:not(:placeholder-shown) ~ label,
 .form-group select:focus ~ label,
 .form-group select:valid ~ label {
     top: -10px;
-    left: 8px;
+    left: 12px;
     font-size: 0.75rem;
     color: #00ffe7;
 }
