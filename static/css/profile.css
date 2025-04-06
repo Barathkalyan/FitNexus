@@ -91,7 +91,12 @@
     color: #00ffee;
     text-shadow: 0 0 4px #00ffee88;
     text-align: center;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+  
   
   /* Inputs & Selects */
   input[type="number"],

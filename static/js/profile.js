@@ -1,12 +1,19 @@
 let currentStep = 1;
 const totalSteps = 4;
 
+const stepTitles = [
+  "Step 1: Basic Info",
+  "Step 2: Body Stats",
+  "Step 3: Fitness Goals",
+  "Step 4: Preferences"
+];
+
 function showStep(step) {
   for (let i = 1; i <= totalSteps; i++) {
-    const stepDiv = document.getElementById(`step${i}`);
-    stepDiv.style.display = i === step ? 'block' : 'none';
+    document.getElementById(`step${i}`).style.display = (i === step) ? 'block' : 'none';
   }
 
+  document.getElementById("stepTitle").innerText = stepTitles[step - 1];
   updateProgressBar(step);
 }
 
