@@ -5,113 +5,104 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Complete Your Profile</title>
   <link rel="stylesheet" href="../static/css/profile.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="form-wrapper">
-    <div class="form-container">
-      <div class="progress-bar">
-        <div class="progress"></div>
-        <div class="progress-step active" data-step="1"></div>
-        <div class="progress-step" data-step="2"></div>
-        <div class="progress-step" data-step="3"></div>
-        <div class="progress-step" data-step="4"></div>
-      </div>
+  <h1 class="main-title">Complete Your Profile!</h1>
+  <p class="quote">"Every step you take brings you closer to your best self."</p>
 
-      <div class="form-card glassmorph">
-        <form id="profile-form">
+    <div class="progress-bar">
+      <div class="step active"></div>
+      <div class="step"></div>
+      <div class="step"></div>
+      <div class="step"></div>
+    </div>
 
-          <!-- Step 1 -->
-          <div class="form-step active">
-            <h2>Step 1: Basic Info</h2>
-            <div class="form-group floating">
-              <input type="number" name="age" required placeholder=" " />
-              <label>Age</label>
-            </div>
-            <div class="form-group floating">
-              <select name="gender" required>
-                <option value="" disabled selected></option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
-              <label>Gender</label>
-            </div>
-            <div class="button-group">
-              <button type="button" class="next">Next</button>
-            </div>
+  <div class="form-container">
+    <div class="form-card">
+      <form id="profileForm">
+
+        <!-- Step 1 -->
+        <div id="step1">
+          <h2 class="step-title">Step 1: Basic Info</h2>
+          <label for="age">Age</label>
+          <input type="number" id="age" name="age" required>
+
+          <label for="gender">Gender</label>
+          <select id="gender" name="gender" required>
+            <option disabled selected>Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+
+          <button class="btn" type="button" onclick="nextStep()">Next</button>
+        </div>
+
+        <!-- Step 2 -->
+        <div id="step2" style="display:none;">
+          <h2 class="step-title">Step 2: Body Stats</h2>
+          <label>Height (cm): <span id="heightValue">170</span></label>
+          <input type="range" min="140" max="220" value="170" name="height"
+                 oninput="heightValue.innerText = this.value" />
+
+          <label>Weight (kg): <span id="weightValue">65</span></label>
+          <input type="range" min="30" max="150" value="65" name="weight"
+                 oninput="weightValue.innerText = this.value" />
+
+          <div class="btn-group">
+            <button class="btn" type="button" onclick="prevStep()">Back</button>
+            <button class="btn" type="button" onclick="nextStep()">Next</button>
           </div>
+        </div>
 
-          <!-- Step 2 -->
-          <div class="form-step">
-            <h2>Step 2: Body Stats</h2>
-            <div class="slider-group">
-              <label>Height (cm): <span id="height-val">170</span></label>
-              <input type="range" name="height" min="130" max="220" value="170" id="height-slider" />
-            </div>
-            <div class="slider-group">
-              <label>Weight (kg): <span id="weight-val">65</span></label>
-              <input type="range" name="weight" min="30" max="150" value="65" id="weight-slider" />
-            </div>
-            <div class="button-group">
-              <button type="button" class="prev">Back</button>
-              <button type="button" class="next">Next</button>
-            </div>
+        <!-- Step 3 -->
+        <div id="step3" style="display:none;">
+          <h2 class="step-title">Step 3: Fitness Goals</h2>
+          <label for="goal">Fitness Goal</label>
+          <select name="goal" id="goal" required>
+            <option disabled selected>Fitness Goal</option>
+            <option>Lose Weight</option>
+            <option>Gain Muscle</option>
+            <option>Stay Fit</option>
+          </select>
+
+          <label for="target">Target Weight (kg)</label>
+          <input type="number" id="target" name="target" required />
+
+          <div class="btn-group">
+            <button class="btn" type="button" onclick="prevStep()">Back</button>
+            <button class="btn" type="button" onclick="nextStep()">Next</button>
           </div>
+        </div>
 
-          <!-- Step 3 -->
-          <div class="form-step">
-            <h2>Step 3: Fitness Goals</h2>
-            <div class="form-group floating">
-              <select name="fitness_goal" required>
-                <option value="" disabled selected></option>
-                <option value="Lose Weight">Lose Weight</option>
-                <option value="Build Muscle">Build Muscle</option>
-                <option value="Stay Fit">Stay Fit</option>
-              </select>
-              <label>Fitness Goal</label>
-            </div>
-            <div class="form-group floating">
-              <input type="number" name="target_weight" required placeholder=" " />
-              <label>Target Weight (kg)</label>
-            </div>
-            <div class="button-group">
-              <button type="button" class="prev">Back</button>
-              <button type="button" class="next">Next</button>
-            </div>
+        <!-- Step 4 -->
+        <div id="step4" style="display:none;">
+          <h2 class="step-title">Step 4: Preferences</h2>
+          <label for="diet">Diet Preference</label>
+          <select id="diet" name="diet" required>
+            <option disabled selected>Diet Preference</option>
+            <option>Vegetarian</option>
+            <option>Non-Vegetarian</option>
+            <option>Vegan</option>
+          </select>
+
+          <label>Workout Time/Day (min):   <span id="workoutTime">30</span></label>
+          <input type="range" min="10" max="120" value="30" name="workout_time"
+                 oninput="workoutTime.innerText = this.value" />
+
+          <label>Workout Days/Week:  <span id="workoutDays">3</span></label>
+          <input type="range" min="1" max="7" value="3" name="workout_days"
+                 oninput="workoutDays.innerText = this.value" />
+
+          <div class="btn-group">
+            <button class="btn" type="button" onclick="prevStep()">Back</button>
+            <button class="btn" type="submit">Submit</button>
           </div>
-
-          <!-- Step 4 -->
-          <div class="form-step">
-            <h2>Step 4: Preferences</h2>
-            <div class="form-group floating">
-              <select name="diet_preference" required>
-                <option value="" disabled selected></option>
-                <option value="Vegetarian">Vegetarian</option>
-                <option value="Non-Vegetarian">Non-Vegetarian</option>
-                <option value="Vegan">Vegan</option>
-              </select>
-              <label>Diet Preference</label>
-            </div>
-            <div class="slider-group">
-              <label>Workout Time (min): <span id="time-val">30</span></label>
-              <input type="range" name="workout_time" min="10" max="120" value="30" id="time-slider" />
-            </div>
-            <div class="slider-group">
-              <label>Workout Days/Week: <span id="days-val">3</span></label>
-              <input type="range" name="workout_days" min="1" max="7" value="3" id="days-slider" />
-            </div>
-            <div class="button-group">
-              <button type="button" class="prev">Back</button>
-              <button type="submit">Submit</button>
-            </div>
-          </div>
-
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
 
-  <script src="/static/js/profile.js"></script>
+  <script src="../static/js/profile.js"></script>
 </body>
 </html>

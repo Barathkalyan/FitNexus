@@ -7,10 +7,13 @@ function showStep(step) {
     stepDiv.style.display = i === step ? 'block' : 'none';
   }
 
-  // Update progress dots if needed
-  const dots = document.querySelectorAll('.step');
-  dots.forEach((dot, index) => {
-    dot.classList.toggle('active', index < step);
+  updateProgressBar(step);
+}
+
+function updateProgressBar(stepIndex) {
+  const steps = document.querySelectorAll('.progress-bar .step');
+  steps.forEach((step, index) => {
+    step.classList.toggle('active', index < stepIndex);
   });
 }
 
@@ -28,7 +31,6 @@ function prevStep() {
   }
 }
 
-// Show initial step
 document.addEventListener("DOMContentLoaded", () => {
   showStep(currentStep);
 });
