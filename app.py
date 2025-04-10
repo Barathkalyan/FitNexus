@@ -8,14 +8,13 @@ from models.user_profile import Profile
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 app.secret_key = "b94f8e17d2a645f3a3c91e4825a1d6b7"
-CORS(app)
+CORS(app, supports_credentials=True)
 
 # Flask-Login setup
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "auth.login_page"
 
-# User loader
 @login_manager.user_loader
 def load_user(user_id):
     db = mysql.connector.connect(**DB_CONFIG)
@@ -26,19 +25,18 @@ def load_user(user_id):
     db.close()
 
     if user_data:
+        session["email"]= user_data["email"]
         return User(user_data["id"], user_data["name"], user_data["email"], user_data["profile_completed"])
     return None
 
-# Register Blueprints
 from routes.auth import auth
 app.register_blueprint(auth, url_prefix="/auth")
 
-# Routes
 @app.route("/")
 def home():
     if "id" not in session:
         return redirect(url_for("auth.login_page"))
-    return redirect(url_for("dashboard") if session.get("profile_completed") else url_for("profile_complete"))
+    return redirect(url_for("landing_page") if session.get("profile_completed") else url_for("profile_complete"))
 
 @app.route("/landing")
 def landing_page():
@@ -75,13 +73,15 @@ def profile_complete():
 @login_required
 def complete_profile_api():
     data = request.json
-    user_email = session.get("email")
-
-    if not user_email:
+    user_id = session.get("id")
+    if not user_id:
         return jsonify({"error": "Session expired. Please log in again."}), 401
 
+    data["user_id"] = user_id  # Make sure the profile gets linked to the user
+
     if Profile.save_full_profile(data):
-        return jsonify({"message": "Profile saved successfully"}), 200
+        session["profile_completed"] = True
+        return jsonify({"message": "Profile saved successfully", "redirect": "/dashboard"}), 200
     else:
         return jsonify({"error": "Failed to save profile"}), 500
 

@@ -1,5 +1,4 @@
 import mysql.connector
-from flask import session
 from config import DB_CONFIG
 
 class Profile:
@@ -55,20 +54,20 @@ class Profile:
         db = Profile.get_db_connection()
         cursor = db.cursor()
         try:
-            email = session.get("email")
-            if not email:
-                raise Exception("Email not found in session.")
+            user_id = data.get("user_id")
+            if not user_id:
+                raise Exception("User ID not found in data.")
 
             cursor.execute("""
                 INSERT INTO profile 
-                (email, age, gender, height, weight, fitness_goal, target_weight, diet_preference, workout_time, workout_days)
+                (user_id, age, gender, height, weight, fitness_goal, target_weight, diet_preference, workout_time, workout_days)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 ON DUPLICATE KEY UPDATE
                     age=%s, gender=%s, height=%s, weight=%s,
                     fitness_goal=%s, target_weight=%s,
                     diet_preference=%s, workout_time=%s, workout_days=%s
             """, (
-                email, data["age"], data["gender"], data["height"], data["weight"],
+                user_id, data["age"], data["gender"], data["height"], data["weight"],
                 data["fitness_goal"], data["target_weight"], data["diet_preference"],
                 data["workout_time"], data["workout_days"],
                 data["age"], data["gender"], data["height"], data["weight"],

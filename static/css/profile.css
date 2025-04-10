@@ -96,7 +96,20 @@
     align-items: center;
     justify-content: center;
   }
-  
+  #logoutBtn {
+    background: #ff2e63;
+    font-size: 25px;
+    border: none;
+    color: white; 
+    padding: 8px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 40px;
+}
+
+#logoutBtn:hover {
+    background: #d81b5a;
+}
   
   /* Inputs & Selects */
   input[type="number"],

@@ -16,13 +16,11 @@
     <div class="step"></div>
     <div class="step"></div>
   </div>
-
   <div class="form-container">
     <div class="form-card">
       <h2 id="stepTitle" class="step-title"></h2>
 
       <form id="profileForm">
-        <!-- Step 1: Basic Info -->
         <div id="step1">
           <label for="age">Age</label>
           <input type="number" id="age" name="age" required>
@@ -38,7 +36,6 @@
           <button class="btn" type="button" onclick="nextStep()">Next</button>
         </div>
 
-        <!-- Step 2: Body Stats -->
         <div id="step2" style="display:none;">
           <label for="height">Height (cm): <span id="heightValue">170</span></label>
           <input type="range" id="height" min="140" max="220" value="170" name="height"
@@ -54,7 +51,6 @@
           </div>
         </div>
 
-        <!-- Step 3: Fitness Goals -->
         <div id="step3" style="display:none;">
           <label for="goal">Fitness Goal</label>
           <select name="goal" id="goal" required>
@@ -73,7 +69,6 @@
           </div>
         </div>
 
-        <!-- Step 4: Preferences -->
         <div id="step4" style="display:none;">
           <label for="diet">Diet Preference</label>
           <select id="diet" name="diet" required>
@@ -91,6 +86,8 @@
           <input type="range" id="workout_days" min="1" max="7" value="3" name="workout_days"
                  oninput="document.getElementById('workoutDays').textContent = this.value" />
 
+          <div id="formError" class="error-text" style="color:red; margin-top:10px;"></div>
+
           <div class="btn-group">
             <button class="btn" type="button" onclick="prevStep()">Back</button>
             <button class="btn" type="submit">Submit</button>
@@ -99,6 +96,7 @@
       </form>
     </div>
   </div>
+  <button id="logoutBtn">Logout</button>
 
   <script src="../static/js/profile.js"></script>
 </body>

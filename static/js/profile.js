@@ -8,12 +8,23 @@ const stepTitles = [
   "Step 4: Preferences"
 ];
 
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  window.location.href = "/auth/logout";
+});
+
 function showStep(step) {
   for (let i = 1; i <= totalSteps; i++) {
-    document.getElementById(`step${i}`).style.display = (i === step) ? 'block' : 'none';
+    const stepDiv = document.getElementById(`step${i}`);
+    if (stepDiv) {
+      stepDiv.style.display = (i === step) ? 'block' : 'none';
+    }
   }
 
-  document.getElementById("stepTitle").innerText = stepTitles[step - 1];
+  const titleElement = document.getElementById("stepTitle");
+  if (titleElement) {
+    titleElement.innerText = stepTitles[step - 1];
+  }
+
   updateProgressBar(step);
 }
 
@@ -24,8 +35,13 @@ function updateProgressBar(stepIndex) {
   });
 }
 
+function validateCurrentStep() {
+  // Placeholder: return false to block, true to continue
+  return true;
+}
+
 function nextStep() {
-  if (currentStep < totalSteps) {
+  if (currentStep < totalSteps && validateCurrentStep()) {
     currentStep++;
     showStep(currentStep);
   }
@@ -41,40 +57,56 @@ function prevStep() {
 document.addEventListener("DOMContentLoaded", () => {
   showStep(currentStep);
 
-  document.getElementById("profileForm").addEventListener("submit", async function (e) {
-    e.preventDefault();
+  const form = document.getElementById("profileForm");
+  const errorElement = document.getElementById("formError");
 
-    const form = e.target;
-    const data = {
-      age: form.age.value,
-      gender: form.gender.value,
-      height: form.height.value,
-      weight: form.weight.value,
-      fitness_goal: form.goal.value,
-      target_weight: form.target.value,
-      diet_preference: form.diet.value,
-      workout_time: form.workout_time.value,
-      workout_days: form.workout_days.value
-    };
+  if (form) {
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-    try {
-      const res = await fetch("/api/complete-profile", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
-
-      const result = await res.json();
-      if (result.redirect) {
-        window.location.href = result.redirect;
-      } else {
-        alert(result.error || "Something went wrong!");
+      const submitBtn = form.querySelector("button[type='submit']");
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Submitting...";
       }
-    } catch (err) {
-      console.error("Error:", err);
-      alert("Server error!");
-    }
-  });
+      if (errorElement) errorElement.innerText = "";
+
+      const data = {
+        age: form.age.value,
+        gender: form.gender.value,
+        height: form.height.value,
+        weight: form.weight.value,
+        fitness_goal: form.goal.value,
+        target_weight: form.target.value,
+        diet_preference: form.diet.value,
+        workout_time: form.workout_time.value,
+        workout_days: form.workout_days.value
+      };
+
+      try {
+        const res = await fetch("/api/complete-profile", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+        if (res.ok) {
+          window.location.href = "/dashboard";
+        } else {
+          if (errorElement) errorElement.innerText = result.error || "Something went wrong!";
+        }
+      } catch (err) {
+        console.error("Error:", err);
+        if (errorElement) errorElement.innerText = "Server error!";
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Submit";
+      }
+    });
+  }
 });
