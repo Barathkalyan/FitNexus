@@ -157,5 +157,26 @@ def complete_profile():
         cursor.close()
         db.close()
 
+@auth.route('/complete_profile',methods=["POST"])
+@login.required
+def complete_profile():
+    data=request.get_json()
+    
+    try:
+        current_user.age=data["age"]
+        current_user.gender = data['gender']
+        current_user.height = data['height']
+        current_user.weight = data['weight']
+        current_user.fitness_goal = data['fitness_goal']
+        current_user.target_weight = data['target_weight']
+        current_user.diet_preference = data['diet_preference']
+        current_user.workout_time = data['workout_time']
+        current_user.workout_days = data['workout_days']
+        return jsonify({"redirect": "/dashboard"})
+    
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+        
+
 
 
