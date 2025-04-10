@@ -1,9 +1,11 @@
 from flask import Flask, render_template, session, redirect, url_for, request
+from flask import request, jsonify, session
 import mysql.connector
 from config import DB_CONFIG
 from flask_cors import CORS
 from flask_login import LoginManager, current_user
 from models.user import User
+from profile import Profile
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 app.secret_key = "b94f8e17d2a645f3a3c91e4825a1d6b7"
@@ -88,6 +90,21 @@ def profile_complete():
         return redirect(url_for("dashboard"))
 
     return render_template("profile_complete.html")
+
+@app.route("/api/complete-profile", methods=["POST"])
+def complete_profile():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    
+    user_id= session["user_id"]
+    data=request.get_json()
+    
+    success= Profile.save_full_profile(user_id,data)
+    
+    if success:
+        return jsonify({"redirect": "/dashboard"})
+    else:
+        return jsonify({"error": "Failed to save Profile"}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)

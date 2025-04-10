@@ -51,3 +51,35 @@ class Profile:
         finally:
             cursor.close()
             db.close()
+            
+@staticmethod
+def save_full_profile(user_id, data):
+    db = Profile.get_db_connection()
+    cursor = db.cursor()
+
+    try:
+        cursor.execute("""
+            INSERT INTO profiles (user_id, age, gender, height, weight, fitness_goal, target_weight, diet_preference, workout_time, workout_days)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            ON DUPLICATE KEY UPDATE
+                age=%s, gender=%s, height=%s, weight=%s,
+                fitness_goal=%s, target_weight=%s,
+                diet_preference=%s, workout_time=%s, workout_days=%s
+        """, (
+            user_id, data["age"], data["gender"], data["height"], data["weight"],
+            data["fitness_goal"], data["target_weight"], data["diet_preference"],
+            data["workout_time"], data["workout_days"],
+
+            data["age"], data["gender"], data["height"], data["weight"],
+            data["fitness_goal"], data["target_weight"], data["diet_preference"],
+            data["workout_time"], data["workout_days"]
+        ))
+        db.commit()
+        return True
+    except mysql.connector.Error as e:
+        print("Error saving full profile:", e)
+        return False
+    finally:
+        cursor.close()
+        db.close()
+
