@@ -19,18 +19,17 @@
 
   <div class="form-container">
     <div class="form-card">
-      <!-- This is the dynamic step title -->
       <h2 id="stepTitle" class="step-title"></h2>
 
       <form id="profileForm">
-        <!-- Step 1 -->
+        <!-- Step 1: Basic Info -->
         <div id="step1">
           <label for="age">Age</label>
           <input type="number" id="age" name="age" required>
 
           <label for="gender">Gender</label>
           <select id="gender" name="gender" required>
-            <option disabled selected>Gender</option>
+            <option value="" disabled selected hidden>Select Gender</option>
             <option>Male</option>
             <option>Female</option>
             <option>Other</option>
@@ -39,15 +38,15 @@
           <button class="btn" type="button" onclick="nextStep()">Next</button>
         </div>
 
-        <!-- Step 2 -->
+        <!-- Step 2: Body Stats -->
         <div id="step2" style="display:none;">
-          <label>Height (cm): <span id="heightValue">170</span></label>
-          <input type="range" min="140" max="220" value="170" name="height"
-                 oninput="heightValue.innerText = this.value" />
+          <label for="height">Height (cm): <span id="heightValue">170</span></label>
+          <input type="range" id="height" min="140" max="220" value="170" name="height"
+                 oninput="document.getElementById('heightValue').textContent = this.value" />
 
-          <label>Weight (kg): <span id="weightValue">65</span></label>
-          <input type="range" min="30" max="150" value="65" name="weight"
-                 oninput="weightValue.innerText = this.value" />
+          <label for="weight">Weight (kg): <span id="weightValue">65</span></label>
+          <input type="range" id="weight" min="30" max="150" value="65" name="weight"
+                 oninput="document.getElementById('weightValue').textContent = this.value" />
 
           <div class="btn-group">
             <button class="btn" type="button" onclick="prevStep()">Back</button>
@@ -55,11 +54,11 @@
           </div>
         </div>
 
-        <!-- Step 3 -->
+        <!-- Step 3: Fitness Goals -->
         <div id="step3" style="display:none;">
           <label for="goal">Fitness Goal</label>
           <select name="goal" id="goal" required>
-            <option disabled selected>Fitness Goal</option>
+            <option value="" disabled selected hidden>Select Goal</option>
             <option>Lose Weight</option>
             <option>Gain Muscle</option>
             <option>Stay Fit</option>
@@ -74,23 +73,23 @@
           </div>
         </div>
 
-        <!-- Step 4 -->
+        <!-- Step 4: Preferences -->
         <div id="step4" style="display:none;">
           <label for="diet">Diet Preference</label>
           <select id="diet" name="diet" required>
-            <option disabled selected>Diet Preference</option>
+            <option value="" disabled selected hidden>Select Preference</option>
             <option>Vegetarian</option>
             <option>Non-Vegetarian</option>
             <option>Vegan</option>
           </select>
 
-          <label>Workout Time/Day (min): <span id="workoutTime">30</span></label>
-          <input type="range" min="10" max="120" value="30" name="workout_time"
-                 oninput="workoutTime.innerText = this.value" />
+          <label for="workout_time">Workout Time/Day (min): <span id="workoutTime">30</span></label>
+          <input type="range" id="workout_time" min="10" max="200" value="30" name="workout_time"
+                 oninput="document.getElementById('workoutTime').textContent = this.value" />
 
-          <label>Workout Days/Week: <span id="workoutDays">3</span></label>
-          <input type="range" min="1" max="7" value="3" name="workout_days"
-                 oninput="workoutDays.innerText = this.value" />
+          <label for="workout_days">Workout Days/Week: <span id="workoutDays">3</span></label>
+          <input type="range" id="workout_days" min="1" max="7" value="3" name="workout_days"
+                 oninput="document.getElementById('workoutDays').textContent = this.value" />
 
           <div class="btn-group">
             <button class="btn" type="button" onclick="prevStep()">Back</button>
