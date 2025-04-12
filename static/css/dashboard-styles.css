@@ -63,8 +63,7 @@ body {
     position: relative;
 }
 
-
-
+/* Profile Dropdown */
 .dropdown {
     display: none;
     position: absolute;
@@ -72,20 +71,63 @@ body {
     background: #222;
     border-radius: 8px;
     box-shadow: 0px 4px 15px rgba(255, 46, 99, 0.3);
-    width: 160px;
+    width: 150px;
+    height:200px;
     text-align: center;
     padding: 10px;
+    border: 1px solid rgba(255, 46, 99, 0.3); /* Light glowing edge */
+    transition: all 0.3s ease;
 }
 
+/* Hover effect for dropdown */
+.dropdown:hover {
+    box-shadow: 0 0 20px rgba(255, 46, 99, 0.7);
+}
+
+/* Dropdown header styling */
+.dropdown-header {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: white;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.dropdown-name,
+.dropdown-id {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff2e63;
+}
+
+/* Add a row line between name and ID */
+.dropdown-header .dropdown-id {
+    border-top: 1px solid rgba(255, 46, 99, 0.5);
+    padding-top: 10px;
+    margin-top: 10px;
+    font-size: 18px;
+    color: #f0f0f0;
+}
+
+/* Profile Dropdown hover effect */
 .dropdown.show {
     display: block;
     animation: fadeIn 0.3s ease-in-out;
 }
 
-.dropdown-header {
-    font-size: 16px;
-    margin-bottom: 10px;
+/* Glow effect around dropdown */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
+
+
 
 #logoutBtn {
     background: #ff2e63;

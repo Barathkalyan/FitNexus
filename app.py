@@ -69,7 +69,7 @@ def get_started():
 def dashboard():
     if not session.get("profile_completed"):
         return redirect(url_for("profile_complete"))
-    return render_template("dashboard.html", user_id=session.get("user_id"))
+    return render_template("dashboard.html", name=session['name'], user_id=session['user_id'])
 
 # Profile completion form (GET = form, POST = mark completed)
 @app.route("/profile-complete", methods=["GET", "POST"])
