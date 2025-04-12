@@ -91,7 +91,7 @@ def profile_complete():
 @login_required
 def complete_profile_api():
     data = request.json 
-    user_id = session.get("id")
+    user_id = session.get("user_id")
 
     if not user_id:
         return jsonify({"error": "Session expired. Please log in again."}), 401

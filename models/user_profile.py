@@ -57,6 +57,8 @@ class Profile:
             user_id = data.get("user_id")
             if not user_id:
                 raise Exception("User ID not found in data.")
+            print("Incoming profile data:", data)
+
 
             cursor.execute("""
                 INSERT INTO profile 
@@ -75,7 +77,10 @@ class Profile:
                 data["diet_preference"], data["workout_time"], data["workout_days"]
             ))
             db.commit()
+            print("Rows affected:", cursor.rowcount)
+
             return True
+        
         except mysql.connector.Error as e:
             print("Error saving full profile:", e)
             return False
