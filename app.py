@@ -64,7 +64,32 @@ def get_started():
 def dashboard():
     if not session.get("profile_completed"):
         return redirect(url_for("profile_complete"))
-    return render_template("dashboard.html", name=session['name'], user_id=session['user_id'])
+    
+    db = mysql.connector.connect(**DB_CONFIG)
+    cursor = db.cursor(dictionary=True)
+    
+    cursor.execute("SELECT weight,target_weight,fitness_goal,diet_preference from profile where user_id=%s", (session["user_id"],))
+    profile=cursor.fetchone()
+    
+    cursor.close()
+    db.close()
+    
+    if profile:
+        return render_template("dashboard.html",
+                               name=session["name"],
+                               user_id=session["user_id"],
+                               weight=profile["weight"],
+                               target_weight=profile["target_weight"],
+                               goal=profile["fitness_goal"],
+                               diet=profile["diet_preference"] 
+                               )
+    else:
+        return render_template("dashboard.html",
+                               name=session["name"],
+                               user_id=session["user_id"],
+                               weight=0,target_weight=0,goal="Not set",diet="Not set"
+                               )
+
 
 # Profile completion form (GET = form, POST = mark completed)
 @app.route("/profile-complete", methods=["GET", "POST"])
