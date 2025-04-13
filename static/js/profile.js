@@ -8,10 +8,12 @@ const stepTitles = [
   "Step 4: Preferences"
 ];
 
+// Handle logout
 document.getElementById("logoutBtn").addEventListener("click", () => {
   window.location.href = "/auth/logout";
 });
 
+// Show the current step and hide the rest
 function showStep(step) {
   for (let i = 1; i <= totalSteps; i++) {
     const stepDiv = document.getElementById(`step${i}`);
@@ -20,6 +22,7 @@ function showStep(step) {
     }
   }
 
+  // Update the step title
   const titleElement = document.getElementById("stepTitle");
   if (titleElement) {
     titleElement.innerText = stepTitles[step - 1];
@@ -28,6 +31,7 @@ function showStep(step) {
   updateProgressBar(step);
 }
 
+// Update the progress bar
 function updateProgressBar(stepIndex) {
   const steps = document.querySelectorAll('.progress-bar .step');
   steps.forEach((step, index) => {
@@ -35,11 +39,13 @@ function updateProgressBar(stepIndex) {
   });
 }
 
+// Placeholder validation function (to be replaced with real validation logic)
 function validateCurrentStep() {
   // Placeholder: return false to block, true to continue
   return true;
 }
 
+// Navigate to the next step
 function nextStep() {
   if (currentStep < totalSteps && validateCurrentStep()) {
     currentStep++;
@@ -47,6 +53,7 @@ function nextStep() {
   }
 }
 
+// Navigate to the previous step
 function prevStep() {
   if (currentStep > 1) {
     currentStep--;
@@ -54,23 +61,26 @@ function prevStep() {
   }
 }
 
+// Form submission logic
 document.addEventListener("DOMContentLoaded", () => {
-  showStep(currentStep);
+  showStep(currentStep); // Display the first step on page load
 
   const form = document.getElementById("profileForm");
   const errorElement = document.getElementById("formError");
 
   if (form) {
     form.addEventListener("submit", async function (e) {
-      e.preventDefault();
+      e.preventDefault(); // Prevent default form submission
 
       const submitBtn = form.querySelector("button[type='submit']");
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.innerText = "Submitting...";
       }
+
       if (errorElement) errorElement.innerText = "";
 
+      // Collect data from the form
       const data = {
         age: form.age.value,
         gender: form.gender.value,
@@ -94,8 +104,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const result = await res.json();
         if (res.ok) {
+          // Redirect to dashboard if the profile is saved successfully
           window.location.href = "/dashboard";
         } else {
+          // Show error message if there was an issue
           if (errorElement) errorElement.innerText = result.error || "Something went wrong!";
         }
       } catch (err) {
@@ -103,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (errorElement) errorElement.innerText = "Server error!";
       }
 
+      // Re-enable the submit button after the request is complete
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.innerText = "Submit";

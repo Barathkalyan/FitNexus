@@ -99,10 +99,23 @@ def complete_profile_api():
     data["user_id"] = user_id  # Attach user ID to the incoming profile data
 
     if Profile.save_full_profile(data):
+        # ✅ Update profile_completed in DB
+        db = mysql.connector.connect(**DB_CONFIG)
+        cursor = db.cursor()
+        user_id = str(user_id) 
+        cursor.execute("UPDATE users SET profile_completed = 1 WHERE user_id = %s", (user_id,))
+
+
+        db.commit()
+        cursor.close()
+        db.close()
+
         session["profile_completed"] = True
         return jsonify({"message": "Profile saved successfully", "redirect": "/dashboard"}), 200
     else:
         return jsonify({"error": "Failed to save profile"}), 500
+
+
 
 # Run the app
 if __name__ == "__main__":
