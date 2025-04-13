@@ -33,7 +33,6 @@ def load_user(user_id):
             user_data["name"],
             user_data["email"],
             user_data["profile_completed"]
-            
         )
     return None
 
@@ -47,9 +46,8 @@ def home():
     if "id" not in session:
         return redirect(url_for("auth.login_page"))
     if session.get("profile_completed"):
-        return redirect(url_for("profile_complete"))
-
-
+        return redirect(url_for("dashboard"))
+    return redirect(url_for("profile_complete"))
 
 # Smart redirect based on profile completion
 @app.route("/get-started")
@@ -87,7 +85,7 @@ def profile_complete():
 @app.route("/api/complete-profile", methods=["POST"])
 @login_required
 def complete_profile_api():
-    data = request.json 
+    data = request.json
     user_id = session.get("user_id")
 
     if not user_id:
@@ -99,10 +97,7 @@ def complete_profile_api():
         # ✅ Update profile_completed in DB
         db = mysql.connector.connect(**DB_CONFIG)
         cursor = db.cursor()
-        user_id = str(user_id) 
         cursor.execute("UPDATE users SET profile_completed = 1 WHERE user_id = %s", (user_id,))
-
-
         db.commit()
         cursor.close()
         db.close()
@@ -111,8 +106,6 @@ def complete_profile_api():
         return jsonify({"message": "Profile saved successfully", "redirect": "/dashboard"}), 200
     else:
         return jsonify({"error": "Failed to save profile"}), 500
-
-
 
 # Run the app
 if __name__ == "__main__":
