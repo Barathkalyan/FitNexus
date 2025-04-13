@@ -33,6 +33,7 @@ def load_user(user_id):
             user_data["name"],
             user_data["email"],
             user_data["profile_completed"]
+            
         )
     return None
 
@@ -46,13 +47,9 @@ def home():
     if "id" not in session:
         return redirect(url_for("auth.login_page"))
     if session.get("profile_completed"):
-        return redirect(url_for("landing_page"))
-    return redirect(url_for("profile_complete"))
+        return redirect(url_for("profile_complete"))
 
-# Landing page
-@app.route("/landing")
-def landing_page():
-    return render_template("index.html")
+
 
 # Smart redirect based on profile completion
 @app.route("/get-started")
