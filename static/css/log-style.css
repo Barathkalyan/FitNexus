@@ -1,0 +1,342 @@
+:root {
+    --bg: #0f0f0f;
+    --card: rgba(255, 255, 255, 0.05);
+    --glow: #ff2e63;
+    --accent: #08d9d6;
+    --text: #ffffff;
+    --input-bg: rgba(255, 255, 255, 0.08);
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --shadow-heavy: 0 8px 25px rgba(0, 0, 0, 0.5);
+    --transition-speed: 0.3s;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.site-header {
+    background: linear-gradient(90deg, rgba(15, 15, 15, 0.9), rgba(0, 0, 0, 0.85));
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 60px;
+    border-bottom: 3px solid var(--glow);
+    box-shadow: var(--shadow-light), 0 0 20px rgba(255, 46, 99, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.site-header:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-light), 0 0 30px rgba(255, 46, 99, 0.3);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.logo {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--glow);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-right: 15px;
+    text-shadow: 0 0 10px rgba(255, 46, 99, 0.4);
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(45deg, var(--glow), #ff6b9a);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+    box-shadow: 0 0 15px rgba(255, 46, 99, 0.5);
+    transition: transform var(--transition-speed) ease;
+}
+
+.site-header:hover .logo-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.site-header h1 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 0;
+    padding: 5px 15px;
+    background: linear-gradient(90deg, transparent, rgba(8, 217, 214, 0.1), transparent);
+    border-radius: 10px;
+    transition: color var(--transition-speed) ease, background var(--transition-speed) ease;
+}
+
+.site-header h1:hover {
+    color: #00f4f6;
+    background: linear-gradient(90deg, transparent, rgba(8, 217, 214, 0.2), transparent);
+    text-shadow: 0 0 8px rgba(8, 217, 214, 0.3);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-left: 25px;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: color var(--transition-speed) ease, background var(--transition-speed) ease;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+    background: rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 5px rgba(8, 217, 214, 0.2);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width var(--transition-speed) ease;
+}
+
+.nav-links a:hover::after {
+    width: 80%;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 50px;
+    max-width: 1300px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.form-panel,
+.history-panel {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 35px;
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-heavy);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.form-panel:hover,
+.history-panel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.form-panel h2,
+.history-panel h2 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: var(--accent);
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.form-panel h2::after,
+.history-panel h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: var(--glow);
+    border-radius: 1px;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 16px 15px;
+    background: var(--input-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 1.1rem;
+    outline: none;
+    transition: background var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 8px rgba(8, 217, 214, 0.3);
+}
+
+.form-group label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+    transition: all var(--transition-speed) ease;
+    background-color: transparent;
+    padding: 0 5px;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+    top: -12px;
+    left: 12px;
+    font-size: 0.9rem;
+    color: var(--glow);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.9);
+    cursor: pointer;
+    transition: filter var(--transition-speed) ease;
+}
+
+input[type="date"]:hover::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.horizontal-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #000;
+    background: linear-gradient(90deg, var(--accent), #06b2ae);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    box-shadow: var(--shadow-light);
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #06b2ae, var(--accent));
+    transform: translateY(-3px);
+    box-shadow: 0 0 12px var(--accent), 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.history-list {
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-width: thin;
+}
+
+.history-card {
+    background: linear-gradient(135deg, #1f1f1f, #2a2a2a);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-light);
+    transition: all var(--transition-speed) ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.history-card:hover {
+    transform: scale(1.02);
+    background: linear-gradient(135deg, #2c2c2c, #333);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.history-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background: var(--glow);
+    border-radius: 3px;
+    transition: background var(--transition-speed) ease;
+}
+
+.history-list::-webkit-scrollbar-thumb:hover {
+    background: #ff4e83;
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        padding: 15px 25px;
+    }
+    .logo {
+        font-size: 1.5rem;
+    }
+    .site-header h1 {
+        font-size: 1.2rem;
+    }
+    .dashboard {
+        grid-template-columns: 1fr;
+        padding: 25px;
+    }
+    .form-panel,
+    .history-panel {
+        padding: 25px;
+    }
+    .horizontal-group {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    button {
+        padding: 14px;
+    }
+    .nav-links a {
+        margin-left: 15px;
+        padding: 6px 12px;
+    }
+}
