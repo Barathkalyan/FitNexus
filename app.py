@@ -84,6 +84,7 @@ def dashboard():
                                diet=profile["diet_preference"] 
                                )
     else:
+
         return render_template("dashboard.html",
                                name=session["name"],
                                user_id=session["user_id"],
