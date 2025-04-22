@@ -16,24 +16,21 @@
   <main class="dashboard">
     <!-- Workout Log Form -->
     <section class="form-panel">
-        <h2>Log a Workout</h2>
-      
+      <h2>Log a Workout</h2>
+      <form id="workoutForm">
         <div class="form-group">
-          <input type="text" id="workoutSelect" placeholder=" " list="workouts">
-          <label for="workoutSelect">Workout</label>
+          <input type="text" id="workoutSearch" placeholder="Search workouts..." list="workouts" oninput="filterWorkouts()">
+          <label for="workoutSearch">Workout</label>
           <datalist id="workouts">
-            <option value="Push Ups">
-            <option value="Squats">
-            <option value="Deadlifts">
-            <option value="Bench Press">
+            <!-- Populated dynamically via JavaScript -->
           </datalist>
         </div>
-      
+        
         <div class="form-group">
           <input type="date" id="workoutDate" placeholder=" ">
           <label for="workoutDate">Date</label>
         </div>
-      
+        
         <div class="horizontal-group">
           <div class="form-group">
             <input type="number" id="sets" placeholder=" ">
@@ -44,20 +41,21 @@
             <label for="reps">Reps</label>
           </div>
         </div>
-      
+        
         <div class="form-group">
           <input type="number" id="weight" placeholder=" ">
           <label for="weight">Weight (kg)</label>
         </div>
-      
+        
         <div class="form-group">
           <input type="number" id="duration" placeholder=" ">
           <label for="duration">Duration (min)</label>
         </div>
-      
-        <button id="logWorkoutBtn">Log Workout</button>
-      </section>
-      
+        
+        <button type="submit" id="logWorkoutBtn">Log Workout</button>
+      </form>
+    </section>
+    
 
     <!-- Workout History -->
     <section class="history-panel">
@@ -68,6 +66,7 @@
     </section>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="../static/js/log-script.js"></script>
 </body>
 </html>
