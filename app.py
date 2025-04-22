@@ -132,6 +132,10 @@ def complete_profile_api():
         return jsonify({"message": "Profile saved successfully", "redirect": "/dashboard"}), 200
     else:
         return jsonify({"error": "Failed to save profile"}), 500
+    
+@app.route('/workout_log')
+def workout_log():
+    return render_template('workout_log.html')
 
 # Run the app
 if __name__ == "__main__":

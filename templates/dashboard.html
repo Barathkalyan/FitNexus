@@ -74,10 +74,15 @@
 
         <!-- Dashboard Widgets -->
         <div class="dashboard-widgets">
-            <div class="widget">
-                <h2>Workout Summary</h2>
-                <p>Log Today's Workouts.</p>
-            </div>
+            <a href="/workout_log" style="text-decoration: none; color: inherit;">
+                <div class="widget clickable">
+                  <h2>Workout Summary</h2>
+                  <p>Log Today's Workouts.</p>
+                </div>
+              </a>
+              
+              
+
             <div class="widget">
                 <h2>Calorie Intake</h2>
                 <p>Your daily nutrition breakdown.</p>
@@ -107,6 +112,14 @@
             document.getElementById("logoutBtn").addEventListener("click", () => {
                 window.location.href = "/auth/logout";
             });
+
+            const workoutWidget = document.getElementById("workoutWidget");
+            if (workoutWidget) {
+                workoutWidget.addEventListener("click", function () {
+                window.location.href = "/workout_log";
+    });
+}
+
         
             // Injecting username and user ID from Flask
             document.getElementById("name").textContent = "{{ name }}";
