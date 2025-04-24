@@ -1,17 +1,6 @@
-import mysql.connector
+# Supabase configuration
+SUPABASE_URL = "https://vvnnwsvgavjlsupidpgp.supabase.co"  # Replace with your Supabase project URL
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2bm53c3ZnYXZqbHN1cGlkcGdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUwMzY0NDYsImV4cCI6MjA2MDYxMjQ0Nn0.bf_65Q6wz1-brtfIjF13UuP6F1_X_GSyb8d-K2lXSxU"  # Replace with your Supabase anon key
 
-DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",
-    "password": "root",
-    "database": "fitnexus"
-}
-
-# DATABASE CONNECTION
-try:
-    db = mysql.connector.connect(**DB_CONFIG)
-    cursor = db.cursor()
-    print("Database connection successful!")
-except mysql.connector.Error as err:
-    print(f"Database connection failed: {err}")
-    db = None
+# Flask configuration
+SECRET_KEY = "your-secret-key"  # Replace with a secure random key for session management

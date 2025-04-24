@@ -1,27 +1,22 @@
 from flask import Blueprint, request, jsonify, session, render_template, redirect, url_for
-import mysql.connector
-from config import DB_CONFIG
+from supabase import create_client, Client
+from config import SUPABASE_URL, SUPABASE_KEY  # Add these to config.py
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user, UserMixin
 import random
 
 auth = Blueprint("auth", __name__)
 
-def get_db_connection():
-    return mysql.connector.connect(**DB_CONFIG)
+# Initialize Supabase client
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # Generate unique user ID like FN123
 def generate_user_id():
     return f"FN{random.randint(100, 999)}"
 
 def is_user_id_unique(user_id):
-    db = get_db_connection()
-    cursor = db.cursor()
-    cursor.execute("SELECT user_id FROM users WHERE user_id = %s", (user_id,))
-    exists = cursor.fetchone()
-    cursor.close()
-    db.close()
-    return exists is None
+    response = supabase.table('users').select('user_id').eq('user_id', user_id).execute()
+    return len(response.data) == 0
 
 # User model
 class User(UserMixin):
@@ -55,12 +50,11 @@ def signup():
         return jsonify({"error": "All fields are required!"}), 400
 
     hashed_password = generate_password_hash(password)
-    db = get_db_connection()
-    cursor = db.cursor()
 
     try:
-        cursor.execute("SELECT email FROM users WHERE email = %s", (email,))
-        if cursor.fetchone():
+        # Check if email already exists
+        response = supabase.table('users').select('email').eq('email', email).execute()
+        if response.data:
             return jsonify({"error": "Email already registered!"}), 409
 
         # Generate unique user_id
@@ -68,17 +62,21 @@ def signup():
         while not is_user_id_unique(user_id):
             user_id = generate_user_id()
 
-        cursor.execute("""
-            INSERT INTO users (name, email, password_hash, user_id)
-            VALUES (%s, %s, %s, %s)
-        """, (name, email, hashed_password, user_id))
-        db.commit()
+        # Insert new user
+        response = supabase.table('users').insert({
+            "name": name,
+            "email": email,
+            "password_hash": hashed_password,
+            "user_id": user_id,
+            "profile_completed": False
+        }).execute()
+
+        if response.error:
+            return jsonify({"error": str(response.error)}), 500
+
         return jsonify({"message": "User registered successfully!", "redirect": "/auth/login"}), 200
-    except mysql.connector.Error as e:
+    except Exception as e:
         return jsonify({"error": str(e)}), 500
-    finally:
-        cursor.close()
-        db.close()
 
 @auth.route("/login", methods=["POST"])
 def login():
@@ -89,31 +87,26 @@ def login():
     if not email or not password:
         return jsonify({"error": "Email and password are required!"}), 400
 
-    db = get_db_connection()
-    cursor = db.cursor()
     try:
-        cursor.execute("""
-            SELECT id, name, email, password_hash, profile_completed, user_id 
-            FROM users WHERE email = %s
-        """, (email,))
-        user = cursor.fetchone()
+        # Fetch user from Supabase
+        response = supabase.table('users').select('id, name, email, password_hash, profile_completed, user_id').eq('email', email).execute()
+        if not response.data or len(response.data) == 0:
+            return jsonify({"error": "Invalid credentials!"}), 401
 
-        if user and check_password_hash(user[3], password):
-            user_obj = User(id=user[0], user_id=user[5], name=user[1], email=user[2], profile_completed=bool(user[4]))
+        user_data = response.data[0]
+        if check_password_hash(user_data['password_hash'], password):
+            user_obj = User(id=user_data['id'], user_id=user_data['user_id'], name=user_data['name'], email=user_data['email'], profile_completed=bool(user_data['profile_completed']))
             login_user(user_obj)
-            session["id"] = user[0]
-            session["name"] = user[1]
-            session["email"] = user[2]
-            session["user_id"] = user[5]
-            session["profile_completed"] = bool(user[4])
+            session["id"] = user_data['id']
+            session["name"] = user_data['name']
+            session["email"] = user_data['email']
+            session["user_id"] = user_data['user_id']
+            session["profile_completed"] = bool(user_data['profile_completed'])
             return jsonify({"message": "Login successful!", "redirect": "/"}), 200
         else:
             return jsonify({"error": "Invalid credentials!"}), 401
-    except mysql.connector.Error as e:
+    except Exception as e:
         return jsonify({"error": str(e)}), 500
-    finally:
-        cursor.close()
-        db.close()
 
 @auth.route("/logout")
 @login_required
