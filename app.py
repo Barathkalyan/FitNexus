@@ -3,8 +3,7 @@ from supabase import create_client, Client
 from config import SUPABASE_URL, SUPABASE_KEY, SECRET_KEY
 from flask_cors import CORS
 from flask_login import LoginManager, login_required, current_user
-from auth import User  # Import User class from auth.py
-from models.user_profile import Profile
+from routes.auth import User  # Corrected import from previous response
 
 # Initialize Flask app
 app = Flask(__name__, template_folder="templates", static_folder="static")
@@ -107,16 +106,30 @@ def complete_profile_api():
 
     data["user_id"] = user_id  # Attach user ID to the incoming profile data
 
-    if Profile.save_full_profile(data):
-        # Update profile_completed in Supabase
-        response = supabase.table('users').update({'profile_completed': True}).eq('user_id', user_id).execute()
-        if response.error:
-            return jsonify({"error": str(response.error)}), 500
+    # Save profile data to Supabase (replace MySQL logic)
+    response = supabase.table('profile').insert({
+        "user_id": user_id,
+        "age": data["age"],
+        "gender": data["gender"],
+        "height": data["height"],
+        "weight": data["weight"],
+        "fitness_goal": data["fitness_goal"],
+        "target_weight": data["target_weight"],
+        "diet_preference": data["diet_preference"],
+        "workout_time": data["workout_time"],
+        "workout_days": data["workout_days"]
+    }).execute()
 
-        session["profile_completed"] = True
-        return jsonify({"message": "Profile saved successfully", "redirect": "/dashboard"}), 200
-    else:
-        return jsonify({"error": "Failed to save profile"}), 500
+    if response.error:
+        return jsonify({"error": str(response.error)}), 500
+
+    # Update profile_completed in Supabase
+    response = supabase.table('users').update({'profile_completed': True}).eq('user_id', user_id).execute()
+    if response.error:
+        return jsonify({"error": str(response.error)}), 500
+
+    session["profile_completed"] = True
+    return jsonify({"message": "Profile saved successfully", "redirect": "/dashboard"}), 200
 
 @app.route('/workout_log')
 def workout_log():

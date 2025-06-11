@@ -1,52 +1,38 @@
-/* General Reset */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+
+/* Body */
 body {
-    background: url('../assets/login\ bg.jpeg') no-repeat center center fixed;
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    margin:0;
-    padding: 0;
-}
-
-
-
-/* Center Content */
-body {
+    background: url('../assets/login bg.jpeg') no-repeat center/cover fixed, #000;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: black;
+    min-height: 100vh;
 }
 
-/* Main Container */
+/* Container */
 .container {
     display: flex;
     width: 750px;
     height: 500px;
     background: #1a1a1a;
     border-radius: 10px;
-    overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Left Section - Login */
+/* Login Section */
 .login-section {
     width: 50%;
     padding: 20px;
-    color: white;
+    color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
-    z-index: 10;
 }
 
 /* Heading */
@@ -55,34 +41,33 @@ h2 {
     font-size: 30px;
     color: red;
     text-align: center;
-    font-family:"Helvetica",sans-serif;
+    font-family: "Helvetica", sans-serif;
     letter-spacing: 2px;
 }
 
-/* Input Fields */
+/* Form */
 form {
     display: flex;
     flex-direction: column;
-    gap: 12px; 
+    gap: 12px;
 }
 
+/* Labels */
 label {
     font-size: 18px;
-    margin-bottom: 4px;
-    color:cyan;
+    color: cyan;
     font-weight: bold;
     text-transform: uppercase;
-    display: block;
-    font-family:"Roboto",sans-serif;
-
+    font-family: "Roboto", sans-serif;
 }
 
+/* Inputs */
 input {
     width: 100%;
     padding: 15px;
     border-radius: 20px;
     background: #2a2a2a;
-    color: white;
+    color: #fff;
     border: none;
     font-size: 17px;
 }
@@ -92,29 +77,21 @@ input:focus {
     box-shadow: 0 0 5px cyan;
 }
 
-.place{
-    font-size: 18px;
-    letter-spacing: 1px;
-}
-
-/* Login Button */
+/* Button */
 .button {
-    display: block;
-    margin: 15px auto;
-    text-align: center;
     width: 140px;
     height: 45px;
+    margin: 15px auto;
     font-size: 1.4em;
     border-radius: 25px;
     border: 2px solid #37FF8B;
-    cursor: pointer;
     background: transparent;
     color: #37FF8B;
     text-transform: uppercase;
-    transition: 0.3s;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
-/* Hover Effect */
 .button:hover {
     box-shadow: 0 0 15px #37FF8B;
     background: rgba(55, 255, 139, 0.2);
@@ -123,21 +100,19 @@ input:focus {
 /* Signup Link */
 .signup-link {
     text-align: center;
-    margin-top: 10px;
     font-size: 18px;
 }
 
 .signup-link a {
     color: cyan;
     text-decoration: none;
-    font-size: 18px;
 }
 
 .signup-link a:hover {
     text-decoration: underline;
 }
 
-/* Right Section - Branding */
+/* Branding */
 .branding-section {
     width: 50%;
     background: #181818;
@@ -148,7 +123,7 @@ input:focus {
 
 .logo {
     font-size: 28px;
-    color: white;
+    color: #fff;
 }
 
 .logo span {
