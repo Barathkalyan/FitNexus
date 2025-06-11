@@ -1,15 +1,18 @@
 from flask import Flask, render_template, session, redirect, url_for, request, jsonify
-import mysql.connector
-from config import DB_CONFIG
+from supabase import create_client, Client
+from config import SUPABASE_URL, SUPABASE_KEY, SECRET_KEY
 from flask_cors import CORS
 from flask_login import LoginManager, login_required, current_user
-from models.user import User
+from auth import User  # Import User class from auth.py
 from models.user_profile import Profile
 
 # Initialize Flask app
 app = Flask(__name__, template_folder="templates", static_folder="static")
-app.secret_key = "b94f8e17d2a645f3a3c91e4825a1d6b7"
+app.secret_key = SECRET_KEY
 CORS(app, supports_credentials=True)
+
+# Initialize Supabase client
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # Set up Flask-Login
 login_manager = LoginManager()
@@ -19,20 +22,16 @@ login_manager.login_view = "auth.login_page"
 # Load user from session
 @login_manager.user_loader
 def load_user(user_id):
-    db = mysql.connector.connect(**DB_CONFIG)
-    cursor = db.cursor(dictionary=True)
-    cursor.execute("SELECT id, name, email, profile_completed FROM users WHERE id = %s", (user_id,))
-    user_data = cursor.fetchone()
-    cursor.close()
-    db.close()
-
-    if user_data:
-        session["email"] = user_data["email"]
+    response = supabase.table('users').select('id, user_id, name, email, profile_completed').eq('id', user_id).execute()
+    if response.data and len(response.data) > 0:
+        user_data = response.data[0]
+        session["email"] = user_data['email']
         return User(
-            user_data["id"],
-            user_data["name"],
-            user_data["email"],
-            user_data["profile_completed"]
+            id=user_data['id'],
+            user_id=user_data['user_id'],
+            name=user_data['name'],
+            email=user_data['email'],
+            profile_completed=bool(user_data['profile_completed'])
         )
     return None
 
@@ -65,44 +64,33 @@ def dashboard():
     if not session.get("profile_completed"):
         return redirect(url_for("profile_complete"))
     
-    db = mysql.connector.connect(**DB_CONFIG)
-    cursor = db.cursor(dictionary=True)
+    response = supabase.table('profile').select('weight, target_weight, fitness_goal, diet_preference').eq('user_id', session["user_id"]).execute()
     
-    cursor.execute("SELECT weight,target_weight,fitness_goal,diet_preference from profile where user_id=%s", (session["user_id"],))
-    profile=cursor.fetchone()
-    
-    cursor.close()
-    db.close()
-    
-    if profile:
+    if response.data and len(response.data) > 0:
+        profile = response.data[0]
         return render_template("dashboard.html",
                                name=session["name"],
                                user_id=session["user_id"],
                                weight=profile["weight"],
                                target_weight=profile["target_weight"],
                                goal=profile["fitness_goal"],
-                               diet=profile["diet_preference"] 
+                               diet=profile["diet_preference"]
                                )
     else:
-
         return render_template("dashboard.html",
                                name=session["name"],
                                user_id=session["user_id"],
-                               weight=0,target_weight=0,goal="Not set",diet="Not set"
+                               weight=0, target_weight=0, goal="Not set", diet="Not set"
                                )
-
 
 # Profile completion form (GET = form, POST = mark completed)
 @app.route("/profile-complete", methods=["GET", "POST"])
 @login_required
 def profile_complete():
     if request.method == "POST":
-        db = mysql.connector.connect(**DB_CONFIG)
-        cursor = db.cursor()
-        cursor.execute("UPDATE users SET profile_completed = 1 WHERE id = %s", (session["id"],))
-        db.commit()
-        cursor.close()
-        db.close()
+        response = supabase.table('users').update({'profile_completed': True}).eq('id', session["id"]).execute()
+        if response.error:
+            return jsonify({"error": str(response.error)}), 500
         session["profile_completed"] = True
         return redirect(url_for("dashboard"))
     return render_template("profile_complete.html")
@@ -120,19 +108,16 @@ def complete_profile_api():
     data["user_id"] = user_id  # Attach user ID to the incoming profile data
 
     if Profile.save_full_profile(data):
-        # ✅ Update profile_completed in DB
-        db = mysql.connector.connect(**DB_CONFIG)
-        cursor = db.cursor()
-        cursor.execute("UPDATE users SET profile_completed = 1 WHERE user_id = %s", (user_id,))
-        db.commit()
-        cursor.close()
-        db.close()
+        # Update profile_completed in Supabase
+        response = supabase.table('users').update({'profile_completed': True}).eq('user_id', user_id).execute()
+        if response.error:
+            return jsonify({"error": str(response.error)}), 500
 
         session["profile_completed"] = True
         return jsonify({"message": "Profile saved successfully", "redirect": "/dashboard"}), 200
     else:
         return jsonify({"error": "Failed to save profile"}), 500
-    
+
 @app.route('/workout_log')
 def workout_log():
     return render_template('workout_log.html')
