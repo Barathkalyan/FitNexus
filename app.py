@@ -104,26 +104,35 @@ def complete_profile_api():
     if not user_id:
         return jsonify({"error": "Session expired. Please log in again."}), 401
 
-    data["user_id"] = user_id  # Attach user ID to the incoming profile data
+    # Verify user_id exists in users table
+    user_check = supabase.table('users').select('user_id').eq('user_id', user_id).execute()
+    if not user_check.data:
+        return jsonify({"error": "Invalid user ID."}), 400
 
-    # Save profile data to Supabase
-    response = supabase.table('profile').insert({
+    # Prepare profile data, casting strings to integers where needed
+    profile_data = {
         "user_id": user_id,
-        "age": data["age"],
+        "age": int(data["age"]) if data["age"] else None,
         "gender": data["gender"],
-        "height": data["height"],
-        "weight": data["weight"],
+        "height": int(data["height"]) if data["height"] else None,
+        "weight": int(data["weight"]) if data["weight"] else None,
         "fitness_goal": data["fitness_goal"],
-        "target_weight": data["target_weight"],
+        "target_weight": int(data["target_weight"]) if data["target_weight"] else None,
         "diet_preference": data["diet_preference"],
-        "workout_time": data["workout_time"],
-        "workout_days": data["workout_days"]
-    }).execute()
+        "workout_time": int(data["workout_time"]) if data["workout_time"] else None,
+        "workout_days": int(data["workout_days"]) if data["workout_days"] else None
+    }
+
+    # Upsert profile data to handle duplicates
+    response = supabase.table('profile').upsert(
+        profile_data,
+        options={"on_conflict": "user_id"}
+    ).execute()
 
     if response.error:
         return jsonify({"error": str(response.error)}), 500
 
-    # Update profile_completed in Supabase
+    # Update profile_completed in users table
     response = supabase.table('users').update({'profile_completed': True}).eq('user_id', user_id).execute()
     if response.error:
         return jsonify({"error": str(response.error)}), 500
