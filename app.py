@@ -3,7 +3,7 @@ from supabase import create_client, Client
 from config import SUPABASE_URL, SUPABASE_KEY, SECRET_KEY
 from flask_cors import CORS
 from flask_login import LoginManager, login_required, current_user
-from routes.auth import User  # Corrected import from previous response
+from routes.auth import User
 
 # Initialize Flask app
 app = Flask(__name__, template_folder="templates", static_folder="static")
@@ -106,7 +106,7 @@ def complete_profile_api():
 
     data["user_id"] = user_id  # Attach user ID to the incoming profile data
 
-    # Save profile data to Supabase (replace MySQL logic)
+    # Save profile data to Supabase
     response = supabase.table('profile').insert({
         "user_id": user_id,
         "age": data["age"],
