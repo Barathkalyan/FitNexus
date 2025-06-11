@@ -2,8 +2,8 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #0d0d0d;
-    color: white;
+    background: #0d0d0d;
+    color: #fff;
 }
 
 /* Navbar */
@@ -14,19 +14,21 @@ body {
     background: rgba(20, 20, 20, 0.9);
     padding: 15px 20px;
 }
-.subtitle{
-    color:red;
+
+.logo {
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.subtitle, .abc {
+    color: red;
     font-size: 22px;
     letter-spacing: 1px;
 }
-.abc{
-    color:red;
-    box-shadow: #0d0d0d;
-}
-.logo {
-    font-size: 36px;
-    font-weight: bold;  
-    color: white;
+
+.abc {
+    box-shadow: none;
 }
 
 .nav-links {
@@ -36,19 +38,16 @@ body {
 }
 
 .nav-links a {
-    color: white;
+    color: #fff;
     font-size: 20px;
-    display: flex;
-    gap:50px;
     text-decoration: none;
 }
 
-.nav-links a:hover{
+.nav-links a:hover {
     transform: scale(1.05);
     box-shadow: 5px 4px 15px rgba(255, 46, 99, 0.3);
     background: #222;
     font-size: 21px;
-
 }
 
 .prof {
@@ -63,33 +62,29 @@ body {
     position: relative;
 }
 
-/* Profile Dropdown */
 .dropdown {
     display: none;
     position: absolute;
     right: 0;
     background: #222;
     border-radius: 8px;
-    box-shadow: 0px 4px 15px rgba(255, 46, 99, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 46, 99, 0.3);
+    border: 1px solid rgba(255, 46, 99, 0.3);
     width: 150px;
-    height:200px;
+    height: 200px;
     text-align: center;
     padding: 10px;
-    border: 1px solid rgba(255, 46, 99, 0.3); /* Light glowing edge */
     transition: all 0.3s ease;
 }
 
-/* Hover effect for dropdown */
 .dropdown:hover {
     box-shadow: 0 0 20px rgba(255, 46, 99, 0.7);
 }
 
-/* Dropdown header styling */
 .dropdown-header {
     font-size: 18px;
     margin-bottom: 15px;
-    color: white;
-    line-height: 1.6;
+    color: #fff;
     font-weight: 500;
 }
 
@@ -100,47 +95,16 @@ body {
     color: #ff2e63;
 }
 
-/* Add a row line between name and ID */
-.dropdown-header .dropdown-id {
+.dropdown-id {
     border-top: 1px solid rgba(255, 46, 99, 0.5);
     padding-top: 10px;
     margin-top: 10px;
-    font-size: 18px;
     color: #f0f0f0;
 }
 
-/* Profile Dropdown hover effect */
 .dropdown.show {
     display: block;
     animation: fadeIn 0.3s ease-in-out;
-}
-
-/* Glow effect around dropdown */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-
-#logoutBtn {
-    background: #ff2e63;
-    border: none;
-    color: white;
-    padding: 8px;
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#logoutBtn:hover {
-    background: #d81b5a;
 }
 
 /* Container */
@@ -168,11 +132,11 @@ body {
     background: linear-gradient(135deg, #232323, #1a1a1a);
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(255, 46, 99, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 46, 99, 0.3);
     width: 180px;
     height: 120px;
     text-align: center;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s;
 }
 
 .stat-card:hover {
@@ -203,7 +167,7 @@ body {
     height: 10px;
     background: #222;
     border-radius: 35px;
-    box-shadow: 0px 0px 10px rgba(255, 46, 99, 0.3);
+    box-shadow: 0 0 10px rgba(255, 46, 99, 0.3);
 }
 
 .progress-fill {
@@ -212,6 +176,7 @@ body {
     transition: width 0.4s ease-in-out;
 }
 
+/* Widgets */
 .dashboard-widgets {
     display: flex;
     justify-content: center;
@@ -225,18 +190,17 @@ body {
     cursor: pointer;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(255, 46, 99, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 46, 99, 0.3);
     width: 250px;
     text-align: center;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .widget:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 6px 25px rgba(255, 46, 99, 0.7);
+    box-shadow: 0 6px 25px rgba(255, 46, 99, 0.7);
     border: 1px solid rgba(255, 46, 99, 0.5);
 }
-
 
 .widget h2 {
     color: #ff2e63;
@@ -245,16 +209,30 @@ body {
 
 .widget p {
     color: rgba(255, 255, 255, 0.8);
-    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
+/* Buttons */
+#logoutBtn {
+    background: #ff2e63;
+    border: none;
+    color: #fff;
+    padding: 8px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
+#logoutBtn:hover {
+    background: #d81b5a;
+}
 
 /* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
 @keyframes slideUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
