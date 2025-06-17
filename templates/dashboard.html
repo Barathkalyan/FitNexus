@@ -5,91 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitNexus Dashboard</title>
     <link rel="stylesheet" href="../static/css/dashboard-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">Fit<span class="abc">N</span>exus</div>
-        <div class="nav-links">
-            <a href="/profile">View Profile</a>
-            <a href="/edit-profile">Edit Profile</a>
-            <div class="profile-menu">
-                <button id="profileBtn" class="profile-icon">
-                    <img src="../static/assets/images/Profile.png" class="prof" alt="Profile">
-                </button>
-                <div id="profileDropdown" class="dropdown">
-
-                    <p class="dropdown-header">
-                        Hello, <span class="dropdown-name">{{ name }}</span> | 
-                        <span class="dropdown-id">User ID: {{ user_id }}</span>
-                    </p>
-                    
-                    <button id="logoutBtn">Logout</button>
-                </div>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <h1 class="logo">Fit<span>Nexus</span></h1>
             </div>
-        </div>
-    </nav>
-
-    <!-- Dashboard Content -->
-    <div class="container">
-        <h1>Welcome to Your <span class="abc">Dashboard</span></h1>
-        <p class="subtitle">Track workouts, log meals, and monitor progress.</p>
-
-        <!-- User Stats --> 
-        <div class="user-stats">
-            <div class="stat-card">
-                <p class="stat-title">Current Weight</p>
-                <p class="stat-value">{{ weight }}</p>
-            </div>
-            <div class="stat-card">
-                <p class="stat-title">Goal Weight</p>
-                <p class="stat-value">{{ target_weight }}</p>
-            </div>
-            <div class="stat-card">
-                <p class="stat-title">Fitness Goal</p>
-                <p class="stat-value">{{ goal }}</p>
-            </div>
-            <div class="stat-card">
-                <p class="stat-title">Diet Preference</p>
-                <p class="stat-value">{{ diet }}</p>
-            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="/dashboard" class="active">Dashboard</a>
+                </li>
+                <li>
+                    <a href="/workout_log">Workout Summary</a>
+                </li>
+                <li>
+                    <a href="/calorie_intake">Calorie Intake</a>
+                </li>
+                <li>
+                    <a href="/goal_progress">Goal Progress</a>
+                </li>
+                <li>
+                    <a href="/profile">View Profile</a>
+                </li>
+                <li>
+                    <a href="/edit-profile">Edit Profile</a>
+                </li>
+            </ul>
         </div>
 
-        <!-- Progress Bars -->
-        <div class="progress-container">
-            <div class="progress-item">
-                <p>Calories Burned (500/2000 kcal)</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 25%;"></div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="profile-menu">
+                    <button id="profileBtn" class="profile-icon">
+                        <img src="../static/assets/images/Profile.png" class="prof" alt="Profile">
+                    </button>
+                    <div id="profileDropdown" class="dropdown">
+                        <p class="dropdown-header">
+                            Hello, <span class="dropdown-name">{{ name }}</span> | 
+                            <span class="dropdown-id">User ID: {{ user_id }}</span>
+                        </p>
+                        <button id="logoutBtn">Logout</button>
+                    </div>
                 </div>
             </div>
-            <div class="progress-item">
-                <p>Workout Streak: 7 Days</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 70%;"></div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Dashboard Widgets -->
-        <div class="dashboard-widgets">
-            <a href="/workout_log" style="text-decoration: none; color: inherit;">
-                <div class="widget clickable">
-                  <h2>Workout Summary</h2>
-                  <p>Log Today's Workouts.</p>
-                </div>
-              </a>
-              
-              
+            <!-- Dashboard Content -->
+            <div class="content">
+                <h1>Welcome to Your <span>Dashboard</span></h1>
+                <p class="subtitle">Track workouts, log meals, and monitor progress.</p>
 
-            <div class="widget">
-                <h2>Calorie Intake</h2>
-                <p>Your daily nutrition breakdown.</p>
-            </div>
-            <div class="widget">
-                <h2>Goal Progress</h2>
-                <p>Track your fitness journey.</p>
+                <!-- User Stats -->
+                <div class="user-stats">
+                    <div class="stat-card">
+                        <p class="stat-title">Current Weight</p>
+                        <p class="stat-value">{{ weight }}</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-title">Goal Weight</p>
+                        <p class="stat-value">{{ target_weight }}</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-title">Fitness Goal</p>
+                        <p class="stat-value">{{ goal }}</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-title">Diet Preference</p>
+                        <p class="stat-value">{{ diet }}</p>
+                    </div>
+                </div>
+
+                <!-- Progress Bars -->
+                <div class="progress-container">
+                    <div class="progress-item">
+                        <p>Calories Burned (500/2000 kcal)</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 25%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <p>Workout Streak: 7 Days</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -98,35 +102,21 @@
         document.addEventListener("DOMContentLoaded", function () {
             const profileBtn = document.getElementById("profileBtn");
             const dropdown = document.getElementById("profileDropdown");
-        
+
             profileBtn.addEventListener("click", () => {
                 dropdown.classList.toggle("show");
             });
-        
+
             document.addEventListener("click", (event) => {
                 if (!profileBtn.contains(event.target) && !dropdown.contains(event.target)) {
                     dropdown.classList.remove("show");
                 }
             });
-        
+
             document.getElementById("logoutBtn").addEventListener("click", () => {
                 window.location.href = "/auth/logout";
             });
-
-            const workoutWidget = document.getElementById("workoutWidget");
-            if (workoutWidget) {
-                workoutWidget.addEventListener("click", function () {
-                window.location.href = "/workout_log";
-    });
-}
-
-        
-            // Injecting username and user ID from Flask
-            document.getElementById("name").textContent = "{{ name }}";
-            document.getElementById("userid").textContent = "{{ user_id }}";
         });
-        </script>
-        
-
+    </script>
 </body>
 </html>

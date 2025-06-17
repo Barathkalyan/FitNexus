@@ -75,7 +75,6 @@
                 let result = await response.json();
 
                 if (response.ok) {
-                    alert(result.message);
                     window.location.href = result.redirect;
                 } else {
                     alert(result.error || "Something went wrong");
