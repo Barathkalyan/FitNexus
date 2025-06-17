@@ -38,8 +38,14 @@
 
         <!-- Main Content -->
         <div class="main-content">
-            <!-- Header -->
-            <div class="header">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="quotes-container">
+                    <p class="quote-text">"The only bad workout is the one that didn’t happen."</p>
+                    <p class="quote-text">"Sweat is just fat crying."</p>
+                    <p class="quote-text">"Push yourself because no one else is going to do it for you."</p>
+                    <p class="quote-text">"Success starts with self-discipline."</p>
+                </div>
                 <div class="profile-menu">
                     <button id="profileBtn" class="profile-icon">
                         <img src="../static/assets/images/Profile.png" class="prof" alt="Profile">
@@ -100,6 +106,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // Profile Dropdown Toggle
             const profileBtn = document.getElementById("profileBtn");
             const dropdown = document.getElementById("profileDropdown");
 
@@ -116,6 +123,26 @@
             document.getElementById("logoutBtn").addEventListener("click", () => {
                 window.location.href = "/auth/logout";
             });
+
+            // Quote Rotation
+            const quotes = document.querySelectorAll('.quote-text');
+            let currentQuoteIndex = 0;
+
+            function showNextQuote() {
+                quotes.forEach((quote, index) => {
+                    quote.classList.remove('active');
+                    if (index === currentQuoteIndex) {
+                        quote.classList.add('active');
+                    }
+                });
+                currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+            }
+
+            // Initialize the first quote
+            showNextQuote();
+
+            // Rotate quotes every 5 seconds
+            setInterval(showNextQuote, 5000);
         });
     </script>
 </body>
