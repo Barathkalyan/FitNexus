@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Body */
@@ -17,115 +17,104 @@ body {
 
 /* Container */
 .container {
-    display: flex;
-    width: 750px;
-    height: 500px;
-    background: #1a1a1a;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Login Section */
-.login-section {
-    width: 50%;
-    padding: 20px;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    max-width: 450px;
+    width: 100%;
+    background: rgba(26, 26, 26, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 40px 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 255, 255, 0.2);
 }
 
 /* Heading */
 h2 {
-    margin-bottom: 25px;
-    font-size: 30px;
-    color: red;
+    font-size: 32px;
+    color: #ff2e63;
     text-align: center;
-    font-family: "Helvetica", sans-serif;
-    letter-spacing: 2px;
+    margin-bottom: 30px;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 10px rgba(255, 46, 99, 0.5);
 }
 
 /* Form */
 form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 20px;
 }
 
 /* Labels */
 label {
-    font-size: 18px;
+    font-size: 16px;
     color: cyan;
-    font-weight: bold;
+    font-weight: 600;
     text-transform: uppercase;
-    font-family: "Roboto", sans-serif;
+    margin-bottom: 5px;
 }
 
 /* Inputs */
 input {
     width: 100%;
-    padding: 15px;
-    border-radius: 20px;
-    background: #2a2a2a;
+    padding: 12px 15px;
+    border-radius: 10px;
+    background: rgba(42, 42, 42, 0.8);
     color: #fff;
-    border: none;
-    font-size: 17px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    font-size: 16px;
+    transition: all 0.3s ease;
 }
 
 input:focus {
     outline: none;
-    box-shadow: 0 0 5px cyan;
+    border-color: cyan;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
 /* Button */
 .button {
-    width: 140px;
-    height: 45px;
-    margin: 15px auto;
-    font-size: 1.4em;
-    border-radius: 25px;
-    border: 2px solid #37FF8B;
-    background: transparent;
-    color: #37FF8B;
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(45deg, #ff2e63, cyan);
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
 .button:hover {
-    box-shadow: 0 0 15px #37FF8B;
-    background: rgba(55, 255, 139, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7), 0 0 25px rgba(255, 46, 99, 0.7);
+    transform: translateY(-2px);
 }
 
 /* Signup Link */
 .signup-link {
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
+    margin-top: 20px;
 }
 
 .signup-link a {
     color: cyan;
     text-decoration: none;
+    font-weight: 500;
 }
 
 .signup-link a:hover {
     text-decoration: underline;
+    color: #37FF8B;
 }
 
-/* Branding */
-.branding-section {
-    width: 50%;
-    background: #181818;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.logo {
-    font-size: 28px;
-    color: #fff;
-}
-
-.logo span {
-    color: cyan;
+.container {
+    animation: fadeIn 0.5s ease-in-out;
 }
