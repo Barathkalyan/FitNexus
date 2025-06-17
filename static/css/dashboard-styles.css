@@ -103,23 +103,30 @@ body::before {
 .quotes-container {
     position: relative;
     flex: 1;
-    height: 30px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
 }
 
 .quote-text {
     position: absolute;
-    font-size: 18px;
-    color: #fff;
-    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #ff2e63, #00f0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 5px rgba(255, 46, 99, 0.3);
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(20px) scale(0.95);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .quote-text.active {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
 /* Profile Dropdown */
