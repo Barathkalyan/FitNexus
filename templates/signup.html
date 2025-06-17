@@ -3,72 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/signup-styles.css">
-    <title>FitNexus - Signup</title>
+    <title>FitNexus - Sign Up</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <div class="signup-section">
-            <h2>SIGNUP</h2>
-
-            <!-- SIGNUP FORM -->
-            <form id="signupForm">
-                <label for="name" class="holder">NAME:</label>
-                <input type="text" id="name" placeholder="Enter your Name" required>
-
-                <label for="email" class="holder">EMAIL:</label>
-                <input type="email" id="email" placeholder="Enter your email" required>
-
-                <label for="password" class="holder">PASSWORD:</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
-                
-                <label for="ConfirmPassword" class="holder">CONFIRM PASSWORD:</label>
-                <input type="password"  id="confirmPassword" placeholder="Re-enter your password" required>
-
-                <button class="button" id="submitBtn">SIGNUP</button>
-            </form>
-            <p class="login-link">Already have an account? <p class="login-link">Already have an account? <a href="{{ url_for('auth.login_page') }}">Login!</a></p>
-        </div>
-
+        <!-- Left Section: Branding -->
         <div class="branding-section">
             <h1 class="logo">Fit<span>Nexus</span></h1>
+            <p class="tagline">Your Fitness Journey Starts Here</p>
+            <ul class="features">
+                <li class="feature-card">Track Workouts</li>
+                <li class="feature-card">Log Calories</li>
+                <li class="feature-card">Monitor Progress</li>
+                <li class="feature-card">Set Fitness Goals</li>
+            </ul>
+        </div>
+
+        <!-- Right Section: Signup Form -->
+        <div class="login-section">
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+
+                <button class="button" type="submit">Sign Up</button>
+            </form>
+            <p class="signup-link">Already have an account? <a href="{{ url_for('auth.login_page') }}">Login!</a></p>
         </div>
     </div>
 
     <script>
-        document.getElementById("signupForm").addEventListener("submit", async function(event){
+        // Feature Card Animation
+        const featureCards = document.querySelectorAll('.feature-card');
+        let currentIndex = 0;
+
+        function showNextFeature() {
+            featureCards.forEach((card, index) => {
+                card.classList.remove('active');
+                if (index === currentIndex) {
+                    card.classList.add('active');
+                }
+            });
+            currentIndex = (currentIndex + 1) % featureCards.length;
+        }
+
+        // Initialize the first feature card
+        showNextFeature();
+
+        // Cycle through features every 3 seconds
+        setInterval(showNextFeature, 3000);
+
+        // Form Submission
+        document.getElementById("signupForm").addEventListener("submit", async function(event) {
             event.preventDefault();
-        
-            let name = document.getElementById("name").value;
+
+            let username = document.getElementById("username").value;
             let email = document.getElementById("email").value;
             let password = document.getElementById("password").value;
-            let confirmPassword = document.getElementById("confirmPassword").value;
-        
-            if (password !== confirmPassword){
+            let confirmPassword = document.getElementById("confirm-password").value;
+
+            if (password !== confirmPassword) {
                 alert("Passwords do not match!");
                 return;
             }
-        
-            try{
-                let response = await fetch("http://127.0.0.1:5000/auth/signup", {
+
+            try {
+                let response = await fetch("{{ url_for('auth.signup') }}", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ name, email, password })
+                    body: JSON.stringify({ username, email, password })
                 });
-        
+
                 let result = await response.json();
-        
+
                 if (response.ok) {
                     alert(result.message);
-                    window.location.href = "{{ url_for('auth.login_page') }}"; // Redirect to login page
+                    window.location.href = result.redirect;
                 } else {
                     alert(result.error || "Something went wrong");
                 }
-            } catch(error){
+            } catch(error) {
                 console.error("Error:", error);
                 alert("Failed to connect to the server");
             }
         });
-        </script>  
+    </script>
 </body>
 </html>
