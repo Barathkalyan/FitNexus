@@ -8,15 +8,18 @@
 </head>
 <body>
     <div class="container">
-        <h2>LOGIN</h2>
+        <div class="header">
+            <h1 class="logo">Fit<span>Nexus</span></h1>
+            <p class="tagline">Your Fitness Journey Starts Here</p>
+        </div>
         <form id="loginForm">
-            <label for="email">EMAIL</label>
+            <label for="email">Email</label>
             <input type="email" id="email" placeholder="Enter your email" required>
 
-            <label for="password">PASSWORD</label>
+            <label for="password">Password</label>
             <input type="password" id="password" placeholder="Enter your password" required>
 
-            <button class="button" type="submit">LOGIN</button>
+            <button class="button" type="submit">Login</button>
         </form>
         <p class="signup-link">Don't have an account? <a href="{{ url_for('auth.signup_page') }}">Sign Up!</a></p>
     </div>
