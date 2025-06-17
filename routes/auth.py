@@ -10,7 +10,7 @@ auth = Blueprint("auth", __name__)
 # Initialize Supabase client
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-# Generate unique user ID like FN123
+# Generate unique user ID like FN123::
 def generate_user_id():
     return f"FN{random.randint(100, 999)}"
 
