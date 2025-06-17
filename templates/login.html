@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitNexus - Login</title>
     <link rel="stylesheet" href="../static/css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -38,6 +38,27 @@
     </div>
 
     <script>
+        // Feature Card Animation
+        const featureCards = document.querySelectorAll('.feature-card');
+        let currentIndex = 0;
+
+        function showNextFeature() {
+            featureCards.forEach((card, index) => {
+                card.classList.remove('active');
+                if (index === currentIndex) {
+                    card.classList.add('active');
+                }
+            });
+            currentIndex = (currentIndex + 1) % featureCards.length;
+        }
+
+        // Initialize the first feature card
+        showNextFeature();
+
+        // Cycle through features every 3 seconds
+        setInterval(showNextFeature, 3000);
+
+        // Form Submission
         document.getElementById("loginForm").addEventListener("submit", async function(event) {
             event.preventDefault();
 
