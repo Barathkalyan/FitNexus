@@ -142,7 +142,7 @@ async function fetchHistory() {
     try {
         const { data, error } = await supabase
             .from('workout_history')
-            .select('id, type, date, sets, duration, sets_data')
+            .select('id, type, date, sets, reps, weight, duration, sets_data')
             .order('date', { ascending: false });
         if (error) {
             console.error('Error fetching workout history:', error);
@@ -160,37 +160,37 @@ function renderHistory(history) {
     const historyPanel = document.getElementById('historyList');
     historyPanel.innerHTML = '';
     if (history.length === 0) {
-        const card = document.createElement('div');
-        card.className = 'history-card stat-card';
-        card.innerHTML = `
+        const entry = document.createElement('div');
+        entry.className = 'history-entry stat-card';
+        entry.innerHTML = `
             <p class="stat-title">No Workouts Logged</p>
             <p class="stat-value">Start logging your workouts above!</p>
         `;
-        historyPanel.appendChild(card);
+        historyPanel.appendChild(entry);
         return;
     }
     history.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'history-card stat-card';
-        const setsData = item.sets_data || [{ reps: 0, weight: 0.0 }];
+        const entry = document.createElement('div');
+        entry.className = 'history-entry stat-card';
+        const setsData = item.sets_data || [{ reps: item.reps, weight: item.weight }];
         const progressWidth = Math.min((item.duration / 60) * 10, 100);
-        card.innerHTML = `
+        entry.innerHTML = `
             <p class="stat-title">${item.date} - ${item.type}</p>
             <p>Sets: ${item.sets}</p>
             <p>Reps: ${setsData[0].reps}</p>
             <p>Weight: ${setsData[0].weight}kg</p>
             <p>Duration: ${item.duration}min</p>
-            <div class="progress-fill" style="width: ${progressWidth}%;"></div>
+            <div class="progress-bar" style="width: ${progressWidth}%;"></div>
         `;
-        card.addEventListener('click', () => showDetails(item));
-        historyPanel.appendChild(card);
+        entry.addEventListener('click', () => showDetails(item));
+        historyPanel.appendChild(entry);
     });
 }
 
 function showDetails(item) {
     const modal = document.createElement('div');
     modal.className = 'detail-modal';
-    const setsData = item.sets_data || [{ reps: 0, weight: 0.0 }];
+    const setsData = item.sets_data || [{ reps: item.reps, weight: item.weight }];
     modal.innerHTML = `
         <div class="detail-content">
             <h3>${item.date} - ${item.type}</h3>
@@ -210,7 +210,7 @@ function showDetails(item) {
 }
 
 function validateInput(workout) {
-    return workout.date && !isNaN(workout.sets) && !isNaN(workout.duration) && Array.isArray(workout.sets_data) && workout.sets_data.length > 0 && workout.sets_data.every(set => !isNaN(set.reps) && !isNaN(set.weight));
+    return workout.date && !isNaN(workout.sets) && !isNaN(workout.duration) && Array.isArray(workout.sets_data) && workout.sets_data.every(set => !isNaN(set.reps) && !isNaN(set.weight));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -229,13 +229,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const setGroups = setsContainer.querySelectorAll('.set-group');
         const setsData = Array.from(setGroups).map(group => ({
             reps: parseInt(group.querySelector('.set-reps').value) || 0,
-            weight: parseFloat(group.querySelector('.set-weight').value) || 0.0
+            weight: parseFloat(group.querySelector('.set-weight').value) || 0
         }));
 
         const workout = {
             type: window.workouts.find(w => w.Title === workoutForm.workoutSearch.value)?.Type || workoutForm.workoutSearch.value,
             date: workoutForm.workoutDate.value,
             sets: setGroups.length,
+            reps: setsData.length > 0 ? setsData[0].reps : 0, // Use first set's reps
+            weight: setsData.length > 0 ? setsData[0].weight : 0.0, // Use first set's weight
             duration: parseInt(workoutForm.duration.value) || 0,
             sets_data: setsData
         };
