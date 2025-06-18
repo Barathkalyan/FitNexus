@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitNexus · Workout Logging</title>
     <link rel="stylesheet" href="../static/css/dashboard-styles.css">
+    <link rel="stylesheet" href="../static/css/log-style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -43,40 +44,45 @@
 
             <!-- Workout Logging Content -->
             <div class="content">
-                <h1>Welcome to Your <span>Workout Log</span></h1>
+                <h1>Workout <span>Summary</span></h1>
                 <p class="subtitle">Track and manage your workout sessions.</p>
 
                 <!-- Workout Log Form -->
-                <div class="user-stats">
+                <div class="workout-log-form">
                     <div class="stat-card">
                         <h2>Log Your Workout</h2>
                         <form id="workoutForm">
                             <div class="input-group">
-                                <input type="text" id="workoutSearch" placeholder="Search workouts..." list="workouts" autocomplete="off">
                                 <label for="workoutSearch">Workout</label>
-                                <datalist id="workouts"></datalist>
+                                <input type="text" id="workoutSearch" placeholder="Search workouts..." list="workouts" autocomplete="off">
+                                <datalist id="workouts">
+                                    <option value="Bench Press">
+                                    <option value="Squats">
+                                    <option value="Running">
+                                    <option value="Yoga">
+                                </datalist>
                             </div>
                             <div class="input-group">
-                                <input type="date" id="workoutDate" required>
                                 <label for="workoutDate">Date</label>
+                                <input type="date" id="workoutDate" required>
                             </div>
                             <div class="sets-container" id="setsContainer">
-                                <div class="stat-card" data-set="1">
+                                <div class="set-group" data-set="1">
                                     <div class="input-group">
-                                        <input type="number" class="set-reps" placeholder="Reps" min="1" required>
                                         <label>Reps (Set 1)</label>
+                                        <input type="number" class="set-reps" placeholder="Reps" min="1" required>
                                     </div>
                                     <div class="input-group">
-                                        <input type="number" class="set-weight" placeholder="Weight (kg)" min="0" step="0.1">
                                         <label>Weight (kg)</label>
+                                        <input type="number" class="set-weight" placeholder="Weight (kg)" min="0" step="0.1">
                                     </div>
                                     <button type="button" class="remove-set" style="display: none;">×</button>
                                 </div>
                             </div>
                             <button type="button" class="add-set-btn" id="addSetBtn">+ Add Set</button>
                             <div class="input-group">
-                                <input type="number" id="duration" placeholder="Duration (min)" min="0" step="1">
                                 <label for="duration">Duration (min)</label>
+                                <input type="number" id="duration" placeholder="Duration (min)" min="0" step="1">
                             </div>
                             <button type="submit" class="log-btn">Log Workout</button>
                         </form>
@@ -85,9 +91,12 @@
 
                 <!-- Workout History -->
                 <div class="progress-container">
-                    <div class="progress-item">
-                        <h2>Your History</h2>
-                        <div class="history-list" id="historyList"></div>
+                    <h2>Your History</h2>
+                    <div class="history-list" id="historyList">
+                        <div class="stat-card">
+                            <p class="stat-title">No Workouts Logged</p>
+                            <p class="stat-value">Start logging your workouts above!</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -114,6 +123,23 @@
                 window.location.href = "/auth/logout";
             });
 
+            // Quote Rotation
+            const quotes = document.querySelectorAll('.quote-text');
+            let currentQuoteIndex = 0;
+
+            function showNextQuote() {
+                quotes.forEach((quote, index) => {
+                    quote.classList.remove('active');
+                    if (index === currentQuoteIndex) {
+                        quote.classList.add('active');
+                    }
+                });
+                currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+            }
+
+            showNextQuote();
+            setInterval(showNextQuote, 5000);
+
             // Dynamic Sets
             const setsContainer = document.getElementById("setsContainer");
             const addSetBtn = document.getElementById("addSetBtn");
@@ -122,16 +148,16 @@
             addSetBtn.addEventListener("click", () => {
                 setCount++;
                 const setGroup = document.createElement("div");
-                setGroup.className = "stat-card set-group";
+                setGroup.className = "set-group";
                 setGroup.dataset.set = setCount;
                 setGroup.innerHTML = `
                     <div class="input-group">
-                        <input type="number" class="set-reps" placeholder="Reps" min="1" required>
                         <label>Reps (Set ${setCount})</label>
+                        <input type="number" class="set-reps" placeholder="Reps" min="1" required>
                     </div>
                     <div class="input-group">
-                        <input type="number" class="set-weight" placeholder="Weight (kg)" min="0" step="0.1">
                         <label>Weight (kg)</label>
+                        <input type="number" class="set-weight" placeholder="Weight (kg)" min="0" step="0.1">
                     </div>
                     <button type="button" class="remove-set">×</button>
                 `;
@@ -162,6 +188,67 @@
                     btn.style.display = setCount > 1 ? "block" : "none";
                 });
             }
+
+            // Form Submission
+            const workoutForm = document.getElementById("workoutForm");
+            workoutForm.addEventListener("submit", async (event) => {
+                event.preventDefault();
+
+                const submitBtn = workoutForm.querySelector(".log-btn");
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Logging...";
+
+                const sets = Array.from(setsContainer.querySelectorAll(".set-group")).map((group, index) => ({
+                    set: index + 1,
+                    reps: group.querySelector(".set-reps").value,
+                    weight: group.querySelector(".set-weight").value || 0
+                }));
+
+                const data = {
+                    workout: workoutForm.workoutSearch.value,
+                    date: workoutForm.workoutDate.value,
+                    duration: workoutForm.duration.value || 0,
+                    sets
+                };
+
+                try {
+                    // Placeholder for API call
+                    console.log("Workout Data:", data);
+                    // Example: await fetch("/api/log-workout", { ... });
+
+                    const historyList = document.getElementById("historyList");
+                    const workoutEntry = document.createElement("div");
+                    workoutEntry.className = "stat-card";
+                    workoutEntry.innerHTML = `
+                        <p class="stat-title">${data.date} - ${data.workout}</p>
+                        <p class="stat-value">${data.sets.length} Sets, ${data.duration} min</p>
+                    `;
+                    historyList.innerHTML = "";
+                    historyList.appendChild(workoutEntry);
+
+                    workoutForm.reset();
+                    setsContainer.innerHTML = `
+                        <div class="set-group" data-set="1">
+                            <div class="input-group">
+                                <label>Reps (Set 1)</label>
+                                <input type="number" class="set-reps" placeholder="Reps" min="1" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Weight (kg)</label>
+                                <input type="number" class="set-weight" placeholder="Weight (kg)" min="0" step="0.1">
+                            </div>
+                            <button type="button" class="remove-set" style="display: none;">×</button>
+                        </div>
+                    `;
+                    setCount = 1;
+                    updateRemoveButtons();
+                } catch (error) {
+                    console.error("Error logging workout:", error);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Log Workout";
+                }
+            });
         });
     </script>
 </body>
