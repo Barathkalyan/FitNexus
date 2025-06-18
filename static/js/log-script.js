@@ -142,7 +142,7 @@ async function fetchHistory() {
     try {
         const { data, error } = await supabase
             .from('workout_history')
-            .select('id, type, date, sets, reps, weight, duration')
+            .select('id, type, date, sets, reps, weight, duration, sets_data')
             .order('date', { ascending: false });
         if (error) {
             console.error('Error fetching workout history:', error);
@@ -172,22 +172,45 @@ function renderHistory(history) {
     history.forEach(item => {
         const card = document.createElement('div');
         card.className = 'history-card stat-card';
-        const totalSets = item.sets || 1;
-        const progressWidth = Math.min((item.duration / 60) * 10, 100); // Cap at 100% for 60 min
+        const setsData = item.sets_data || [{ reps: item.reps, weight: item.weight }];
+        const progressWidth = Math.min((item.duration / 60) * 10, 100);
         card.innerHTML = `
             <p class="stat-title">${item.date} - ${item.type}</p>
-            <p>Sets: ${totalSets}</p>
-            <p>Reps: ${item.reps}</p>
-            <p>Weight: ${item.weight}kg</p>
+            <p>Sets: ${item.sets}</p>
+            <p>Reps: ${setsData[0].reps}</p>
+            <p>Weight: ${setsData[0].weight}kg</p>
             <p>Duration: ${item.duration}min</p>
             <div class="progress-fill" style="width: ${progressWidth}%;"></div>
         `;
+        card.addEventListener('click', () => showDetails(item));
         historyPanel.appendChild(card);
     });
 }
 
+function showDetails(item) {
+    const modal = document.createElement('div');
+    modal.className = 'detail-modal';
+    const setsData = item.sets_data || [{ reps: item.reps, weight: item.weight }];
+    modal.innerHTML = `
+        <div class="detail-content">
+            <h3>${item.date} - ${item.type}</h3>
+            <p>Total Sets: ${item.sets}</p>
+            <p>Duration: ${item.duration}min</p>
+            ${setsData.map((set, index) => `
+                <p>Set ${index + 1}: ${set.reps} reps @ ${set.weight}kg</p>
+            `).join('')}
+            <button class="close-btn">Close</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    modal.querySelector('.close-btn').addEventListener('click', () => {
+        document.body.removeChild(modal);
+    });
+}
+
 function validateInput(workout) {
-    return workout.date && !isNaN(workout.sets) && !isNaN(workout.reps) && !isNaN(workout.duration);
+    return workout.date && !isNaN(workout.sets) && !isNaN(workout.duration) && Array.isArray(workout.sets_data) && workout.sets_data.every(set => !isNaN(set.reps) && !isNaN(set.weight));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -204,17 +227,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const setsContainer = document.getElementById('setsContainer');
         const setGroups = setsContainer.querySelectorAll('.set-group');
-        const reps = Array.from(setGroups).map(group => parseInt(group.querySelector('.set-reps').value) || 0);
-        const weights = Array.from(setGroups).map(group => parseFloat(group.querySelector('.set-weight').value) || 0);
+        const setsData = Array.from(setGroups).map(group => ({
+            reps: parseInt(group.querySelector('.set-reps').value) || 0,
+            weight: parseFloat(group.querySelector('.set-weight').value) || 0
+        }));
 
         const workout = {
             type: window.workouts.find(w => w.Title === workoutForm.workoutSearch.value)?.Type || workoutForm.workoutSearch.value,
             date: workoutForm.workoutDate.value,
             sets: setGroups.length,
-            reps: reps[0] || 0, // Use first set's reps
-            weight: weights[0] || 0, // Use first set's weight
-            duration: parseInt(workoutForm.duration.value) || 0
+            duration: parseInt(workoutForm.duration.value) || 0,
+            sets_data: setsData
         };
+
+        console.log('Submitting workout:', workout); // Debug log
 
         if (validateInput(workout)) {
             if (!supabase) {
@@ -223,30 +249,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.textContent = 'Log Workout';
                 return;
             }
-            const { error } = await supabase
-                .from('workout_history')
-                .insert(workout);
-            if (error) {
-                console.error('Error logging workout:', error);
-                alert('Failed to log workout. Please try again.');
-            } else {
-                console.log('Workout logged:', workout);
-                alert('Workout logged successfully!');
-                workoutForm.reset();
-                setsContainer.innerHTML = `
-                    <div class="set-group" data-set="1">
-                        <div class="input-group">
-                            <label>Reps (Set 1)</label>
-                            <input type="number" class="set-reps" placeholder="Reps" min="1" required>
+            try {
+                const { error } = await supabase
+                    .from('workout_history')
+                    .insert(workout);
+                if (error) {
+                    console.error('Error logging workout:', error.message, error.details);
+                    alert(`Failed to log workout: ${error.message}`);
+                } else {
+                    console.log('Workout logged:', workout);
+                    alert('Workout logged successfully!');
+                    workoutForm.reset();
+                    setsContainer.innerHTML = `
+                        <div class="set-group" data-set="1">
+                            <div class="input-group">
+                                <label>Reps (Set 1)</label>
+                                <input type="number" class="set-reps" placeholder="Reps" min="1" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Weight (kg)</label>
+                                <input type="number" class="set-weight" placeholder="Weight (kg)" min="0" step="0.1">
+                            </div>
+                            <button type="button" class="remove-set">×</button>
                         </div>
-                        <div class="input-group">
-                            <label>Weight (kg)</label>
-                            <input type="number" class="set-weight" placeholder="Weight (kg)" min="0" step="0.1">
-                        </div>
-                        <button type="button" class="remove-set">×</button>
-                    </div>
-                `;
-                fetchHistory(); // Refresh history after successful log
+                    `;
+                    fetchHistory();
+                }
+            } catch (e) {
+                console.error('Unexpected error during insertion:', e);
+                alert('Unexpected error logging workout. Check console for details.');
             }
         } else {
             alert('Please fill all required fields with valid numbers.');

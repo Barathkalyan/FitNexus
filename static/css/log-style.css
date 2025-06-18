@@ -146,10 +146,11 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .history-card:hover {
-    transform: translateY(-5px);
+    transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(255, 46, 99, 0.3);
 }
 
@@ -171,6 +172,53 @@
     border-radius: 3px;
     margin-top: 10px;
     transition: width 0.4s ease;
+}
+
+.detail-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+.detail-content {
+    background: linear-gradient(145deg, #1c2526, #0a0a0a);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 400px;
+    margin: 50px auto;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.detail-content h3 {
+    font-size: 20px;
+    color: #00f0ff;
+    margin-bottom: 10px;
+}
+
+.detail-content p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.close-btn {
+    background: #ff2e63;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+}
+
+.close-btn:hover {
+    background: #d81b5a;
 }
 
 .history-cards::-webkit-scrollbar {
