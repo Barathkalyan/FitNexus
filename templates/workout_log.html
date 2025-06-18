@@ -4,146 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitNexus · Workout Logging</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/log-style.css">
 </head>
 <body>
-    <div class="dashboard-container">
+    <div class="app-container">
         <!-- Sidebar -->
-        <div class="sidebar">
+        <aside class="sidebar">
             <div class="sidebar-logo">
                 <h1 class="logo">Fit<span>Nexus</span></h1>
             </div>
-            <ul class="sidebar-menu">
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/workout_log" class="active">Workout Summary</a></li>
-                <li><a href="/calorie_intake">Calorie Intake</a></li>
-                <li><a href="/goal_progress">Workout Plan</a></li>
-                <li><a href="/profile">Profile</a></li>
-            </ul>
-        </div>
+            <nav class="sidebar-nav">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/workout_log" class="active">Workout Summary</a>
+                <a href="/calorie_intake">Calorie Intake</a>
+                <a href="/goal_progress">Workout Plan</a>
+                <a href="/profile">Profile</a>
+            </nav>
+        </aside>
 
         <!-- Main Content -->
-        <div class="main-content">
-            <!-- Top Bar -->
-            <div class="top-bar">
-                <div class="quotes-container">
-                    <p class="quote-text">"The only bad workout is the one that didn’t happen."</p>
-                    <p class="quote-text">"Sweat is just fat crying."</p>
-                    <p class="quote-text">"Push yourself because no one else is going to do it for you."</p>
-                    <p class="quote-text">"Success starts with self-discipline."</p>
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="motivational-quotes">
+                    <span class="quote active">"Your body can stand almost anything. It’s your mind you have to convince."</span>
+                    <span class="quote">"The pain you feel today is the strength you’ll feel tomorrow."</span>
+                    <span class="quote">"Fitness is not a destination, it’s a journey."</span>
+                    <span class="quote">"Every workout is a step closer to your goal."</span>
                 </div>
-                <div class="profile-menu">
-                    <button id="profileBtn" class="profile-icon">
-                        <img src="../static/assets/images/Profile.png" class="prof" alt="Profile">
+                <div class="user-menu">
+                    <button class="user-avatar" id="userToggle">
+                        <img src="../static/assets/images/Profile.png" alt="User Avatar">
                     </button>
-                    <div id="profileDropdown" class="dropdown">
-                        <p class="dropdown-header">
-                            Hello, <span class="dropdown-name">{{ name }}</span> | 
-                            <span class="dropdown-id">User ID: {{ user_id }}</span>
-                        </p>
-                        <button id="logoutBtn">Logout</button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="user-info">
+                            <span class="user-name">Hello, {{ name }}</span>
+                            <span class="user-id">ID: {{ user_id }}</span>
+                        </div>
+                        <button class="logout-btn" id="logoutBtn">Logout</button>
                     </div>
                 </div>
-            </div>
+            </header>
 
-            <!-- Dashboard Content -->
-            <div class="content">
-                <div class="dashboard">
-                    <!-- Workout Log Form -->
-                    <section class="form-panel">
-                        <h2>Log a Workout</h2>
-                        <form id="workoutForm">
-                            <div class="form-group">
-                                <input type="text" id="workoutSearch" placeholder="Search workouts..." list="workouts" oninput="filterWorkouts()">
-                                <label for="workoutSearch">Workout</label>
-                                <datalist id="workouts">
-                                    <!-- Populated dynamically via JavaScript -->
-                                </datalist>
-                            </div>
-                            
-                            <div class="form-group">
-                                <input type="date" id="workoutDate" placeholder=" ">
-                                <label for="workoutDate">Date</label>
-                            </div>
-                            
-                            <div class="horizontal-group">
-                                <div class="form-group">
-                                    <input type="number" id="sets" placeholder=" ">
-                                    <label for="sets">Sets</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="number" id="reps" placeholder=" ">
-                                    <label for="reps">Reps</label>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <input type="number" id="weight" placeholder=" ">
-                                <label for="weight">Weight (kg)</label>
-                            </div>
-                            
-                            <div class="form-group">
-                                <input type="number" id="duration" placeholder=" ">
-                                <label for="duration">Duration (min)</label>
-                            </div>
-                            
-                            <button type="submit" id="logWorkoutBtn">Log Workout</button>
-                        </form>
-                    </section>
-                    
-                    <!-- Workout History -->
-                    <section class="history-panel">
-                        <h2>Your History</h2>
-                        <div id="historyList" class="history-list">
-                            <!-- JS will append .history-card here -->
+            <!-- Workout Logging Section -->
+            <section class="workout-section">
+                <div class="workout-form-card">
+                    <h2>Log Your Workout</h2>
+                    <form id="workoutForm" class="workout-form">
+                        <div class="input-group">
+                            <input type="text" id="workoutSearch" placeholder="Search workouts..." list="workouts" autocomplete="off">
+                            <label for="workoutSearch">Workout</label>
+                            <datalist id="workouts"></datalist>
                         </div>
-                    </section>
+                        <div class="input-group">
+                            <input type="date" id="workoutDate" required>
+                            <label for="workoutDate">Date</label>
+                        </div>
+                        <div class="sets-container" id="setsContainer">
+                            <div class="set-group" data-set="1">
+                                <div class="input-group">
+                                    <input type="number" class="set-reps" placeholder="Reps" min="1" required>
+                                    <label>Reps (Set 1)</label>
+                                </div>
+                                <div class="input-group">
+                                    <input type="number" class="set-weight" placeholder="Weight (kg)" min="0" step="0.1">
+                                    <label>Weight (kg)</label>
+                                </div>
+                                <button type="button" class="remove-set" style="display: none;">&times;</button>
+                            </div>
+                        </div>
+                        <button type="button" class="add-set-btn" id="addSetBtn">+ Add Set</button>
+                        <div class="input-group">
+                            <input type="number" id="duration" placeholder="Duration (min)" min="0" step="1">
+                            <label for="duration">Duration (min)</label>
+                        </div>
+                        <button type="submit" class="log-btn">Log Workout</button>
+                    </form>
                 </div>
-            </div>
-        </div>
+                <div class="workout-history-card">
+                    <h2>Workout History</h2>
+                    <div class="history-list" id="historyList"></div>
+                </div>
+            </section>
+        </main>
     </div>
 
     <script src="../static/js/log-script.js" defer></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Profile Dropdown Toggle
-            const profileBtn = document.getElementById("profileBtn");
-            const dropdown = document.getElementById("profileDropdown");
-
-            profileBtn.addEventListener("click", () => {
-                dropdown.classList.toggle("show");
-            });
-
-            document.addEventListener("click", (event) => {
-                if (!profileBtn.contains(event.target) && !dropdown.contains(event.target)) {
-                    dropdown.classList.remove("show");
+        document.addEventListener("DOMContentLoaded", () => {
+            // User Dropdown
+            const userToggle = document.getElementById("userToggle");
+            const userDropdown = document.getElementById("userDropdown");
+            userToggle.addEventListener("click", () => userDropdown.classList.toggle("visible"));
+            document.addEventListener("click", (e) => {
+                if (!userToggle.contains(e.target) && !userDropdown.contains(e.target)) {
+                    userDropdown.classList.remove("visible");
                 }
             });
 
+            // Logout
             document.getElementById("logoutBtn").addEventListener("click", () => {
                 window.location.href = "/auth/logout";
             });
 
             // Quote Rotation
-            const quotes = document.querySelectorAll('.quote-text');
-            let currentQuoteIndex = 0;
+            const quotes = document.querySelectorAll(".quote");
+            let quoteIndex = 0;
+            function rotateQuotes() {
+                quotes.forEach((q, i) => q.classList.toggle("active", i === quoteIndex));
+                quoteIndex = (quoteIndex + 1) % quotes.length;
+            }
+            rotateQuotes();
+            setInterval(rotateQuotes, 6000);
 
-            function showNextQuote() {
-                quotes.forEach((quote, index) => {
-                    quote.classList.remove('active');
-                    if (index === currentQuoteIndex) {
-                        quote.classList.add('active');
-                    }
+            // Dynamic Sets
+            const setsContainer = document.getElementById("setsContainer");
+            const addSetBtn = document.getElementById("addSetBtn");
+            let setCount = 1;
+
+            addSetBtn.addEventListener("click", () => {
+                setCount++;
+                const setGroup = document.createElement("div");
+                setGroup.className = "set-group";
+                setGroup.dataset.set = setCount;
+                setGroup.innerHTML = `
+                    <div class="input-group">
+                        <input type="number" class="set-reps" placeholder="Reps" min="1" required>
+                        <label>Reps (Set ${setCount})</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="number" class="set-weight" placeholder="Weight (kg)" min="0" step="0.1">
+                        <label>Weight (kg)</label>
+                    </div>
+                    <button type="button" class="remove-set">&times;</button>
+                `;
+                setsContainer.appendChild(setGroup);
+                updateRemoveButtons();
+            });
+
+            setsContainer.addEventListener("click", (e) => {
+                if (e.target.classList.contains("remove-set")) {
+                    e.target.parentElement.remove();
+                    setCount--;
+                    updateSetLabels();
+                    updateRemoveButtons();
+                }
+            });
+
+            function updateSetLabels() {
+                const setGroups = setsContainer.querySelectorAll(".set-group");
+                setGroups.forEach((group, index) => {
+                    group.dataset.set = index + 1;
+                    group.querySelector("label").textContent = `Reps (Set ${index + 1})`;
                 });
-                currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
             }
 
-            // Initialize the first quote
-            showNextQuote();
-
-            // Rotate quotes every 5 seconds
-            setInterval(showNextQuote, 5000);
+            function updateRemoveButtons() {
+                const removeButtons = setsContainer.querySelectorAll(".remove-set");
+                removeButtons.forEach((btn, index) => {
+                    btn.style.display = setCount > 1 ? "block" : "none";
+                });
+            }
         });
     </script>
 </body>
