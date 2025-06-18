@@ -1,0 +1,151 @@
+id,Title,Desc,Type,BodyPart,Equipment,Level
+1,Push-Up,A bodyweight exercise for upper body strength,Strength,Chest,Bodyweight,Advanced
+2,Bench Press,Chest and upper body pressing movement,Strength,Chest,Cable,Beginner
+3,Incline Bench Press,Targets upper chest muscles,Strength,Chest,Dumbbell,Advanced
+4,Decline Bench Press,Targets lower chest muscles,Strength,Chest,Dumbbell,Intermediate
+5,Chest Fly,Chest muscle isolator using cables or dumbbells,Strength,Chest,Machine,Beginner
+6,Cable Crossover,Chest definition and isolation exercise,Strength,Chest,Bodyweight,Advanced
+7,Shoulder Press,Overhead shoulder strength builder,Strength,Shoulders,Resistance Band,Beginner
+8,Lateral Raise,Isolates and builds the lateral deltoids,Strength,Shoulders,Bodyweight,Beginner
+9,Front Raise,Targets the front deltoids,Strength,Shoulders,Dumbbell,Beginner
+10,Rear Delt Fly,Works rear deltoids and upper back,Strength,Shoulders,Barbell,Advanced
+11,Arnold Press,Shoulder exercise with rotational movement,Strength,Shoulders,Machine,Advanced
+12,Pull-Up,Back and biceps bodyweight exercise,Strength,Lats,Cable,Intermediate
+13,Lat Pulldown,Upper body machine pull exercise,Strength,Lats,Bodyweight,Intermediate
+14,Chin-Up,Targets the lats and biceps,Strength,Lats,Cable,Beginner
+15,Straight Arm Pulldown,Isolates the lat muscles,Strength,Lats,Dumbbell,Beginner
+16,Single Arm Dumbbell Row,Lats and upper back workout,Strength,Lats,Machine,Beginner
+17,Tricep Dip,Bodyweight triceps builder,Strength,Triceps,Barbell,Intermediate
+18,Skull Crusher,Lying triceps extension with barbell,Strength,Triceps,Cable,Intermediate
+19,Overhead Tricep Extension,Stretches and works triceps,Strength,Triceps,Machine,Intermediate
+20,Cable Tricep Pushdown,Isolated cable triceps workout,Strength,Triceps,Barbell,Beginner
+21,Close-Grip Bench Press,Chest and triceps press variation,Strength,Triceps,Barbell,Beginner
+22,Bicep Curl,Isolated arm movement for biceps,Strength,Biceps,Cable,Intermediate
+23,Hammer Curl,Works biceps and forearms,Strength,Biceps,Bodyweight,Intermediate
+24,Concentration Curl,Bicep isolator with strict form,Strength,Biceps,Cable,Advanced
+25,Preacher Curl,Strict bicep movement with support,Strength,Biceps,Dumbbell,Beginner
+26,Cable Curl,Continuous tension on biceps,Strength,Biceps,Resistance Band,Beginner
+27,Squat,Lower body compound movement,Strength,Legs,Machine,Advanced
+28,Leg Press,Leg strength on machine,Strength,Legs,Cable,Advanced
+29,Lunge,Lower body unilateral movement,Strength,Legs,Barbell,Beginner
+30,Bulgarian Split Squat,Intense single-leg exercise,Strength,Legs,Resistance Band,Intermediate
+31,Romanian Deadlift,Hamstring and glute strength builder,Strength,Legs,Cable,Intermediate
+32,Calf Raise,Strengthens calves through ankle extension,Strength,Legs,Machine,Intermediate
+33,Deadlift,A major lift for total body strength,Cardio,Full Body,Dumbbell,Beginner
+34,Plank,Core stability hold,Cardio,Core,Machine,Advanced
+35,Mountain Climber,Core and cardio combined,Power,Core,Dumbbell,Intermediate
+36,Burpee,Full-body cardio and strength movement,Power,Full Body,Resistance Band,Advanced
+37,Sit-Up,Abdominal strengthening,Strength,Core,Bodyweight,Intermediate
+38,Crunch,Ab crunch variant,Power,Core,Machine,Beginner
+39,Russian Twist,Core twisting movement,Power,Core,Machine,Advanced
+40,Preacher Curl (Band),Strict bicep movement with support,Strength,Biceps,Band,Advanced
+41,Calf Raise (Machine),Strengthens calves through ankle extension,Strength,Legs,Machine,Intermediate
+42,Arnold Press (Cable),Shoulder exercise with rotational movement,Strength,Shoulders,Cable,Intermediate
+43,Leg Press (Band),Leg strength on machine,Strength,Legs,Band,Intermediate
+44,Straight Arm Pulldown (Cable),Isolates the lat muscles,Strength,Lats,Cable,Beginner
+45,Bench Press (Machine),Chest and upper body pressing movement,Strength,Chest,Machine,Advanced
+46,Romanian Deadlift (Cable),Hamstring and glute strength builder,Strength,Legs,Cable,Beginner
+47,Pull-Up (Dumbbell),Back and biceps bodyweight exercise,Strength,Lats,Dumbbell,Intermediate
+48,Chin-Up (Machine),Targets the lats and biceps,Strength,Lats,Machine,Advanced
+49,Front Raise (Machine),Targets the front deltoids,Strength,Shoulders,Machine,Advanced
+50,Pull-Up (Cable),Back and biceps bodyweight exercise,Strength,Lats,Cable,Beginner
+51,Squat (Machine),Lower body compound movement,Strength,Legs,Machine,Intermediate
+52,Front Raise (Dumbbell),Targets the front deltoids,Strength,Shoulders,Dumbbell,Beginner
+53,Chin-Up (Cable),Targets the lats and biceps,Strength,Lats,Cable,Beginner
+54,Arnold Press (Band),Shoulder exercise with rotational movement,Strength,Shoulders,Band,Beginner
+55,Concentration Curl (Band),Bicep isolator with strict form,Strength,Biceps,Band,Advanced
+56,Push-Up (Cable),A bodyweight exercise for upper body strength,Strength,Chest,Cable,Beginner
+57,Bicep Curl (Machine),Isolated arm movement for biceps,Strength,Biceps,Machine,Intermediate
+58,Straight Arm Pulldown (Dumbbell),Isolates the lat muscles,Strength,Lats,Dumbbell,Advanced
+59,Shoulder Press (Bodyweight),Overhead shoulder strength builder,Strength,Shoulders,Bodyweight,Intermediate
+60,Preacher Curl (Cable),Strict bicep movement with support,Strength,Biceps,Cable,Beginner
+61,Cable Curl (Dumbbell),Continuous tension on biceps,Strength,Biceps,Dumbbell,Beginner
+62,Skull Crusher (Band),Lying triceps extension with barbell,Strength,Triceps,Band,Intermediate
+63,Incline Bench Press (Band),Targets upper chest muscles,Strength,Chest,Band,Intermediate
+64,Bicep Curl (Cable),Isolated arm movement for biceps,Strength,Biceps,Cable,Intermediate
+65,Front Raise (Bodyweight),Targets the front deltoids,Strength,Shoulders,Bodyweight,Beginner
+66,Lunge (Machine),Lower body unilateral movement,Strength,Legs,Machine,Intermediate
+67,Concentration Curl (Dumbbell),Bicep isolator with strict form,Strength,Biceps,Dumbbell,Intermediate
+68,Preacher Curl (Bodyweight),Strict bicep movement with support,Strength,Biceps,Bodyweight,Advanced
+69,Tricep Dip (Dumbbell),Bodyweight triceps builder,Strength,Triceps,Dumbbell,Advanced
+70,Incline Bench Press (Machine),Targets upper chest muscles,Strength,Chest,Machine,Beginner
+71,Lat Pulldown (Dumbbell),Upper body machine pull exercise,Strength,Lats,Dumbbell,Advanced
+72,Squat (Band),Lower body compound movement,Strength,Legs,Band,Beginner
+73,Bicep Curl (Dumbbell),Isolated arm movement for biceps,Strength,Biceps,Dumbbell,Advanced
+74,Cable Curl (Cable),Continuous tension on biceps,Strength,Biceps,Cable,Advanced
+75,Overhead Tricep Extension (Cable),Stretches and works triceps,Strength,Triceps,Cable,Beginner
+76,Concentration Curl (Cable),Bicep isolator with strict form,Strength,Biceps,Cable,Beginner
+77,Close-Grip Bench Press (Dumbbell),Chest and triceps press variation,Strength,Triceps,Dumbbell,Advanced
+78,Overhead Tricep Extension (Dumbbell),Stretches and works triceps,Strength,Triceps,Dumbbell,Advanced
+79,Straight Arm Pulldown (Machine),Isolates the lat muscles,Strength,Lats,Machine,Beginner
+80,Close-Grip Bench Press (Band),Chest and triceps press variation,Strength,Triceps,Band,Beginner
+81,Arnold Press (Machine),Shoulder exercise with rotational movement,Strength,Shoulders,Machine,Beginner
+82,Lunge (Bodyweight),Lower body unilateral movement,Strength,Legs,Bodyweight,Advanced
+83,Hammer Curl (Bodyweight),Works biceps and forearms,Strength,Biceps,Bodyweight,Beginner
+84,Chest Fly (Dumbbell),Chest muscle isolator using cables or dumbbells,Strength,Chest,Dumbbell,Intermediate
+85,Lateral Raise (Dumbbell),Isolates and builds the lateral deltoids,Strength,Shoulders,Dumbbell,Advanced
+86,Lunge (Band),Lower body unilateral movement,Strength,Legs,Band,Beginner
+87,Front Raise (Cable),Targets the front deltoids,Strength,Shoulders,Cable,Beginner
+88,Arnold Press (Bodyweight),Shoulder exercise with rotational movement,Strength,Shoulders,Bodyweight,Intermediate
+89,Romanian Deadlift (Machine),Hamstring and glute strength builder,Strength,Legs,Machine,Beginner
+90,Rear Delt Fly (Machine),Works rear deltoids and upper back,Strength,Shoulders,Machine,Beginner
+91,Push-Up (Machine),A bodyweight exercise for upper body strength,Strength,Chest,Machine,Beginner
+92,Overhead Tricep Extension (Bodyweight),Stretches and works triceps,Strength,Triceps,Bodyweight,Intermediate
+93,Decline Bench Press (Cable),Targets lower chest muscles,Strength,Chest,Cable,Beginner
+94,Close-Grip Bench Press (Bodyweight),Chest and triceps press variation,Strength,Triceps,Bodyweight,Intermediate
+95,Decline Bench Press (Machine),Targets lower chest muscles,Strength,Chest,Machine,Beginner
+96,Push-Up (Band),A bodyweight exercise for upper body strength,Strength,Chest,Band,Intermediate
+97,Decline Bench Press (Bodyweight),Targets lower chest muscles,Strength,Chest,Bodyweight,Beginner
+98,Concentration Curl (Bodyweight),Bicep isolator with strict form,Strength,Biceps,Bodyweight,Beginner
+99,Single Arm Dumbbell Row (Cable),Lats and upper back workout,Strength,Lats,Cable,Beginner
+100,Romanian Deadlift (Band),Hamstring and glute strength builder,Strength,Legs,Band,Intermediate
+101,Single Arm Dumbbell Row (Machine),Lats and upper back workout,Strength,Lats,Machine,Advanced
+102,Skull Crusher (Cable),Lying triceps extension with barbell,Strength,Triceps,Cable,Advanced
+103,Hammer Curl (Dumbbell),Works biceps and forearms,Strength,Biceps,Dumbbell,Advanced
+104,Pull-Up (Band),Back and biceps bodyweight exercise,Strength,Lats,Band,Beginner
+105,Decline Bench Press (Dumbbell),Targets lower chest muscles,Strength,Chest,Dumbbell,Intermediate
+106,Incline Bench Press (Cable),Targets upper chest muscles,Strength,Chest,Cable,Intermediate
+107,Overhead Tricep Extension (Band),Stretches and works triceps,Strength,Triceps,Band,Beginner
+108,Single Arm Dumbbell Row (Bodyweight),Lats and upper back workout,Strength,Lats,Bodyweight,Advanced
+109,Rear Delt Fly (Dumbbell),Works rear deltoids and upper back,Strength,Shoulders,Dumbbell,Intermediate
+110,Lunge (Dumbbell),Lower body unilateral movement,Strength,Legs,Dumbbell,Beginner
+111,Bulgarian Split Squat (Machine),Intense single-leg exercise,Strength,Legs,Machine,Intermediate
+112,Cable Tricep Pushdown (Bodyweight),Isolated cable triceps workout,Strength,Triceps,Bodyweight,Beginner
+113,Lat Pulldown (Bodyweight),Upper body machine pull exercise,Strength,Lats,Bodyweight,Beginner
+114,Tricep Dip (Cable),Bodyweight triceps builder,Strength,Triceps,Cable,Intermediate
+115,Lat Pulldown (Band),Upper body machine pull exercise,Strength,Lats,Band,Advanced
+116,Preacher Curl (Dumbbell),Strict bicep movement with support,Strength,Biceps,Dumbbell,Advanced
+117,Bulgarian Split Squat (Bodyweight),Intense single-leg exercise,Strength,Legs,Bodyweight,Intermediate
+118,Chest Fly (Band),Chest muscle isolator using cables or dumbbells,Strength,Chest,Band,Advanced
+119,Shoulder Press (Band),Overhead shoulder strength builder,Strength,Shoulders,Band,Advanced
+120,Lateral Raise (Bodyweight),Isolates and builds the lateral deltoids,Strength,Shoulders,Bodyweight,Beginner
+121,Shoulder Press (Dumbbell),Overhead shoulder strength builder,Strength,Shoulders,Dumbbell,Intermediate
+122,Cable Tricep Pushdown (Machine),Isolated cable triceps workout,Strength,Triceps,Machine,Beginner
+123,Cable Tricep Pushdown (Cable),Isolated cable triceps workout,Strength,Triceps,Cable,Beginner
+124,Tricep Dip (Band),Bodyweight triceps builder,Strength,Triceps,Band,Advanced
+125,Bulgarian Split Squat (Band),Intense single-leg exercise,Strength,Legs,Band,Intermediate
+126,Cable Tricep Pushdown (Band),Isolated cable triceps workout,Strength,Triceps,Band,Advanced
+127,Arnold Press (Dumbbell),Shoulder exercise with rotational movement,Strength,Shoulders,Dumbbell,Advanced
+128,Cable Crossover (Dumbbell),Chest definition and isolation exercise,Strength,Chest,Dumbbell,Intermediate
+129,Single Arm Dumbbell Row (Band),Lats and upper back workout,Strength,Lats,Band,Beginner
+130,Push-Up (Bodyweight),A bodyweight exercise for upper body strength,Strength,Chest,Bodyweight,Beginner
+131,Bicep Curl (Band),Isolated arm movement for biceps,Strength,Biceps,Band,Intermediate
+132,Bicep Curl (Bodyweight),Isolated arm movement for biceps,Strength,Biceps,Bodyweight,Beginner
+133,Lateral Raise (Machine),Isolates and builds the lateral deltoids,Strength,Shoulders,Machine,Beginner
+134,Single Arm Dumbbell Row (Dumbbell),Lats and upper back workout,Strength,Lats,Dumbbell,Beginner
+135,Lat Pulldown (Cable),Upper body machine pull exercise,Strength,Lats,Cable,Intermediate
+136,Lunge (Cable),Lower body unilateral movement,Strength,Legs,Cable,Intermediate
+137,Incline Bench Press (Dumbbell),Targets upper chest muscles,Strength,Chest,Dumbbell,Advanced
+138,Bulgarian Split Squat (Cable),Intense single-leg exercise,Strength,Legs,Cable,Advanced
+139,Cable Crossover (Machine),Chest definition and isolation exercise,Strength,Chest,Machine,Advanced
+140,Shoulder Press (Machine),Overhead shoulder strength builder,Strength,Shoulders,Machine,Beginner
+141,Chest Fly (Machine),Chest muscle isolator using cables or dumbbells,Strength,Chest,Machine,Advanced
+142,Close-Grip Bench Press (Machine),Chest and triceps press variation,Strength,Triceps,Machine,Beginner
+143,Bulgarian Split Squat (Dumbbell),Intense single-leg exercise,Strength,Legs,Dumbbell,Beginner
+144,Bench Press (Cable),Chest and upper body pressing movement,Strength,Chest,Cable,Advanced
+145,Close-Grip Bench Press (Cable),Chest and triceps press variation,Strength,Triceps,Cable,Intermediate
+146,Cable Crossover (Cable),Chest definition and isolation exercise,Strength,Chest,Cable,Advanced
+147,Leg Press (Machine),Leg strength on machine,Strength,Legs,Machine,Beginner
+148,Tricep Dip (Bodyweight),Bodyweight triceps builder,Strength,Triceps,Bodyweight,Advanced
+149,Chin-Up (Band),Targets the lats and biceps,Strength,Lats,Band,Advanced
+150,Cable Tricep Pushdown (Dumbbell),Isolated cable triceps workout,Strength,Triceps,Dumbbell,Advanced

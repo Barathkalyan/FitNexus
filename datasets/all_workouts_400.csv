@@ -1,0 +1,401 @@
+id,Title,Desc,Type,BodyPart,Equipment,Level
+1,Mountain Climber (Bodyweight),Mountain Climber exercise targeting strength and endurance,Power,Chest,Bodyweight,Advanced
+2,Burpee (Cable),Burpee exercise targeting strength and endurance,Mobility,Quads,Cable,Beginner
+3,Superman (Kettlebell),Superman exercise targeting strength and endurance,Endurance,Legs,Kettlebell,Intermediate
+4,Lat Pulldown (TRX),Lat Pulldown exercise targeting strength and endurance,Power,Hamstrings,TRX,Intermediate
+5,Step-Up (Bodyweight),Step-Up exercise targeting strength and endurance,Power,Arms,Bodyweight,Advanced
+6,Box Jump (Band),Box Jump exercise targeting strength and endurance,Strength,Shoulders,Band,Intermediate
+7,Plank (Dumbbell),Plank exercise targeting strength and endurance,Mobility,Glutes,Dumbbell,Advanced
+8,Glute Bridge (Dumbbell),Glute Bridge exercise targeting strength and endurance,Balance,Arms,Dumbbell,Advanced
+9,Pull-Up (Machine),Pull-Up exercise targeting strength and endurance,Power,Forearms,Machine,Intermediate
+10,Incline Row (Band),Incline Row exercise targeting strength and endurance,Strength,Core,Band,Intermediate
+11,Good Morning (Cable),Good Morning exercise targeting strength and endurance,Cardio,Hamstrings,Cable,Intermediate
+12,Jump Rope (Band),Jump Rope exercise targeting strength and endurance,Mobility,Calves,Band,Advanced
+13,Box Jump,Box Jump exercise targeting strength and endurance,Strength,Traps,Dumbbell,Advanced
+14,Leg Curl,Leg Curl exercise targeting strength and endurance,Cardio,Forearms,None,Beginner
+15,Side Plank,Side Plank exercise targeting strength and endurance,Cardio,Full Body,Resistance Band,Beginner
+16,Hammer Curl (Bodyweight),Hammer Curl exercise targeting strength and endurance,Power,Chest,Bodyweight,Beginner
+17,Sit-Up,Sit-Up exercise targeting strength and endurance,Cardio,Calves,Kettlebell,Beginner
+18,Incline Row (TRX),Incline Row exercise targeting strength and endurance,Endurance,Hamstrings,TRX,Intermediate
+19,Wall Ball (Bodyweight),Wall Ball exercise targeting strength and endurance,Power,Quads,Bodyweight,Intermediate
+20,Leg Curl (TRX),Leg Curl exercise targeting strength and endurance,Strength,Core,TRX,Intermediate
+21,Jump Squat (Dumbbell),Jump Squat exercise targeting strength and endurance,Mobility,Chest,Dumbbell,Beginner
+22,Box Squat (Machine),Box Squat exercise targeting strength and endurance,Power,Shoulders,Machine,Advanced
+23,Mountain Climber (Dumbbell),Mountain Climber exercise targeting strength and endurance,Strength,Core,Dumbbell,Intermediate
+24,Calf Raise (Dumbbell),Calf Raise exercise targeting strength and endurance,Power,Chest,Dumbbell,Advanced
+25,Wall Ball (Machine),Wall Ball exercise targeting strength and endurance,Strength,Shoulders,Machine,Intermediate
+26,Jump Squat (Band),Jump Squat exercise targeting strength and endurance,Mobility,Calves,Band,Intermediate
+27,Landmine Press (Bodyweight),Landmine Press exercise targeting strength and endurance,Flexibility,Full Body,Bodyweight,Advanced
+28,Split Squat (Kettlebell),Split Squat exercise targeting strength and endurance,Flexibility,Forearms,Kettlebell,Beginner
+29,Box Jump (TRX),Box Jump exercise targeting strength and endurance,Flexibility,Calves,TRX,Intermediate
+30,Bird Dog (Bodyweight),Bird Dog exercise targeting strength and endurance,Strength,Shoulders,Bodyweight,Beginner
+31,Hip Thrust (Bodyweight),Hip Thrust exercise targeting strength and endurance,Mobility,Legs,Bodyweight,Intermediate
+32,Pull-Up (Bodyweight),Pull-Up exercise targeting strength and endurance,Balance,Shoulders,Bodyweight,Advanced
+33,T-Bar Row (TRX),T-Bar Row exercise targeting strength and endurance,Power,Traps,TRX,Intermediate
+34,High Knees (Bodyweight),High Knees exercise targeting strength and endurance,Power,Core,Bodyweight,Intermediate
+35,Wall Ball,Wall Ball exercise targeting strength and endurance,Balance,Chest,Barbell,Advanced
+36,Snatch (Cable),Snatch exercise targeting strength and endurance,Power,Back,Cable,Advanced
+37,High Knees (Band),High Knees exercise targeting strength and endurance,Balance,Hamstrings,Band,Advanced
+38,Russian Twist (Dumbbell),Russian Twist exercise targeting strength and endurance,Cardio,Core,Dumbbell,Intermediate
+39,Wrist Curl (Cable),Wrist Curl exercise targeting strength and endurance,Power,Hamstrings,Cable,Advanced
+40,Kettlebell Swing (Kettlebell),Kettlebell Swing exercise targeting strength and endurance,Balance,Calves,Kettlebell,Beginner
+41,Snatch (Kettlebell),Snatch exercise targeting strength and endurance,Cardio,Core,Kettlebell,Beginner
+42,Front Squat (Machine),Front Squat exercise targeting strength and endurance,Flexibility,Legs,Machine,Advanced
+43,Cable Row (Dumbbell),Cable Row exercise targeting strength and endurance,Endurance,Core,Dumbbell,Intermediate
+44,Bird Dog,Bird Dog exercise targeting strength and endurance,Cardio,Core,Barbell,Advanced
+45,Shoulder Press,Shoulder Press exercise targeting strength and endurance,Cardio,Forearms,Barbell,Advanced
+46,Shrugs (Band),Shrugs exercise targeting strength and endurance,Strength,Forearms,Band,Advanced
+47,Clean and Jerk (Dumbbell),Clean and Jerk exercise targeting strength and endurance,Flexibility,Calves,Dumbbell,Beginner
+48,Step-Up (Band),Step-Up exercise targeting strength and endurance,Cardio,Calves,Band,Beginner
+49,Bench Press,Bench Press exercise targeting strength and endurance,Strength,Calves,Bodyweight,Advanced
+50,Seated Row (Cable),Seated Row exercise targeting strength and endurance,Strength,Legs,Cable,Beginner
+51,Box Squat (Band),Box Squat exercise targeting strength and endurance,Endurance,Quads,Band,Advanced
+52,Crunch,Crunch exercise targeting strength and endurance,Strength,Calves,Kettlebell,Advanced
+53,Leg Press (Machine),Leg Press exercise targeting strength and endurance,Strength,Glutes,Machine,Intermediate
+54,Incline Row (Machine),Incline Row exercise targeting strength and endurance,Balance,Chest,Machine,Advanced
+55,Overhead Press,Overhead Press exercise targeting strength and endurance,Strength,Full Body,Barbell,Beginner
+56,Good Morning (Bodyweight),Good Morning exercise targeting strength and endurance,Balance,Legs,Bodyweight,Beginner
+57,Donkey Kick (Cable),Donkey Kick exercise targeting strength and endurance,Balance,Quads,Cable,Intermediate
+58,Farmer's Carry (Dumbbell),Farmer's Carry exercise targeting strength and endurance,Balance,Back,Dumbbell,Beginner
+59,Calf Raise (Kettlebell),Calf Raise exercise targeting strength and endurance,Cardio,Chest,Kettlebell,Beginner
+60,Cable Row,Cable Row exercise targeting strength and endurance,Endurance,Arms,Bodyweight,Advanced
+61,Bird Dog (Machine),Bird Dog exercise targeting strength and endurance,Cardio,Glutes,Machine,Intermediate
+62,Bird Dog (Kettlebell),Bird Dog exercise targeting strength and endurance,Cardio,Hamstrings,Kettlebell,Beginner
+63,Snatch (Machine),Snatch exercise targeting strength and endurance,Strength,Calves,Machine,Beginner
+64,Russian Twist (Bodyweight),Russian Twist exercise targeting strength and endurance,Mobility,Arms,Bodyweight,Intermediate
+65,Jump Rope (Machine),Jump Rope exercise targeting strength and endurance,Mobility,Arms,Machine,Beginner
+66,Farmer's Carry,Farmer's Carry exercise targeting strength and endurance,Mobility,Glutes,None,Beginner
+67,Good Morning (Band),Good Morning exercise targeting strength and endurance,Flexibility,Hamstrings,Band,Advanced
+68,Sit-Up (TRX),Sit-Up exercise targeting strength and endurance,Power,Legs,TRX,Advanced
+69,Wall Ball (Band),Wall Ball exercise targeting strength and endurance,Cardio,Shoulders,Band,Advanced
+70,Good Morning (Machine),Good Morning exercise targeting strength and endurance,Strength,Back,Machine,Beginner
+71,Leg Extension,Leg Extension exercise targeting strength and endurance,Strength,Quads,Cable,Intermediate
+72,Squat (Kettlebell),Squat exercise targeting strength and endurance,Cardio,Legs,Kettlebell,Intermediate
+73,Overhead Press (Machine),Overhead Press exercise targeting strength and endurance,Mobility,Calves,Machine,Advanced
+74,Clean and Jerk,Clean and Jerk exercise targeting strength and endurance,Flexibility,Hamstrings,Dumbbell,Beginner
+75,Sit-Up (Machine),Sit-Up exercise targeting strength and endurance,Endurance,Shoulders,Machine,Advanced
+76,Pistol Squat (Machine),Pistol Squat exercise targeting strength and endurance,Cardio,Arms,Machine,Beginner
+77,Turkish Get-Up (Dumbbell),Turkish Get-Up exercise targeting strength and endurance,Balance,Full Body,Dumbbell,Advanced
+78,Shrugs (TRX),Shrugs exercise targeting strength and endurance,Cardio,Calves,TRX,Advanced
+79,Hip Thrust (Band),Hip Thrust exercise targeting strength and endurance,Balance,Forearms,Band,Intermediate
+80,Overhead Press (Bodyweight),Overhead Press exercise targeting strength and endurance,Cardio,Core,Bodyweight,Advanced
+81,Burpee (TRX),Burpee exercise targeting strength and endurance,Flexibility,Calves,TRX,Intermediate
+82,Lunge,Lunge exercise targeting strength and endurance,Balance,Core,Dumbbell,Beginner
+83,Seated Row (Bodyweight),Seated Row exercise targeting strength and endurance,Strength,Hamstrings,Bodyweight,Intermediate
+84,Superman (Dumbbell),Superman exercise targeting strength and endurance,Power,Calves,Dumbbell,Intermediate
+85,Hip Thrust (Cable),Hip Thrust exercise targeting strength and endurance,Endurance,Chest,Cable,Intermediate
+86,Leg Curl (Machine),Leg Curl exercise targeting strength and endurance,Flexibility,Forearms,Machine,Advanced
+87,Superman (Band),Superman exercise targeting strength and endurance,Endurance,Chest,Band,Beginner
+88,Box Squat (Kettlebell),Box Squat exercise targeting strength and endurance,Cardio,Chest,Kettlebell,Advanced
+89,T-Bar Row (Machine),T-Bar Row exercise targeting strength and endurance,Flexibility,Chest,Machine,Beginner
+90,Plank (TRX),Plank exercise targeting strength and endurance,Balance,Traps,TRX,Beginner
+91,Farmer's Carry (TRX),Farmer's Carry exercise targeting strength and endurance,Endurance,Forearms,TRX,Intermediate
+92,Plank Shoulder Tap (Bodyweight),Plank Shoulder Tap exercise targeting strength and endurance,Mobility,Shoulders,Bodyweight,Beginner
+93,Plank (Cable),Plank exercise targeting strength and endurance,Cardio,Chest,Cable,Beginner
+94,Glute Bridge (Cable),Glute Bridge exercise targeting strength and endurance,Endurance,Hamstrings,Cable,Intermediate
+95,Toe Touch (Bodyweight),Toe Touch exercise targeting strength and endurance,Endurance,Glutes,Bodyweight,Intermediate
+96,Farmer's Carry (Machine),Farmer's Carry exercise targeting strength and endurance,Mobility,Hamstrings,Machine,Intermediate
+97,Calf Raise (Cable),Calf Raise exercise targeting strength and endurance,Power,Back,Cable,Beginner
+98,Landmine Press (Kettlebell),Landmine Press exercise targeting strength and endurance,Strength,Back,Kettlebell,Advanced
+99,Seated Row,Seated Row exercise targeting strength and endurance,Endurance,Legs,Cable,Beginner
+100,Step-Up (Dumbbell),Step-Up exercise targeting strength and endurance,Balance,Full Body,Dumbbell,Advanced
+101,Calf Raise (Machine),Calf Raise exercise targeting strength and endurance,Endurance,Chest,Machine,Beginner
+102,Wall Ball (Kettlebell),Wall Ball exercise targeting strength and endurance,Balance,Hamstrings,Kettlebell,Advanced
+103,Front Squat (Dumbbell),Front Squat exercise targeting strength and endurance,Cardio,Legs,Dumbbell,Advanced
+104,Hip Thrust (TRX),Hip Thrust exercise targeting strength and endurance,Power,Calves,TRX,Intermediate
+105,Bench Press (TRX),Bench Press exercise targeting strength and endurance,Power,Quads,TRX,Advanced
+106,Turkish Get-Up (Bodyweight),Turkish Get-Up exercise targeting strength and endurance,Cardio,Glutes,Bodyweight,Beginner
+107,Mountain Climber,Mountain Climber exercise targeting strength and endurance,Endurance,Glutes,Bodyweight,Beginner
+108,Shoulder Press (TRX),Shoulder Press exercise targeting strength and endurance,Strength,Quads,TRX,Beginner
+109,Mountain Climber (Machine),Mountain Climber exercise targeting strength and endurance,Strength,Traps,Machine,Intermediate
+110,Step-Up,Step-Up exercise targeting strength and endurance,Balance,Traps,Barbell,Intermediate
+111,Snatch (TRX),Snatch exercise targeting strength and endurance,Balance,Chest,TRX,Advanced
+112,Farmer's Carry (Kettlebell),Farmer's Carry exercise targeting strength and endurance,Strength,Shoulders,Kettlebell,Intermediate
+113,Burpee,Burpee exercise targeting strength and endurance,Flexibility,Full Body,Barbell,Advanced
+114,Pull-Up (Band),Pull-Up exercise targeting strength and endurance,Strength,Traps,Band,Advanced
+115,Wrist Curl,Wrist Curl exercise targeting strength and endurance,Endurance,Calves,Medicine Ball,Beginner
+116,Plank (Kettlebell),Plank exercise targeting strength and endurance,Endurance,Shoulders,Kettlebell,Beginner
+117,Leg Extension (Band),Leg Extension exercise targeting strength and endurance,Cardio,Quads,Band,Beginner
+118,Split Squat,Split Squat exercise targeting strength and endurance,Power,Shoulders,Medicine Ball,Intermediate
+119,Overhead Squat (Band),Overhead Squat exercise targeting strength and endurance,Balance,Core,Band,Intermediate
+120,Leg Press (Dumbbell),Leg Press exercise targeting strength and endurance,Flexibility,Legs,Dumbbell,Advanced
+121,Burpee (Kettlebell),Burpee exercise targeting strength and endurance,Endurance,Shoulders,Kettlebell,Intermediate
+122,Wall Sit (Kettlebell),Wall Sit exercise targeting strength and endurance,Cardio,Back,Kettlebell,Advanced
+123,Chest Fly (TRX),Chest Fly exercise targeting strength and endurance,Balance,Back,TRX,Intermediate
+124,Superman (Cable),Superman exercise targeting strength and endurance,Power,Legs,Cable,Beginner
+125,Box Jump (Machine),Box Jump exercise targeting strength and endurance,Endurance,Shoulders,Machine,Intermediate
+126,Glute Bridge,Glute Bridge exercise targeting strength and endurance,Power,Full Body,Machine,Advanced
+127,Shrugs (Bodyweight),Shrugs exercise targeting strength and endurance,Mobility,Shoulders,Bodyweight,Beginner
+128,Incline Row (Bodyweight),Incline Row exercise targeting strength and endurance,Strength,Chest,Bodyweight,Advanced
+129,Bicep Curl (Band),Bicep Curl exercise targeting strength and endurance,Endurance,Legs,Band,Beginner
+130,Pull-Up (Cable),Pull-Up exercise targeting strength and endurance,Balance,Quads,Cable,Beginner
+131,Good Morning (TRX),Good Morning exercise targeting strength and endurance,Mobility,Glutes,TRX,Beginner
+132,Clean and Jerk (Band),Clean and Jerk exercise targeting strength and endurance,Flexibility,Shoulders,Band,Advanced
+133,Donkey Kick (Band),Donkey Kick exercise targeting strength and endurance,Strength,Glutes,Band,Intermediate
+134,Deadlift (Machine),Deadlift exercise targeting strength and endurance,Endurance,Calves,Machine,Advanced
+135,Russian Twist,Russian Twist exercise targeting strength and endurance,Endurance,Core,Resistance Band,Advanced
+136,Plank Shoulder Tap (Kettlebell),Plank Shoulder Tap exercise targeting strength and endurance,Endurance,Shoulders,Kettlebell,Intermediate
+137,Wrist Curl (Band),Wrist Curl exercise targeting strength and endurance,Endurance,Legs,Band,Intermediate
+138,Wall Sit (Band),Wall Sit exercise targeting strength and endurance,Strength,Chest,Band,Beginner
+139,Pull-Up (TRX),Pull-Up exercise targeting strength and endurance,Power,Calves,TRX,Beginner
+140,Toe Touch (Kettlebell),Toe Touch exercise targeting strength and endurance,Cardio,Arms,Kettlebell,Advanced
+141,Shrugs (Kettlebell),Shrugs exercise targeting strength and endurance,Power,Shoulders,Kettlebell,Advanced
+142,Kettlebell Swing (TRX),Kettlebell Swing exercise targeting strength and endurance,Strength,Arms,TRX,Advanced
+143,Leg Curl (Bodyweight),Leg Curl exercise targeting strength and endurance,Flexibility,Quads,Bodyweight,Advanced
+144,Sit-Up (Bodyweight),Sit-Up exercise targeting strength and endurance,Endurance,Hamstrings,Bodyweight,Beginner
+145,Toe Touch (Cable),Toe Touch exercise targeting strength and endurance,Strength,Traps,Cable,Advanced
+146,Overhead Squat (Machine),Overhead Squat exercise targeting strength and endurance,Balance,Calves,Machine,Beginner
+147,Kettlebell Swing,Kettlebell Swing exercise targeting strength and endurance,Flexibility,Chest,Machine,Beginner
+148,Wall Sit (TRX),Wall Sit exercise targeting strength and endurance,Power,Back,TRX,Advanced
+149,Hammer Curl,Hammer Curl exercise targeting strength and endurance,Endurance,Calves,Bodyweight,Advanced
+150,Crunch (Bodyweight),Crunch exercise targeting strength and endurance,Strength,Core,Bodyweight,Intermediate
+151,Hip Thrust (Machine),Hip Thrust exercise targeting strength and endurance,Balance,Full Body,Machine,Beginner
+152,Wrist Curl (Dumbbell),Wrist Curl exercise targeting strength and endurance,Cardio,Quads,Dumbbell,Advanced
+153,Deadlift (Band),Deadlift exercise targeting strength and endurance,Cardio,Arms,Band,Beginner
+154,Split Squat (Cable),Split Squat exercise targeting strength and endurance,Flexibility,Shoulders,Cable,Advanced
+155,Plank Shoulder Tap,Plank Shoulder Tap exercise targeting strength and endurance,Balance,Quads,Kettlebell,Intermediate
+156,Glute Bridge (Band),Glute Bridge exercise targeting strength and endurance,Strength,Forearms,Band,Beginner
+157,Shoulder Press (Machine),Shoulder Press exercise targeting strength and endurance,Strength,Legs,Machine,Intermediate
+158,Reverse Lunge (Band),Reverse Lunge exercise targeting strength and endurance,Power,Chest,Band,Advanced
+159,Squat (Cable),Squat exercise targeting strength and endurance,Mobility,Hamstrings,Cable,Advanced
+160,Kettlebell Swing (Cable),Kettlebell Swing exercise targeting strength and endurance,Cardio,Arms,Cable,Advanced
+161,Overhead Squat (Cable),Overhead Squat exercise targeting strength and endurance,Endurance,Quads,Cable,Beginner
+162,Overhead Squat,Overhead Squat exercise targeting strength and endurance,Power,Hamstrings,TRX,Intermediate
+163,Lunge (Machine),Lunge exercise targeting strength and endurance,Endurance,Core,Machine,Beginner
+164,Shoulder Press (Dumbbell),Shoulder Press exercise targeting strength and endurance,Strength,Core,Dumbbell,Beginner
+165,Leg Extension (Kettlebell),Leg Extension exercise targeting strength and endurance,Balance,Glutes,Kettlebell,Advanced
+166,Good Morning,Good Morning exercise targeting strength and endurance,Strength,Traps,None,Advanced
+167,Glute Bridge (TRX),Glute Bridge exercise targeting strength and endurance,Strength,Calves,TRX,Advanced
+168,Wrist Curl (TRX),Wrist Curl exercise targeting strength and endurance,Mobility,Chest,TRX,Intermediate
+169,Snatch (Dumbbell),Snatch exercise targeting strength and endurance,Flexibility,Arms,Dumbbell,Intermediate
+170,Pistol Squat,Pistol Squat exercise targeting strength and endurance,Power,Glutes,Barbell,Beginner
+171,Overhead Squat (TRX),Overhead Squat exercise targeting strength and endurance,Mobility,Shoulders,TRX,Beginner
+172,Side Plank (Band),Side Plank exercise targeting strength and endurance,Flexibility,Glutes,Band,Beginner
+173,Side Plank (Cable),Side Plank exercise targeting strength and endurance,Power,Quads,Cable,Beginner
+174,Front Squat (Bodyweight),Front Squat exercise targeting strength and endurance,Power,Glutes,Bodyweight,Intermediate
+175,Pistol Squat (Dumbbell),Pistol Squat exercise targeting strength and endurance,Cardio,Calves,Dumbbell,Beginner
+176,Pistol Squat (TRX),Pistol Squat exercise targeting strength and endurance,Mobility,Traps,TRX,Advanced
+177,Bench Press (Band),Bench Press exercise targeting strength and endurance,Flexibility,Full Body,Band,Intermediate
+178,Clean and Jerk (TRX),Clean and Jerk exercise targeting strength and endurance,Power,Calves,TRX,Advanced
+179,Toe Touch,Toe Touch exercise targeting strength and endurance,Balance,Legs,Machine,Beginner
+180,Incline Row (Dumbbell),Incline Row exercise targeting strength and endurance,Strength,Back,Dumbbell,Beginner
+181,Jump Squat (TRX),Jump Squat exercise targeting strength and endurance,Mobility,Glutes,TRX,Intermediate
+182,Shoulder Press (Bodyweight),Shoulder Press exercise targeting strength and endurance,Balance,Calves,Bodyweight,Advanced
+183,Squat,Squat exercise targeting strength and endurance,Mobility,Forearms,TRX,Beginner
+184,Shoulder Press (Cable),Shoulder Press exercise targeting strength and endurance,Balance,Hamstrings,Cable,Advanced
+185,Russian Twist (TRX),Russian Twist exercise targeting strength and endurance,Mobility,Arms,TRX,Beginner
+186,Box Squat (Dumbbell),Box Squat exercise targeting strength and endurance,Power,Shoulders,Dumbbell,Beginner
+187,Crunch (TRX),Crunch exercise targeting strength and endurance,Cardio,Shoulders,TRX,Advanced
+188,High Knees (Machine),High Knees exercise targeting strength and endurance,Flexibility,Hamstrings,Machine,Beginner
+189,Bicep Curl (Cable),Bicep Curl exercise targeting strength and endurance,Flexibility,Glutes,Cable,Advanced
+190,T-Bar Row (Bodyweight),T-Bar Row exercise targeting strength and endurance,Balance,Calves,Bodyweight,Advanced
+191,Chest Fly (Machine),Chest Fly exercise targeting strength and endurance,Mobility,Core,Machine,Advanced
+192,Bicep Curl (Machine),Bicep Curl exercise targeting strength and endurance,Power,Back,Machine,Intermediate
+193,Hammer Curl (Machine),Hammer Curl exercise targeting strength and endurance,Power,Core,Machine,Intermediate
+194,Shrugs,Shrugs exercise targeting strength and endurance,Mobility,Full Body,Dumbbell,Beginner
+195,Chest Fly (Cable),Chest Fly exercise targeting strength and endurance,Cardio,Chest,Cable,Beginner
+196,Lat Pulldown (Machine),Lat Pulldown exercise targeting strength and endurance,Balance,Quads,Machine,Advanced
+197,Plank (Band),Plank exercise targeting strength and endurance,Balance,Glutes,Band,Beginner
+198,T-Bar Row,T-Bar Row exercise targeting strength and endurance,Endurance,Forearms,Resistance Band,Advanced
+199,Farmer's Carry (Bodyweight),Farmer's Carry exercise targeting strength and endurance,Power,Hamstrings,Bodyweight,Advanced
+200,Leg Curl (Band),Leg Curl exercise targeting strength and endurance,Cardio,Full Body,Band,Advanced
+201,Clean and Jerk (Cable),Clean and Jerk exercise targeting strength and endurance,Strength,Glutes,Cable,Beginner
+202,Chest Fly (Band),Chest Fly exercise targeting strength and endurance,Mobility,Forearms,Band,Intermediate
+203,Split Squat (TRX),Split Squat exercise targeting strength and endurance,Endurance,Forearms,TRX,Intermediate
+204,Front Squat (TRX),Front Squat exercise targeting strength and endurance,Flexibility,Forearms,TRX,Beginner
+205,Farmer's Carry (Cable),Farmer's Carry exercise targeting strength and endurance,Flexibility,Arms,Cable,Intermediate
+206,Leg Extension (Dumbbell),Leg Extension exercise targeting strength and endurance,Balance,Hamstrings,Dumbbell,Intermediate
+207,Overhead Press (Cable),Overhead Press exercise targeting strength and endurance,Power,Forearms,Cable,Intermediate
+208,Jump Rope (Kettlebell),Jump Rope exercise targeting strength and endurance,Strength,Chest,Kettlebell,Advanced
+209,Deadlift,Deadlift exercise targeting strength and endurance,Endurance,Arms,Dumbbell,Beginner
+210,Deadlift (Cable),Deadlift exercise targeting strength and endurance,Mobility,Forearms,Cable,Beginner
+211,Front Squat (Cable),Front Squat exercise targeting strength and endurance,Endurance,Hamstrings,Cable,Intermediate
+212,Overhead Press (TRX),Overhead Press exercise targeting strength and endurance,Mobility,Hamstrings,TRX,Beginner
+213,Pull-Up,Pull-Up exercise targeting strength and endurance,Balance,Hamstrings,Machine,Advanced
+214,Crunch (Dumbbell),Crunch exercise targeting strength and endurance,Power,Chest,Dumbbell,Advanced
+215,Burpee (Bodyweight),Burpee exercise targeting strength and endurance,Endurance,Chest,Bodyweight,Advanced
+216,Pull-Up (Dumbbell),Pull-Up exercise targeting strength and endurance,Mobility,Full Body,Dumbbell,Advanced
+217,Tricep Dip (Machine),Tricep Dip exercise targeting strength and endurance,Power,Calves,Machine,Intermediate
+218,Squat (TRX),Squat exercise targeting strength and endurance,Power,Forearms,TRX,Beginner
+219,Jump Rope,Jump Rope exercise targeting strength and endurance,Power,Quads,Barbell,Beginner
+220,Step-Up (Kettlebell),Step-Up exercise targeting strength and endurance,Flexibility,Arms,Kettlebell,Advanced
+221,Sit-Up (Cable),Sit-Up exercise targeting strength and endurance,Endurance,Calves,Cable,Advanced
+222,Wall Sit,Wall Sit exercise targeting strength and endurance,Mobility,Chest,Barbell,Advanced
+223,Hip Thrust (Kettlebell),Hip Thrust exercise targeting strength and endurance,Flexibility,Shoulders,Kettlebell,Intermediate
+224,Step-Up (TRX),Step-Up exercise targeting strength and endurance,Power,Core,TRX,Intermediate
+225,Sit-Up (Kettlebell),Sit-Up exercise targeting strength and endurance,Endurance,Full Body,Kettlebell,Intermediate
+226,Mountain Climber (Kettlebell),Mountain Climber exercise targeting strength and endurance,Cardio,Back,Kettlebell,Advanced
+227,Cable Row (Band),Cable Row exercise targeting strength and endurance,Endurance,Glutes,Band,Intermediate
+228,Lunge (Band),Lunge exercise targeting strength and endurance,Flexibility,Calves,Band,Beginner
+229,Crunch (Cable),Crunch exercise targeting strength and endurance,Cardio,Calves,Cable,Beginner
+230,Burpee (Machine),Burpee exercise targeting strength and endurance,Mobility,Forearms,Machine,Intermediate
+231,Cable Row (Kettlebell),Cable Row exercise targeting strength and endurance,Endurance,Glutes,Kettlebell,Advanced
+232,Front Squat,Front Squat exercise targeting strength and endurance,Balance,Glutes,Kettlebell,Intermediate
+233,Tricep Dip (Kettlebell),Tricep Dip exercise targeting strength and endurance,Endurance,Calves,Kettlebell,Advanced
+234,Toe Touch (Machine),Toe Touch exercise targeting strength and endurance,Power,Legs,Machine,Advanced
+235,Plank (Machine),Plank exercise targeting strength and endurance,Mobility,Arms,Machine,Advanced
+236,Chest Fly,Chest Fly exercise targeting strength and endurance,Balance,Full Body,Bodyweight,Advanced
+237,Leg Extension (Bodyweight),Leg Extension exercise targeting strength and endurance,Mobility,Legs,Bodyweight,Beginner
+238,Pistol Squat (Cable),Pistol Squat exercise targeting strength and endurance,Power,Traps,Cable,Beginner
+239,Russian Twist (Cable),Russian Twist exercise targeting strength and endurance,Cardio,Arms,Cable,Beginner
+240,Plank Shoulder Tap (TRX),Plank Shoulder Tap exercise targeting strength and endurance,Balance,Traps,TRX,Intermediate
+241,Lat Pulldown (Bodyweight),Lat Pulldown exercise targeting strength and endurance,Power,Forearms,Bodyweight,Beginner
+242,Reverse Lunge (Bodyweight),Reverse Lunge exercise targeting strength and endurance,Cardio,Traps,Bodyweight,Intermediate
+243,Landmine Press,Landmine Press exercise targeting strength and endurance,Strength,Chest,Cable,Beginner
+244,Bench Press (Bodyweight),Bench Press exercise targeting strength and endurance,Balance,Full Body,Bodyweight,Intermediate
+245,Kettlebell Swing (Machine),Kettlebell Swing exercise targeting strength and endurance,Power,Hamstrings,Machine,Advanced
+246,Split Squat (Dumbbell),Split Squat exercise targeting strength and endurance,Flexibility,Chest,Dumbbell,Intermediate
+247,Toe Touch (Dumbbell),Toe Touch exercise targeting strength and endurance,Flexibility,Legs,Dumbbell,Advanced
+248,Superman (Bodyweight),Superman exercise targeting strength and endurance,Mobility,Core,Bodyweight,Beginner
+249,Russian Twist (Kettlebell),Russian Twist exercise targeting strength and endurance,Cardio,Core,Kettlebell,Beginner
+250,Snatch (Bodyweight),Snatch exercise targeting strength and endurance,Strength,Shoulders,Bodyweight,Beginner
+251,Box Jump (Cable),Box Jump exercise targeting strength and endurance,Balance,Core,Cable,Advanced
+252,Seated Row (Band),Seated Row exercise targeting strength and endurance,Balance,Shoulders,Band,Intermediate
+253,Cable Row (Bodyweight),Cable Row exercise targeting strength and endurance,Cardio,Chest,Bodyweight,Advanced
+254,Hammer Curl (TRX),Hammer Curl exercise targeting strength and endurance,Endurance,Quads,TRX,Advanced
+255,Clean and Jerk (Machine),Clean and Jerk exercise targeting strength and endurance,Cardio,Arms,Machine,Beginner
+256,Bench Press (Cable),Bench Press exercise targeting strength and endurance,Endurance,Hamstrings,Cable,Intermediate
+257,Push-Up (TRX),Push-Up exercise targeting strength and endurance,Power,Legs,TRX,Advanced
+258,High Knees (Cable),High Knees exercise targeting strength and endurance,Flexibility,Chest,Cable,Advanced
+259,Jump Rope (Bodyweight),Jump Rope exercise targeting strength and endurance,Flexibility,Glutes,Bodyweight,Intermediate
+260,Box Jump (Kettlebell),Box Jump exercise targeting strength and endurance,Cardio,Legs,Kettlebell,Intermediate
+261,Lunge (TRX),Lunge exercise targeting strength and endurance,Flexibility,Core,TRX,Intermediate
+262,Squat (Dumbbell),Squat exercise targeting strength and endurance,Cardio,Shoulders,Dumbbell,Intermediate
+263,Incline Row (Kettlebell),Incline Row exercise targeting strength and endurance,Strength,Arms,Kettlebell,Intermediate
+264,Bench Press (Machine),Bench Press exercise targeting strength and endurance,Mobility,Legs,Machine,Intermediate
+265,Donkey Kick (Bodyweight),Donkey Kick exercise targeting strength and endurance,Cardio,Shoulders,Bodyweight,Beginner
+266,Tricep Dip (Dumbbell),Tricep Dip exercise targeting strength and endurance,Balance,Quads,Dumbbell,Advanced
+267,Bicep Curl,Bicep Curl exercise targeting strength and endurance,Balance,Full Body,Barbell,Intermediate
+268,Lunge (Bodyweight),Lunge exercise targeting strength and endurance,Cardio,Full Body,Bodyweight,Beginner
+269,Good Morning (Kettlebell),Good Morning exercise targeting strength and endurance,Mobility,Glutes,Kettlebell,Intermediate
+270,Tricep Dip (Band),Tricep Dip exercise targeting strength and endurance,Strength,Hamstrings,Band,Advanced
+271,Push-Up,Push-Up exercise targeting strength and endurance,Endurance,Quads,Medicine Ball,Beginner
+272,Turkish Get-Up (TRX),Turkish Get-Up exercise targeting strength and endurance,Strength,Traps,TRX,Intermediate
+273,Seated Row (TRX),Seated Row exercise targeting strength and endurance,Power,Shoulders,TRX,Advanced
+274,Chest Fly (Dumbbell),Chest Fly exercise targeting strength and endurance,Cardio,Hamstrings,Dumbbell,Advanced
+275,Overhead Squat (Bodyweight),Overhead Squat exercise targeting strength and endurance,Cardio,Glutes,Bodyweight,Beginner
+276,Glute Bridge (Kettlebell),Glute Bridge exercise targeting strength and endurance,Strength,Forearms,Kettlebell,Advanced
+277,Leg Extension (TRX),Leg Extension exercise targeting strength and endurance,Endurance,Legs,TRX,Advanced
+278,Lunge (Cable),Lunge exercise targeting strength and endurance,Power,Back,Cable,Intermediate
+279,Bicep Curl (Dumbbell),Bicep Curl exercise targeting strength and endurance,Endurance,Quads,Dumbbell,Beginner
+280,Push-Up (Cable),Push-Up exercise targeting strength and endurance,Balance,Calves,Cable,Beginner
+281,Cable Row (Cable),Cable Row exercise targeting strength and endurance,Power,Calves,Cable,Advanced
+282,Jump Squat (Kettlebell),Jump Squat exercise targeting strength and endurance,Endurance,Glutes,Kettlebell,Beginner
+283,Superman,Superman exercise targeting strength and endurance,Endurance,Forearms,Bodyweight,Intermediate
+284,Donkey Kick (TRX),Donkey Kick exercise targeting strength and endurance,Flexibility,Back,TRX,Beginner
+285,Burpee (Band),Burpee exercise targeting strength and endurance,Flexibility,Back,Band,Advanced
+286,Bird Dog (TRX),Bird Dog exercise targeting strength and endurance,Strength,Quads,TRX,Advanced
+287,Leg Extension (Cable),Leg Extension exercise targeting strength and endurance,Mobility,Back,Cable,Advanced
+288,Tricep Dip (TRX),Tricep Dip exercise targeting strength and endurance,Flexibility,Legs,TRX,Intermediate
+289,Incline Row,Incline Row exercise targeting strength and endurance,Strength,Full Body,Bodyweight,Advanced
+290,Incline Row (Cable),Incline Row exercise targeting strength and endurance,Balance,Shoulders,Cable,Intermediate
+291,Wrist Curl (Bodyweight),Wrist Curl exercise targeting strength and endurance,Endurance,Hamstrings,Bodyweight,Advanced
+292,Deadlift (Bodyweight),Deadlift exercise targeting strength and endurance,Strength,Back,Bodyweight,Beginner
+293,Plank (Bodyweight),Plank exercise targeting strength and endurance,Power,Glutes,Bodyweight,Intermediate
+294,Side Plank (Bodyweight),Side Plank exercise targeting strength and endurance,Flexibility,Hamstrings,Bodyweight,Intermediate
+295,Landmine Press (Band),Landmine Press exercise targeting strength and endurance,Endurance,Shoulders,Band,Intermediate
+296,Pistol Squat (Bodyweight),Pistol Squat exercise targeting strength and endurance,Strength,Arms,Bodyweight,Advanced
+297,Hammer Curl (Band),Hammer Curl exercise targeting strength and endurance,Strength,Back,Band,Beginner
+298,Plank Shoulder Tap (Band),Plank Shoulder Tap exercise targeting strength and endurance,Cardio,Hamstrings,Band,Beginner
+299,Turkish Get-Up (Kettlebell),Turkish Get-Up exercise targeting strength and endurance,Balance,Chest,Kettlebell,Intermediate
+300,Leg Press (Kettlebell),Leg Press exercise targeting strength and endurance,Balance,Traps,Kettlebell,Intermediate
+301,Deadlift (Kettlebell),Deadlift exercise targeting strength and endurance,Mobility,Arms,Kettlebell,Beginner
+302,Hip Thrust (Dumbbell),Hip Thrust exercise targeting strength and endurance,Balance,Back,Dumbbell,Intermediate
+303,Turkish Get-Up (Cable),Turkish Get-Up exercise targeting strength and endurance,Strength,Forearms,Cable,Advanced
+304,Reverse Lunge (TRX),Reverse Lunge exercise targeting strength and endurance,Cardio,Chest,TRX,Advanced
+305,Shoulder Press (Band),Shoulder Press exercise targeting strength and endurance,Mobility,Hamstrings,Band,Intermediate
+306,Deadlift (Dumbbell),Deadlift exercise targeting strength and endurance,Strength,Quads,Dumbbell,Beginner
+307,Seated Row (Kettlebell),Seated Row exercise targeting strength and endurance,Balance,Calves,Kettlebell,Beginner
+308,Jump Rope (Dumbbell),Jump Rope exercise targeting strength and endurance,Endurance,Full Body,Dumbbell,Beginner
+309,Hip Thrust,Hip Thrust exercise targeting strength and endurance,Flexibility,Chest,Medicine Ball,Advanced
+310,Donkey Kick (Kettlebell),Donkey Kick exercise targeting strength and endurance,Mobility,Chest,Kettlebell,Intermediate
+311,Push-Up (Bodyweight),Push-Up exercise targeting strength and endurance,Cardio,Shoulders,Bodyweight,Intermediate
+312,Mountain Climber (Band),Mountain Climber exercise targeting strength and endurance,Flexibility,Back,Band,Intermediate
+313,Glute Bridge (Bodyweight),Glute Bridge exercise targeting strength and endurance,Cardio,Forearms,Bodyweight,Intermediate
+314,Bench Press (Dumbbell),Bench Press exercise targeting strength and endurance,Power,Full Body,Dumbbell,Advanced
+315,Leg Press (TRX),Leg Press exercise targeting strength and endurance,Mobility,Forearms,TRX,Advanced
+316,Side Plank (Dumbbell),Side Plank exercise targeting strength and endurance,Flexibility,Hamstrings,Dumbbell,Beginner
+317,Leg Press,Leg Press exercise targeting strength and endurance,Mobility,Hamstrings,Machine,Intermediate
+318,Landmine Press (Machine),Landmine Press exercise targeting strength and endurance,Flexibility,Quads,Machine,Advanced
+319,Leg Curl (Kettlebell),Leg Curl exercise targeting strength and endurance,Strength,Shoulders,Kettlebell,Beginner
+320,Wrist Curl (Kettlebell),Wrist Curl exercise targeting strength and endurance,Balance,Full Body,Kettlebell,Advanced
+321,Cable Row (Machine),Cable Row exercise targeting strength and endurance,Strength,Forearms,Machine,Intermediate
+322,Chest Fly (Kettlebell),Chest Fly exercise targeting strength and endurance,Flexibility,Hamstrings,Kettlebell,Beginner
+323,Squat (Machine),Squat exercise targeting strength and endurance,Flexibility,Shoulders,Machine,Beginner
+324,Landmine Press (TRX),Landmine Press exercise targeting strength and endurance,Flexibility,Calves,TRX,Intermediate
+325,Step-Up (Cable),Step-Up exercise targeting strength and endurance,Mobility,Shoulders,Cable,Intermediate
+326,Side Plank (TRX),Side Plank exercise targeting strength and endurance,Mobility,Legs,TRX,Advanced
+327,Shoulder Press (Kettlebell),Shoulder Press exercise targeting strength and endurance,Strength,Back,Kettlebell,Beginner
+328,Box Jump (Dumbbell),Box Jump exercise targeting strength and endurance,Balance,Full Body,Dumbbell,Beginner
+329,Sit-Up (Dumbbell),Sit-Up exercise targeting strength and endurance,Mobility,Arms,Dumbbell,Beginner
+330,Wall Ball (Cable),Wall Ball exercise targeting strength and endurance,Flexibility,Traps,Cable,Advanced
+331,Leg Curl (Dumbbell),Leg Curl exercise targeting strength and endurance,Balance,Hamstrings,Dumbbell,Beginner
+332,Hammer Curl (Dumbbell),Hammer Curl exercise targeting strength and endurance,Strength,Core,Dumbbell,Beginner
+333,Bicep Curl (TRX),Bicep Curl exercise targeting strength and endurance,Cardio,Core,TRX,Advanced
+334,Plank Shoulder Tap (Dumbbell),Plank Shoulder Tap exercise targeting strength and endurance,Flexibility,Back,Dumbbell,Advanced
+335,Chest Fly (Bodyweight),Chest Fly exercise targeting strength and endurance,Flexibility,Shoulders,Bodyweight,Beginner
+336,Overhead Press (Band),Overhead Press exercise targeting strength and endurance,Cardio,Traps,Band,Advanced
+337,Cable Row (TRX),Cable Row exercise targeting strength and endurance,Strength,Traps,TRX,Advanced
+338,Pistol Squat (Band),Pistol Squat exercise targeting strength and endurance,Flexibility,Forearms,Band,Advanced
+339,Crunch (Kettlebell),Crunch exercise targeting strength and endurance,Endurance,Full Body,Kettlebell,Intermediate
+340,Bird Dog (Band),Bird Dog exercise targeting strength and endurance,Power,Glutes,Band,Advanced
+341,Clean and Jerk (Bodyweight),Clean and Jerk exercise targeting strength and endurance,Endurance,Quads,Bodyweight,Intermediate
+342,Jump Rope (Cable),Jump Rope exercise targeting strength and endurance,Cardio,Traps,Cable,Intermediate
+343,Turkish Get-Up (Band),Turkish Get-Up exercise targeting strength and endurance,Balance,Forearms,Band,Advanced
+344,Superman (TRX),Superman exercise targeting strength and endurance,Strength,Arms,TRX,Intermediate
+345,Reverse Lunge (Cable),Reverse Lunge exercise targeting strength and endurance,Strength,Calves,Cable,Intermediate
+346,Tricep Dip (Bodyweight),Tricep Dip exercise targeting strength and endurance,Power,Core,Bodyweight,Intermediate
+347,Kettlebell Swing (Band),Kettlebell Swing exercise targeting strength and endurance,Flexibility,Back,Band,Advanced
+348,Deadlift (TRX),Deadlift exercise targeting strength and endurance,Power,Glutes,TRX,Advanced
+349,Bicep Curl (Kettlebell),Bicep Curl exercise targeting strength and endurance,Cardio,Calves,Kettlebell,Advanced
+350,Plank,Plank exercise targeting strength and endurance,Power,Full Body,Barbell,Advanced
+351,Leg Press (Band),Leg Press exercise targeting strength and endurance,Endurance,Hamstrings,Band,Intermediate
+352,Squat (Bodyweight),Squat exercise targeting strength and endurance,Balance,Full Body,Bodyweight,Intermediate
+353,Farmer's Carry (Band),Farmer's Carry exercise targeting strength and endurance,Endurance,Shoulders,Band,Beginner
+354,Crunch (Machine),Crunch exercise targeting strength and endurance,Strength,Shoulders,Machine,Advanced
+355,Donkey Kick,Donkey Kick exercise targeting strength and endurance,Flexibility,Quads,Kettlebell,Beginner
+356,Seated Row (Dumbbell),Seated Row exercise targeting strength and endurance,Cardio,Shoulders,Dumbbell,Advanced
+357,Overhead Press (Dumbbell),Overhead Press exercise targeting strength and endurance,Strength,Core,Dumbbell,Beginner
+358,Box Squat (Cable),Box Squat exercise targeting strength and endurance,Endurance,Forearms,Cable,Intermediate
+359,Russian Twist (Band),Russian Twist exercise targeting strength and endurance,Balance,Traps,Band,Beginner
+360,Shrugs (Dumbbell),Shrugs exercise targeting strength and endurance,Balance,Traps,Dumbbell,Intermediate
+361,Overhead Press (Kettlebell),Overhead Press exercise targeting strength and endurance,Cardio,Calves,Kettlebell,Intermediate
+362,Side Plank (Kettlebell),Side Plank exercise targeting strength and endurance,Flexibility,Legs,Kettlebell,Intermediate
+363,Russian Twist (Machine),Russian Twist exercise targeting strength and endurance,Endurance,Legs,Machine,Intermediate
+364,Donkey Kick (Dumbbell),Donkey Kick exercise targeting strength and endurance,Mobility,Core,Dumbbell,Intermediate
+365,Mountain Climber (Cable),Mountain Climber exercise targeting strength and endurance,Flexibility,Glutes,Cable,Intermediate
+366,Jump Squat (Bodyweight),Jump Squat exercise targeting strength and endurance,Strength,Shoulders,Bodyweight,Advanced
+367,Calf Raise (Bodyweight),Calf Raise exercise targeting strength and endurance,Balance,Quads,Bodyweight,Beginner
+368,Crunch (Band),Crunch exercise targeting strength and endurance,Cardio,Traps,Band,Advanced
+369,Squat (Band),Squat exercise targeting strength and endurance,Balance,Back,Band,Advanced
+370,Leg Curl (Cable),Leg Curl exercise targeting strength and endurance,Balance,Full Body,Cable,Intermediate
+371,Leg Extension (Machine),Leg Extension exercise targeting strength and endurance,Cardio,Forearms,Machine,Advanced
+372,Leg Press (Cable),Leg Press exercise targeting strength and endurance,Power,Full Body,Cable,Advanced
+373,Lunge (Kettlebell),Lunge exercise targeting strength and endurance,Cardio,Back,Kettlebell,Beginner
+374,Reverse Lunge (Machine),Reverse Lunge exercise targeting strength and endurance,Power,Quads,Machine,Intermediate
+375,Snatch,Snatch exercise targeting strength and endurance,Mobility,Glutes,Kettlebell,Advanced
+376,Split Squat (Band),Split Squat exercise targeting strength and endurance,Endurance,Calves,Band,Intermediate
+377,Lat Pulldown (Dumbbell),Lat Pulldown exercise targeting strength and endurance,Endurance,Chest,Dumbbell,Beginner
+378,Front Squat (Band),Front Squat exercise targeting strength and endurance,Cardio,Chest,Band,Intermediate
+379,T-Bar Row (Kettlebell),T-Bar Row exercise targeting strength and endurance,Flexibility,Legs,Kettlebell,Beginner
+380,Lat Pulldown (Cable),Lat Pulldown exercise targeting strength and endurance,Power,Core,Cable,Intermediate
+381,Lat Pulldown (Band),Lat Pulldown exercise targeting strength and endurance,Endurance,Arms,Band,Beginner
+382,Lat Pulldown (Kettlebell),Lat Pulldown exercise targeting strength and endurance,Flexibility,Core,Kettlebell,Beginner
+383,Mountain Climber (TRX),Mountain Climber exercise targeting strength and endurance,Flexibility,Shoulders,TRX,Advanced
+384,High Knees (Kettlebell),High Knees exercise targeting strength and endurance,Mobility,Hamstrings,Kettlebell,Beginner
+385,Good Morning (Dumbbell),Good Morning exercise targeting strength and endurance,Strength,Chest,Dumbbell,Advanced
+386,Wall Sit (Machine),Wall Sit exercise targeting strength and endurance,Flexibility,Core,Machine,Beginner
+387,Jump Squat,Jump Squat exercise targeting strength and endurance,Balance,Quads,Medicine Ball,Intermediate
+388,High Knees,High Knees exercise targeting strength and endurance,Power,Shoulders,None,Advanced
+389,Calf Raise (TRX),Calf Raise exercise targeting strength and endurance,Strength,Back,TRX,Beginner
+390,Plank Shoulder Tap (Machine),Plank Shoulder Tap exercise targeting strength and endurance,Strength,Glutes,Machine,Beginner
+391,Wall Ball (Dumbbell),Wall Ball exercise targeting strength and endurance,Strength,Arms,Dumbbell,Advanced
+392,Leg Press (Bodyweight),Leg Press exercise targeting strength and endurance,Strength,Chest,Bodyweight,Advanced
+393,T-Bar Row (Cable),T-Bar Row exercise targeting strength and endurance,Cardio,Quads,Cable,Advanced
+394,Shrugs (Machine),Shrugs exercise targeting strength and endurance,Endurance,Calves,Machine,Beginner
+395,Pull-Up (Kettlebell),Pull-Up exercise targeting strength and endurance,Cardio,Quads,Kettlebell,Intermediate
+396,Split Squat (Machine),Split Squat exercise targeting strength and endurance,Cardio,Traps,Machine,Advanced
+397,Jump Rope (TRX),Jump Rope exercise targeting strength and endurance,Balance,Glutes,TRX,Beginner
+398,Wall Sit (Dumbbell),Wall Sit exercise targeting strength and endurance,Flexibility,Traps,Dumbbell,Advanced
+399,Sit-Up (Band),Sit-Up exercise targeting strength and endurance,Flexibility,Glutes,Band,Beginner
+400,High Knees (Dumbbell),High Knees exercise targeting strength and endurance,Strength,Traps,Dumbbell,Intermediate
