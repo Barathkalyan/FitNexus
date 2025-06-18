@@ -293,63 +293,135 @@ def check_profile():
 
 
 --- FILE: .\static\css\dashboard-styles.css ---
-/* General Styling */
-body {
+/* Reset */
+* {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #0d0d0d;
-    color: #fff;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
-/* Navbar */
-.navbar {
+/* Body */
+body {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1c2526 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background Overlay */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 46, 99, 0.1), rgba(0, 255, 255, 0.05), transparent 70%);
+    z-index: -1;
+}
+
+/* Dashboard Container */
+.dashboard-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(20, 20, 20, 0.9);
-    padding: 15px 20px;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: linear-gradient(145deg, #1c2526, #0a0a0a);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-logo {
+    margin-bottom: 50px;
 }
 
 .logo {
     font-size: 36px;
-    font-weight: bold;
+    font-weight: 900;
     color: #fff;
+    letter-spacing: 2px;
 }
 
-.subtitle, .abc {
-    color: red;
-    font-size: 22px;
-    letter-spacing: 1px;
+.logo span {
+    color: #ff2e63;
 }
 
-.abc {
-    box-shadow: none;
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
 }
 
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 60px;
+.sidebar-menu li {
+    margin-bottom: 20px;
 }
 
-.nav-links a {
+.sidebar-menu a {
     color: #fff;
-    font-size: 20px;
     text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 15px;
+    display: block;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
-.nav-links a:hover {
-    transform: scale(1.05);
-    box-shadow: 5px 4px 15px rgba(255, 46, 99, 0.3);
-    background: #222;
-    font-size: 21px;
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+    background: linear-gradient(90deg, rgba(255, 46, 99, 0.2), rgba(0, 255, 255, 0.2));
+    color: #fff;
+    transform: translateX(5px);
 }
 
-.prof {
-    width: 40px;
+/* Main Content */
+.main-content {
+    flex: 1;
+    background: rgba(20, 20, 20, 0.98);
+}
+
+/* Top Bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(145deg, #1c2526, #0a0a0a);
+    padding: 15px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quotes-container {
+    position: relative;
+    flex: 1;
     height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.quote-text {
+    position: absolute;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #ff2e63, #00f0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 5px rgba(255, 46, 99, 0.3);
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.quote-text.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 /* Profile Dropdown */
@@ -357,27 +429,33 @@ body {
     position: relative;
 }
 
+.profile-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.prof {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
 .dropdown {
     display: none;
     position: absolute;
     right: 0;
-    background: #222;
+    background: linear-gradient(145deg, #1c2526, #0a0a0a);
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(255, 46, 99, 0.3);
-    border: 1px solid rgba(255, 46, 99, 0.3);
-    width: 150px;
-    height: 200px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 200px;
+    padding: 15px;
     text-align: center;
-    padding: 10px;
-    transition: all 0.3s ease;
-}
-
-.dropdown:hover {
-    box-shadow: 0 0 20px rgba(255, 46, 99, 0.7);
+    z-index: 10;
 }
 
 .dropdown-header {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 15px;
     color: #fff;
     font-weight: 500;
@@ -385,16 +463,13 @@ body {
 
 .dropdown-name,
 .dropdown-id {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: #ff2e63;
 }
 
 .dropdown-id {
-    border-top: 1px solid rgba(255, 46, 99, 0.5);
-    padding-top: 10px;
-    margin-top: 10px;
-    color: #f0f0f0;
+    color: #00f0ff;
 }
 
 .dropdown.show {
@@ -402,16 +477,47 @@ body {
     animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Container */
-.container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
+#logoutBtn {
+    background: linear-gradient(90deg, #ff2e63, #00f0ff);
+    border: none;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#logoutBtn:hover {
+    background: linear-gradient(90deg, #d81b5a, #00c4e0);
+}
+
+/* Content */
+.content {
+    padding: 30px;
     text-align: center;
 }
 
-.container h1 {
+.content h1 {
     font-size: 48px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.content h1 span {
+    color: #ff2e63;
+}
+
+.subtitle {
+    font-size: 20px;
+    color: #fff;
+    opacity: 0.9;
+    font-weight: 400;
+    margin-bottom: 40px;
 }
 
 /* User Stats */
@@ -419,33 +525,36 @@ body {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-top: 40px;
     flex-wrap: wrap;
 }
 
 .stat-card {
-    background: linear-gradient(135deg, #232323, #1a1a1a);
+    background: linear-gradient(145deg, #1c2526, #0a0a0a);
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(255, 46, 99, 0.3);
-    width: 180px;
-    height: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 200px;
     text-align: center;
-    transition: transform 0.2s;
+    transition: all 0.3s ease;
 }
 
 .stat-card:hover {
     transform: scale(1.05);
+    border-color: #ff2e63;
 }
 
 .stat-title {
     font-size: 16px;
-    color: #ff2e63;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .stat-value {
     font-size: 24px;
     margin-top: 10px;
+    color: #00f0ff;
 }
 
 /* Progress Bars */
@@ -458,68 +567,25 @@ body {
     margin-bottom: 20px;
 }
 
+.progress-item p {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
 .progress-bar {
-    height: 10px;
-    background: #222;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 35px;
-    box-shadow: 0 0 10px rgba(255, 46, 99, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #ff2e63, #ff416c);
+    background: linear-gradient(90deg, #ff2e63, #00f0ff);
+    border-radius: 35px;
     transition: width 0.4s ease-in-out;
-}
-
-/* Widgets */
-.dashboard-widgets {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-}
-
-.widget {
-    background: #1a1a1a;
-    cursor: pointer;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(255, 46, 99, 0.3);
-    width: 250px;
-    text-align: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.widget:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 25px rgba(255, 46, 99, 0.7);
-    border: 1px solid rgba(255, 46, 99, 0.5);
-}
-
-.widget h2 {
-    color: #ff2e63;
-    margin-bottom: 10px;
-}
-
-.widget p {
-    color: rgba(255, 255, 255, 0.8);
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-}
-
-/* Buttons */
-#logoutBtn {
-    background: #ff2e63;
-    border: none;
-    color: #fff;
-    padding: 8px;
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#logoutBtn:hover {
-    background: #d81b5a;
 }
 
 /* Animations */
@@ -533,7 +599,7 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-.widget {
+.stat-card {
     animation: slideUp 0.6s ease-in-out;
 }
 
@@ -977,139 +1043,6 @@ label {
     to { opacity: 1; transform: translateY(0); }
 }
 
---- FILE: .\static\css\signup-styles.css ---
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-/* Body */
-body {
-    background: url('../assets/login bg.jpeg') no-repeat center/cover fixed, #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-/* Container */
-.container {
-    display: flex;
-    width: 800px;
-    height: 600px;
-    background: #1a1a1a;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Signup Section */
-.signup-section {
-    width: 50%;
-    padding: 20px;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-/* Heading */
-h2 {
-    margin-bottom: 25px;
-    font-size: 30px;
-    color: red;
-    text-align: center;
-    font-family: "Helvetica", sans-serif;
-    letter-spacing: 2px;
-}
-
-/* Form */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-/* Labels */
-label {
-    font-size: 18px;
-    color: cyan;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-family: "Roboto", sans-serif;
-}
-
-/* Inputs */
-input {
-    width: 100%;
-    padding: 15px;
-    border-radius: 20px;
-    background: #2a2a2a;
-    color: #fff;
-    border: none;
-    font-size: 17px;
-}
-
-input:focus {
-    outline: none;
-    box-shadow: 0 0 5px cyan;
-}
-
-/* Button */
-.button {
-    width: 140px;
-    height: 45px;
-    margin: 15px auto;
-    font-size: 1.4em;
-    border-radius: 25px;
-    border: 2px solid #37FF8B;
-    background: transparent;
-    color: #37FF8B;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.button:hover {
-    box-shadow: 0 0 15px #37FF8B;
-    background: rgba(55, 255, 139, 0.2);
-}
-
-/* Login Link */
-.login-link {
-    text-align: center;
-    font-size: 18px;
-}
-
-.login-link a {
-    color: cyan;
-    text-decoration: none;
-}
-
-.login-link a:hover {
-    text-decoration: underline;
-}
-
-/* Branding */
-.branding-section {
-    width: 50%;
-    background: #181818;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.logo {
-    font-size: 28px;
-    color: #fff;
-}
-
-.logo span {
-    color: cyan;
-}
-
 --- FILE: .\static\css\styles.css ---
 /* Reset */
 * {
@@ -1144,7 +1077,7 @@ body::before {
 
 /* Main Container */
 .container {
-    max-width: 1100px;
+    max-width: 1200px;
     width: 100%;
     display: flex;
     background: rgba(20, 20, 20, 0.98);
@@ -1536,132 +1469,148 @@ document.addEventListener("DOMContentLoaded", () => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitNexus Dashboard</title>
     <link rel="stylesheet" href="../static/css/dashboard-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">Fit<span class="abc">N</span>exus</div>
-        <div class="nav-links">
-            <a href="/profile">View Profile</a>
-            <a href="/edit-profile">Edit Profile</a>
-            <div class="profile-menu">
-                <button id="profileBtn" class="profile-icon">
-                    <img src="../static/assets/images/Profile.png" class="prof" alt="Profile">
-                </button>
-                <div id="profileDropdown" class="dropdown">
-
-                    <p class="dropdown-header">
-                        Hello, <span class="dropdown-name">{{ name }}</span> | 
-                        <span class="dropdown-id">User ID: {{ user_id }}</span>
-                    </p>
-                    
-                    <button id="logoutBtn">Logout</button>
-                </div>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <h1 class="logo">Fit<span>Nexus</span></h1>
             </div>
-        </div>
-    </nav>
-
-    <!-- Dashboard Content -->
-    <div class="container">
-        <h1>Welcome to Your <span class="abc">Dashboard</span></h1>
-        <p class="subtitle">Track workouts, log meals, and monitor progress.</p>
-
-        <!-- User Stats --> 
-        <div class="user-stats">
-            <div class="stat-card">
-                <p class="stat-title">Current Weight</p>
-                <p class="stat-value">{{ weight }}</p>
-            </div>
-            <div class="stat-card">
-                <p class="stat-title">Goal Weight</p>
-                <p class="stat-value">{{ target_weight }}</p>
-            </div>
-            <div class="stat-card">
-                <p class="stat-title">Fitness Goal</p>
-                <p class="stat-value">{{ goal }}</p>
-            </div>
-            <div class="stat-card">
-                <p class="stat-title">Diet Preference</p>
-                <p class="stat-value">{{ diet }}</p>
-            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="/dashboard" class="active">Dashboard</a>
+                </li>
+                <li>
+                    <a href="/workout_log">Workout Summary</a>
+                </li>
+                <li>
+                    <a href="/calorie_intake">Calorie Intake</a>
+                </li>
+                <li>
+                    <a href="/goal_progress">Goal Progress</a>
+                </li>
+                <li>
+                    <a href="/profile">View Profile</a>
+                </li>
+                <li>
+                    <a href="/edit-profile">Edit Profile</a>
+                </li>
+            </ul>
         </div>
 
-        <!-- Progress Bars -->
-        <div class="progress-container">
-            <div class="progress-item">
-                <p>Calories Burned (500/2000 kcal)</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 25%;"></div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="quotes-container">
+                    <p class="quote-text">"The only bad workout is the one that didn’t happen."</p>
+                    <p class="quote-text">"Sweat is just fat crying."</p>
+                    <p class="quote-text">"Push yourself because no one else is going to do it for you."</p>
+                    <p class="quote-text">"Success starts with self-discipline."</p>
+                </div>
+                <div class="profile-menu">
+                    <button id="profileBtn" class="profile-icon">
+                        <img src="../static/assets/images/Profile.png" class="prof" alt="Profile">
+                    </button>
+                    <div id="profileDropdown" class="dropdown">
+                        <p class="dropdown-header">
+                            Hello, <span class="dropdown-name">{{ name }}</span> | 
+                            <span class="dropdown-id">User ID: {{ user_id }}</span>
+                        </p>
+                        <button id="logoutBtn">Logout</button>
+                    </div>
                 </div>
             </div>
-            <div class="progress-item">
-                <p>Workout Streak: 7 Days</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 70%;"></div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Dashboard Widgets -->
-        <div class="dashboard-widgets">
-            <a href="/workout_log" style="text-decoration: none; color: inherit;">
-                <div class="widget clickable">
-                  <h2>Workout Summary</h2>
-                  <p>Log Today's Workouts.</p>
-                </div>
-              </a>
-              
-              
+            <!-- Dashboard Content -->
+            <div class="content">
+                <h1>Welcome to Your <span>Dashboard</span></h1>
+                <p class="subtitle">Track workouts, log meals, and monitor progress.</p>
 
-            <div class="widget">
-                <h2>Calorie Intake</h2>
-                <p>Your daily nutrition breakdown.</p>
-            </div>
-            <div class="widget">
-                <h2>Goal Progress</h2>
-                <p>Track your fitness journey.</p>
+                <!-- User Stats -->
+                <div class="user-stats">
+                    <div class="stat-card">
+                        <p class="stat-title">Current Weight</p>
+                        <p class="stat-value">{{ weight }}</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-title">Goal Weight</p>
+                        <p class="stat-value">{{ target_weight }}</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-title">Fitness Goal</p>
+                        <p class="stat-value">{{ goal }}</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-title">Diet Preference</p>
+                        <p class="stat-value">{{ diet }}</p>
+                    </div>
+                </div>
+
+                <!-- Progress Bars -->
+                <div class="progress-container">
+                    <div class="progress-item">
+                        <p>Calories Burned (500/2000 kcal)</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 25%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <p>Workout Streak: 7 Days</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // Profile Dropdown Toggle
             const profileBtn = document.getElementById("profileBtn");
             const dropdown = document.getElementById("profileDropdown");
-        
+
             profileBtn.addEventListener("click", () => {
                 dropdown.classList.toggle("show");
             });
-        
+
             document.addEventListener("click", (event) => {
                 if (!profileBtn.contains(event.target) && !dropdown.contains(event.target)) {
                     dropdown.classList.remove("show");
                 }
             });
-        
+
             document.getElementById("logoutBtn").addEventListener("click", () => {
                 window.location.href = "/auth/logout";
             });
 
-            const workoutWidget = document.getElementById("workoutWidget");
-            if (workoutWidget) {
-                workoutWidget.addEventListener("click", function () {
-                window.location.href = "/workout_log";
-    });
-}
+            // Quote Rotation
+            const quotes = document.querySelectorAll('.quote-text');
+            let currentQuoteIndex = 0;
 
-        
-            // Injecting username and user ID from Flask
-            document.getElementById("name").textContent = "{{ name }}";
-            document.getElementById("userid").textContent = "{{ user_id }}";
+            function showNextQuote() {
+                quotes.forEach((quote, index) => {
+                    quote.classList.remove('active');
+                    if (index === currentQuoteIndex) {
+                        quote.classList.add('active');
+                    }
+                });
+                currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+            }
+
+            // Initialize the first quote
+            showNextQuote();
+
+            // Rotate quotes every 5 seconds
+            setInterval(showNextQuote, 5000);
         });
-        </script>
-        
-
+    </script>
 </body>
 </html>
-
 
 --- FILE: .\templates\index.html ---
 <!DOCTYPE html>
@@ -1832,72 +1781,101 @@ document.addEventListener("DOMContentLoaded", () => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/signup-styles.css">
-    <title>FitNexus - Signup</title>
+    <title>FitNexus - Sign Up</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <div class="signup-section">
-            <h2>SIGNUP</h2>
-
-            <!-- SIGNUP FORM -->
-            <form id="signupForm">
-                <label for="name" class="holder">NAME:</label>
-                <input type="text" id="name" placeholder="Enter your Name" required>
-
-                <label for="email" class="holder">EMAIL:</label>
-                <input type="email" id="email" placeholder="Enter your email" required>
-
-                <label for="password" class="holder">PASSWORD:</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
-                
-                <label for="ConfirmPassword" class="holder">CONFIRM PASSWORD:</label>
-                <input type="password"  id="confirmPassword" placeholder="Re-enter your password" required>
-
-                <button class="button" id="submitBtn">SIGNUP</button>
-            </form>
-            <p class="login-link">Already have an account? <p class="login-link">Already have an account? <a href="{{ url_for('auth.login_page') }}">Login!</a></p>
-        </div>
-
+        <!-- Left Section: Branding -->
         <div class="branding-section">
             <h1 class="logo">Fit<span>Nexus</span></h1>
+            <p class="tagline">Your Fitness Journey Starts Here</p>
+            <ul class="features">
+                <li class="feature-card">Track Workouts</li>
+                <li class="feature-card">Log Calories</li>
+                <li class="feature-card">Monitor Progress</li>
+                <li class="feature-card">Set Fitness Goals</li>
+            </ul>
+        </div>
+
+        <!-- Right Section: Signup Form -->
+        <div class="login-section">
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+
+                <button class="button" type="submit">Sign Up</button>
+            </form>
+            <p class="signup-link">Already have an account? <a href="{{ url_for('auth.login_page') }}">Login!</a></p>
         </div>
     </div>
 
     <script>
-        document.getElementById("signupForm").addEventListener("submit", async function(event){
+        // Feature Card Animation
+        const featureCards = document.querySelectorAll('.feature-card');
+        let currentIndex = 0;
+
+        function showNextFeature() {
+            featureCards.forEach((card, index) => {
+                card.classList.remove('active');
+                if (index === currentIndex) {
+                    card.classList.add('active');
+                }
+            });
+            currentIndex = (currentIndex + 1) % featureCards.length;
+        }
+
+        // Initialize the first feature card
+        showNextFeature();
+
+        // Cycle through features every 3 seconds
+        setInterval(showNextFeature, 3000);
+
+        // Form Submission
+        document.getElementById("signupForm").addEventListener("submit", async function(event) {
             event.preventDefault();
-        
-            let name = document.getElementById("name").value;
+
+            let username = document.getElementById("username").value;
             let email = document.getElementById("email").value;
             let password = document.getElementById("password").value;
-            let confirmPassword = document.getElementById("confirmPassword").value;
-        
-            if (password !== confirmPassword){
+            let confirmPassword = document.getElementById("confirm-password").value;
+
+            if (password !== confirmPassword) {
                 alert("Passwords do not match!");
                 return;
             }
-        
-            try{
-                let response = await fetch("http://127.0.0.1:5000/auth/signup", {
+
+            try {
+                let response = await fetch("{{ url_for('auth.signup') }}", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ name, email, password })
+                    body: JSON.stringify({ username, email, password })
                 });
-        
+
                 let result = await response.json();
-        
+
                 if (response.ok) {
                     alert(result.message);
-                    window.location.href = "{{ url_for('auth.login_page') }}"; // Redirect to login page
+                    window.location.href = result.redirect;
                 } else {
                     alert(result.error || "Something went wrong");
                 }
-            } catch(error){
+            } catch(error) {
                 console.error("Error:", error);
                 alert("Failed to connect to the server");
             }
         });
-        </script>  
+    </script>
 </body>
 </html>
