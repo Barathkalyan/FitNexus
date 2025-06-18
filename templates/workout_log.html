@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../static/css/dashboard-styles.css">
     <link rel="stylesheet" href="../static/css/log-style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="../static/js/log-script.js"></script>
 </head>
 <body>
     <div class="dashboard-container">
@@ -50,17 +51,12 @@
                 <!-- Workout Log Form -->
                 <div class="workout-log-form">
                     <div class="stat-card">
-                        <h2>Log Your Workout</h2>
+                        <h2 class="main">Log Your Workout</h2>
                         <form id="workoutForm">
                             <div class="input-group">
                                 <label for="workoutSearch">Workout</label>
                                 <input type="text" id="workoutSearch" placeholder="Search workouts..." list="workouts" autocomplete="off">
-                                <datalist id="workouts">
-                                    <option value="Bench Press">
-                                    <option value="Squats">
-                                    <option value="Running">
-                                    <option value="Yoga">
-                                </datalist>
+                                <datalist id="workouts"></datalist>
                             </div>
                             <div class="input-group">
                                 <label for="workoutDate">Date</label>
@@ -76,7 +72,7 @@
                                         <label>Weight (kg)</label>
                                         <input type="number" class="set-weight" placeholder="Weight (kg)" min="0" step="0.1">
                                     </div>
-                                    <button type="button" class="remove-set" style="display: none;">×</button>
+                                    <button type="button" class="remove-set">×</button>
                                 </div>
                             </div>
                             <button type="button" class="add-set-btn" id="addSetBtn">+ Add Set</button>
@@ -90,10 +86,10 @@
                 </div>
 
                 <!-- Workout History -->
-                <div class="progress-container">
+                <div class="history-container">
                     <h2>Your History</h2>
-                    <div class="history-list" id="historyList">
-                        <div class="stat-card">
+                    <div class="history-cards" id="historyList">
+                        <div class="history-card stat-card">
                             <p class="stat-title">No Workouts Logged</p>
                             <p class="stat-value">Start logging your workouts above!</p>
                         </div>
@@ -122,23 +118,6 @@
             document.getElementById("logoutBtn").addEventListener("click", () => {
                 window.location.href = "/auth/logout";
             });
-
-            // Quote Rotation
-            const quotes = document.querySelectorAll('.quote-text');
-            let currentQuoteIndex = 0;
-
-            function showNextQuote() {
-                quotes.forEach((quote, index) => {
-                    quote.classList.remove('active');
-                    if (index === currentQuoteIndex) {
-                        quote.classList.add('active');
-                    }
-                });
-                currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
-            }
-
-            showNextQuote();
-            setInterval(showNextQuote, 5000);
 
             // Dynamic Sets
             const setsContainer = document.getElementById("setsContainer");
@@ -184,71 +163,10 @@
 
             function updateRemoveButtons() {
                 const removeButtons = setsContainer.querySelectorAll(".remove-set");
-                removeButtons.forEach((btn, index) => {
+                removeButtons.forEach((btn) => {
                     btn.style.display = setCount > 1 ? "block" : "none";
                 });
             }
-
-            // Form Submission
-            const workoutForm = document.getElementById("workoutForm");
-            workoutForm.addEventListener("submit", async (event) => {
-                event.preventDefault();
-
-                const submitBtn = workoutForm.querySelector(".log-btn");
-                submitBtn.disabled = true;
-                submitBtn.textContent = "Logging...";
-
-                const sets = Array.from(setsContainer.querySelectorAll(".set-group")).map((group, index) => ({
-                    set: index + 1,
-                    reps: group.querySelector(".set-reps").value,
-                    weight: group.querySelector(".set-weight").value || 0
-                }));
-
-                const data = {
-                    workout: workoutForm.workoutSearch.value,
-                    date: workoutForm.workoutDate.value,
-                    duration: workoutForm.duration.value || 0,
-                    sets
-                };
-
-                try {
-                    // Placeholder for API call
-                    console.log("Workout Data:", data);
-                    // Example: await fetch("/api/log-workout", { ... });
-
-                    const historyList = document.getElementById("historyList");
-                    const workoutEntry = document.createElement("div");
-                    workoutEntry.className = "stat-card";
-                    workoutEntry.innerHTML = `
-                        <p class="stat-title">${data.date} - ${data.workout}</p>
-                        <p class="stat-value">${data.sets.length} Sets, ${data.duration} min</p>
-                    `;
-                    historyList.innerHTML = "";
-                    historyList.appendChild(workoutEntry);
-
-                    workoutForm.reset();
-                    setsContainer.innerHTML = `
-                        <div class="set-group" data-set="1">
-                            <div class="input-group">
-                                <label>Reps (Set 1)</label>
-                                <input type="number" class="set-reps" placeholder="Reps" min="1" required>
-                            </div>
-                            <div class="input-group">
-                                <label>Weight (kg)</label>
-                                <input type="number" class="set-weight" placeholder="Weight (kg)" min="0" step="0.1">
-                            </div>
-                            <button type="button" class="remove-set" style="display: none;">×</button>
-                        </div>
-                    `;
-                    setCount = 1;
-                    updateRemoveButtons();
-                } catch (error) {
-                    console.error("Error logging workout:", error);
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = "Log Workout";
-                }
-            });
         });
     </script>
 </body>

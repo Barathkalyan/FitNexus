@@ -1,5 +1,5 @@
 let supabase;
-const SUPABASE_TIMEOUT_MS = 10000; // Increase timeout to 10 seconds for slower networks
+const SUPABASE_TIMEOUT_MS = 10000;
 
 // Function to dynamically load the Supabase script if not already loaded
 function loadSupabaseScript() {
@@ -10,7 +10,7 @@ function loadSupabaseScript() {
         }
 
         const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js'; // Use a specific version
+        script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js';
         script.async = true;
         script.onload = () => resolve();
         script.onerror = () => reject(new Error('Failed to load Supabase script'));
@@ -38,7 +38,7 @@ function initializeSupabase() {
                 }
                 reject(new Error('Supabase library not loaded or incompatible within timeout'));
             }
-        }, 100); // Check every 100ms
+        }, 100);
     });
 }
 
@@ -54,7 +54,6 @@ loadSupabaseScript()
     })
     .catch(error => {
         console.error('Failed to initialize Supabase client:', error);
-        // Fallback: Populate with mock data if Supabase fails to initialize
         window.workouts = [
             { id: 1, Title: 'Push-ups', Type: 'Strength', BodyPart: 'Chest', Level: 'Beginner' },
             { id: 2, Title: 'Squats', Type: 'Strength', BodyPart: 'Legs', Level: 'Intermediate' },
@@ -106,11 +105,10 @@ async function fetchWorkouts() {
     try {
         console.log('Fetching workouts from:', 'https://vvnnwsvgavjlsupidpgp.supabase.co');
         const { data, error } = await supabase
-            .from('Workouts') // Updated to match the confirmed table name
+            .from('Workouts')
             .select('id, Title, Type, BodyPart, Level');
         if (error) {
             console.error('Error fetching workouts:', error);
-            // Fallback to mock data if fetch fails
             window.workouts = [
                 { id: 1, Title: 'Push-ups', Type: 'Strength', BodyPart: 'Chest', Level: 'Beginner' },
                 { id: 2, Title: 'Squats', Type: 'Strength', BodyPart: 'Legs', Level: 'Intermediate' },
@@ -125,7 +123,6 @@ async function fetchWorkouts() {
         populateDatalist(window.workouts.map(w => w.Title));
     } catch (e) {
         console.error('Unexpected error in fetchWorkouts:', e);
-        // Fallback to mock data on unexpected error
         window.workouts = [
             { id: 1, Title: 'Push-ups', Type: 'Strength', BodyPart: 'Chest', Level: 'Beginner' },
             { id: 2, Title: 'Squats', Type: 'Strength', BodyPart: 'Legs', Level: 'Intermediate' },
@@ -137,27 +134,53 @@ async function fetchWorkouts() {
     }
 }
 
-function fetchHistory() {
-    const history = [
-        { id: 1, type: 'Cardio', date: '2025-04-17', sets: 3, reps: 15, weight: 0, duration: 30 },
-        { id: 2, type: 'Strength', date: '2025-04-16', sets: 4, reps: 10, weight: 50, duration: 45 }
-    ];
-    renderHistory(history);
+async function fetchHistory() {
+    if (!supabase) {
+        console.error('Supabase client is not initialized, cannot fetch history');
+        return;
+    }
+    try {
+        const { data, error } = await supabase
+            .from('workout_history')
+            .select('id, type, date, sets, reps, weight, duration')
+            .order('date', { ascending: false });
+        if (error) {
+            console.error('Error fetching workout history:', error);
+            renderHistory([]);
+        } else {
+            renderHistory(data || []);
+        }
+    } catch (e) {
+        console.error('Unexpected error in fetchHistory:', e);
+        renderHistory([]);
+    }
 }
 
 function renderHistory(history) {
     const historyPanel = document.getElementById('historyList');
     historyPanel.innerHTML = '';
+    if (history.length === 0) {
+        const card = document.createElement('div');
+        card.className = 'history-card stat-card';
+        card.innerHTML = `
+            <p class="stat-title">No Workouts Logged</p>
+            <p class="stat-value">Start logging your workouts above!</p>
+        `;
+        historyPanel.appendChild(card);
+        return;
+    }
     history.forEach(item => {
         const card = document.createElement('div');
-        card.className = 'history-card';
+        card.className = 'history-card stat-card';
+        const totalSets = item.sets || 1;
+        const progressWidth = Math.min((item.duration / 60) * 10, 100); // Cap at 100% for 60 min
         card.innerHTML = `
-            <p>Type: ${item.type}</p>
-            <p>Date: ${item.date}</p>
-            <p>Sets: ${item.sets}</p>
+            <p class="stat-title">${item.date} - ${item.type}</p>
+            <p>Sets: ${totalSets}</p>
             <p>Reps: ${item.reps}</p>
             <p>Weight: ${item.weight}kg</p>
             <p>Duration: ${item.duration}min</p>
+            <div class="progress-fill" style="width: ${progressWidth}%;"></div>
         `;
         historyPanel.appendChild(card);
     });
@@ -168,45 +191,70 @@ function validateInput(workout) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const workoutForm = document.getElementById('workoutForm');
-    let history = [];
+    const workoutSearch = document.getElementById('workoutSearch');
+    workoutSearch.addEventListener('input', filterWorkouts);
 
+    const workoutForm = document.getElementById('workoutForm');
     workoutForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const workoutSearch = document.getElementById('workoutSearch');
-        const selectedWorkout = window.workouts.find(w => w.Title === workoutSearch.value);
+
+        const submitBtn = workoutForm.querySelector('.log-btn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Logging...';
+
+        const setsContainer = document.getElementById('setsContainer');
+        const setGroups = setsContainer.querySelectorAll('.set-group');
+        const reps = Array.from(setGroups).map(group => parseInt(group.querySelector('.set-reps').value) || 0);
+        const weights = Array.from(setGroups).map(group => parseFloat(group.querySelector('.set-weight').value) || 0);
+
         const workout = {
-            id: history.length + 1,
-            type: selectedWorkout ? selectedWorkout.Type : workoutSearch.value,
-            date: document.getElementById('workoutDate').value,
-            sets: parseInt(document.getElementById('sets').value),
-            reps: parseInt(document.getElementById('reps').value),
-            weight: parseInt(document.getElementById('weight').value) || 0,
-            duration: parseInt(document.getElementById('duration').value)
+            type: window.workouts.find(w => w.Title === workoutForm.workoutSearch.value)?.Type || workoutForm.workoutSearch.value,
+            date: workoutForm.workoutDate.value,
+            sets: setGroups.length,
+            reps: reps[0] || 0, // Use first set's reps
+            weight: weights[0] || 0, // Use first set's weight
+            duration: parseInt(workoutForm.duration.value) || 0
         };
 
         if (validateInput(workout)) {
             if (!supabase) {
                 console.error('Supabase client is not available for insertion');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Log Workout';
                 return;
             }
             const { error } = await supabase
                 .from('workout_history')
                 .insert(workout);
-            if (error) console.error('Error logging workout:', error);
-            else {
-                history.push(workout);
+            if (error) {
+                console.error('Error logging workout:', error);
+                alert('Failed to log workout. Please try again.');
+            } else {
                 console.log('Workout logged:', workout);
-                renderHistory(history);
+                alert('Workout logged successfully!');
                 workoutForm.reset();
+                setsContainer.innerHTML = `
+                    <div class="set-group" data-set="1">
+                        <div class="input-group">
+                            <label>Reps (Set 1)</label>
+                            <input type="number" class="set-reps" placeholder="Reps" min="1" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Weight (kg)</label>
+                            <input type="number" class="set-weight" placeholder="Weight (kg)" min="0" step="0.1">
+                        </div>
+                        <button type="button" class="remove-set">×</button>
+                    </div>
+                `;
+                fetchHistory(); // Refresh history after successful log
             }
         } else {
             alert('Please fill all required fields with valid numbers.');
         }
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Log Workout';
     });
 
     fetchHistory();
-
-    const workoutSearch = document.getElementById('workoutSearch');
-    workoutSearch.addEventListener('input', filterWorkouts);
 });
