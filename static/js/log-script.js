@@ -142,7 +142,7 @@ async function fetchHistory() {
     try {
         const { data, error } = await supabase
             .from('workout_history')
-            .select('id, type, date, sets, reps, weight, duration, sets_data')
+            .select('id, type, date, sets, duration, sets_data')
             .order('date', { ascending: false });
         if (error) {
             console.error('Error fetching workout history:', error);
@@ -172,7 +172,7 @@ function renderHistory(history) {
     history.forEach(item => {
         const entry = document.createElement('div');
         entry.className = 'history-entry stat-card';
-        const setsData = item.sets_data || [{ reps: item.reps, weight: item.weight }];
+        const setsData = item.sets_data || [{ reps: 0, weight: 0.0 }];
         const progressWidth = Math.min((item.duration / 60) * 10, 100);
         entry.innerHTML = `
             <p class="stat-title">${item.date} - ${item.type}</p>
@@ -190,7 +190,7 @@ function renderHistory(history) {
 function showDetails(item) {
     const modal = document.createElement('div');
     modal.className = 'detail-modal';
-    const setsData = item.sets_data || [{ reps: item.reps, weight: item.weight }];
+    const setsData = item.sets_data || [{ reps: 0, weight: 0.0 }];
     modal.innerHTML = `
         <div class="detail-content">
             <h3>${item.date} - ${item.type}</h3>
@@ -210,7 +210,7 @@ function showDetails(item) {
 }
 
 function validateInput(workout) {
-    return workout.date && !isNaN(workout.sets) && !isNaN(workout.duration) && Array.isArray(workout.sets_data) && workout.sets_data.every(set => !isNaN(set.reps) && !isNaN(set.weight));
+    return workout.date && !isNaN(workout.sets) && !isNaN(workout.duration) && Array.isArray(workout.sets_data) && workout.sets_data.length > 0 && workout.sets_data.every(set => !isNaN(set.reps) && !isNaN(set.weight));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -229,15 +229,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const setGroups = setsContainer.querySelectorAll('.set-group');
         const setsData = Array.from(setGroups).map(group => ({
             reps: parseInt(group.querySelector('.set-reps').value) || 0,
-            weight: parseFloat(group.querySelector('.set-weight').value) || 0
+            weight: parseFloat(group.querySelector('.set-weight').value) || 0.0
         }));
 
         const workout = {
             type: window.workouts.find(w => w.Title === workoutForm.workoutSearch.value)?.Type || workoutForm.workoutSearch.value,
             date: workoutForm.workoutDate.value,
             sets: setGroups.length,
-            reps: setsData.length > 0 ? setsData[0].reps : 0, // Use first set's reps
-            weight: setsData.length > 0 ? setsData[0].weight : 0.0, // Use first set's weight
             duration: parseInt(workoutForm.duration.value) || 0,
             sets_data: setsData
         };
