@@ -18,7 +18,7 @@
                 <li><a href="/dashboard" class="active">Dashboard</a></li>
                 <li><a href="/workout_log">Workout Summary</a></li>
                 <li><a href="/calorie_intake">Calorie Intake</a></li>
-                <li><a href="/goal_progress">Workout plan</a></li>
+                <li><a href="/goal_progress">Workout Plan</a></li>
                 <li><a href="/profile">Profile</a></li>
             </ul>
         </div>
@@ -125,10 +125,7 @@
                 currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
             }
 
-            // Initialize the first quote
             showNextQuote();
-
-            // Rotate quotes every 5 seconds
             setInterval(showNextQuote, 5000);
         });
     </script>

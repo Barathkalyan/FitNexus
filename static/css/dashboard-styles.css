@@ -45,7 +45,37 @@ body::before {
     border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ... (rest of the existing sidebar CSS remains unchanged) ... */
+.sidebar-logo {
+    margin-bottom: 40px;
+}
+
+.logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+.logo span {
+    color: #ff2e63;
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.sidebar-menu a {
+    color: #ccc;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    transition: color 0.3s;
+    cursor: pointer; /* Ensure clickable */
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+    color: #ff2e63;
+}
 
 /* Main Content */
 .main-content {

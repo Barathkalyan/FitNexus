@@ -144,14 +144,35 @@
 
     <script src="../static/js/profile_edit.js"></script>
     <script>
-        // Optional: Enhance sidebar navigation
+        // Debug sidebar navigation
         document.querySelectorAll('.sidebar-menu a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const href = link.getAttribute('href');
+                console.log('Navigating to:', href); // Debug log
                 window.location.href = href;
             });
         });
+
+        // Profile Dropdown Toggle
+        const profileBtn = document.getElementById("profileBtn");
+        const dropdown = document.getElementById("profileDropdown");
+        if (profileBtn && dropdown) {
+            profileBtn.addEventListener("click", () => dropdown.classList.toggle("show"));
+            document.addEventListener("click", (event) => {
+                if (!profileBtn.contains(event.target) && !dropdown.contains(event.target)) {
+                    dropdown.classList.remove("show");
+                }
+            });
+        }
+
+        // Logout Button
+        const logoutBtn = document.getElementById("logoutBtn");
+        if (logoutBtn) {
+            logoutBtn.addEventListener("click", () => {
+                window.location.href = "/auth/logout";
+            });
+        }
     </script>
 </body>
 </html>
