@@ -143,5 +143,15 @@
     </div>
 
     <script src="../static/js/profile_edit.js"></script>
+    <script>
+        // Optional: Enhance sidebar navigation
+        document.querySelectorAll('.sidebar-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                window.location.href = href;
+            });
+        });
+    </script>
 </body>
 </html>

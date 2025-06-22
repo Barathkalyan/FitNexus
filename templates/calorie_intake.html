@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitNexus · Calorie Intake</title>
+    <link rel="stylesheet" href="../static/css/dashboard-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <h1 class="logo">Fit<span>Nexus</span></h1>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/workout_log">Workout Summary</a></li>
+                <li><a href="/calorie_intake" class="active">Calorie Intake</a></li>
+                <li><a href="/goal_progress">Workout Plan</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="top-bar">
+                <div class="quotes-container">
+                    <p class="quote-text">"The only bad workout is the one that didn’t happen."</p>
+                    <p class="quote-text">"Sweat is just fat crying."</p>
+                    <p class="quote-text">"Push yourself because no one else is going to do it for you."</p>
+                    <p class="quote-text">"Success starts with self-discipline."</p>
+                </div>
+                <div class="profile-menu">
+                    <button id="profileBtn" class="profile-icon">
+                        <img src="../static/assets/images/Profile.png" class="prof" alt="Profile">
+                    </button>
+                    <div id="profileDropdown" class="dropdown">
+                        <p class="dropdown-header">
+                            Hello, <span class="dropdown-name">{{ name }}</span> | 
+                            <span class="dropdown-id">User ID: {{ user_id }}</span>
+                        </p>
+                        <button id="logoutBtn">Logout</button>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <h1>Calorie <span>Intake</span></h1>
+                <p class="subtitle">Track your daily calorie consumption.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Profile Dropdown Toggle
+        const profileBtn = document.getElementById("profileBtn");
+        const dropdown = document.getElementById("profileDropdown");
+        if (profileBtn && dropdown) {
+            profileBtn.addEventListener("click", () => dropdown.classList.toggle("show"));
+            document.addEventListener("click", (event) => {
+                if (!profileBtn.contains(event.target) && !dropdown.contains(event.target)) {
+                    dropdown.classList.remove("show");
+                }
+            });
+        }
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            window.location.href = "/auth/logout";
+        });
+    </script>
+</body>
+</html>

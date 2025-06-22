@@ -206,9 +206,27 @@ def profile():
                            name=session["name"],
                            user_id=session["user_id"])
 
-@app.route('/workout_log')
+# Placeholder routes for sidebar navigation
+@app.route("/workout_log")
+@login_required
 def workout_log():
-    return render_template('workout_log.html')
+    if not session.get("profile_completed"):
+        return redirect(url_for("profile_complete"))
+    return render_template("workout_log.html")  # Ensure this template exists
+
+@app.route("/calorie_intake")
+@login_required
+def calorie_intake():
+    if not session.get("profile_completed"):
+        return redirect(url_for("profile_complete"))
+    return render_template("calorie_intake.html")  # Ensure this template exists
+
+@app.route("/goal_progress")
+@login_required
+def goal_progress():
+    if not session.get("profile_completed"):
+        return redirect(url_for("profile_complete"))
+    return render_template("goal_progress.html")  # Ensure this template exists
 
 # Run the app
 if __name__ == "__main__":
