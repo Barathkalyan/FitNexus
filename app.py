@@ -25,6 +25,7 @@ def load_user(user_id):
     if response.data and len(response.data) > 0:
         user_data = response.data[0]
         session["email"] = user_data['email']
+        session["user_id"] = user_data['user_id']
         return User(
             id=user_data['id'],
             user_id=user_data['user_id'],
@@ -139,6 +140,71 @@ def complete_profile_api():
 
     session["profile_completed"] = True
     return jsonify({"message": "Profile saved successfully", "redirect": "/dashboard"}), 200
+
+# Profile page - display and edit user details
+@app.route("/profile", methods=["GET", "POST"])
+@login_required
+def profile():
+    if not session.get("profile_completed"):
+        return redirect(url_for("profile_complete"))
+
+    # Fetch user data from users table
+    user_response = supabase.table('users').select('id, user_id, name, email').eq('user_id', session["user_id"]).execute()
+    if not user_response.data:
+        return jsonify({"error": "User not found."}), 404
+    user_data = user_response.data[0]
+
+    # Fetch profile data from profile table
+    profile_response = supabase.table('profile').select('*').eq('user_id', session["user_id"]).execute()
+    profile_data = profile_response.data[0] if profile_response.data else {}
+
+    if request.method == "POST":
+        data = request.json
+        user_id = session.get("user_id")
+
+        # Validate user_id
+        if not user_id:
+            return jsonify({"error": "Session expired. Please log in again."}), 401
+
+        # Update users table
+        user_update = {
+            "name": data["name"],
+            "email": data["email"]
+        }
+        user_response = supabase.table('users').update(user_update).eq('user_id', user_id).execute()
+        if user_response.error:
+            return jsonify({"error": str(user_response.error)}), 500
+
+        # Update profile table
+        profile_update = {
+            "user_id": user_id,
+            "age": int(data["age"]) if data["age"] else None,
+            "gender": data["gender"],
+            "height": int(data["height"]) if data["height"] else None,
+            "weight": int(data["weight"]) if data["weight"] else None,
+            "fitness_goal": data["fitness_goal"],
+            "target_weight": int(data["target_weight"]) if data["target_weight"] else None,
+            "diet_preference": data["diet"],
+            "workout_time": int(data["workout_time"]) if data["workout_time"] else None,
+            "workout_days": int(data["workout_days"]) if data["workout_days"] else None
+        }
+        profile_response = supabase.table('profile').upsert(
+            profile_update,
+            options={"on_conflict": "user_id"}
+        ).execute()
+        if profile_response.error:
+            return jsonify({"error": str(profile_response.error)}), 500
+
+        # Update session data
+        session["name"] = data["name"]
+        session["email"] = data["email"]
+        return jsonify({"message": "Profile updated successfully", "redirect": "/dashboard"}), 200
+
+    return render_template("profile.html",
+                           user=user_data,
+                           profile=profile_data,
+                           name=session["name"],
+                           user_id=session["user_id"])
 
 @app.route('/workout_log')
 def workout_log():
