@@ -320,3 +320,68 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .dropdown:hover {
     display: block;
 }
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    color: #fff;
+    min-height: 100vh;
+    flex: 1;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: linear-gradient(145deg, #1c2526, #0a0a0a);
+    padding: 20px 0;
+    position: fixed;
+    height: 100%;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ... (rest of the existing CSS remains unchanged) ... */
+
+/* Main Content */
+.main-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Content */
+.content {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Profile Card */
+.profile-card {
+    background: linear-gradient(145deg, #2c3e50, #0a0a0a);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    flex: 1;
+}
+
+/* Ensure no extra space at the bottom */
+.form-container > *:last-child {
+    margin-bottom: 0;
+}

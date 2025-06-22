@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitNexus · Profile</title>
-    <link rel="stylesheet" href="../static/css/profile.css">
+    <link rel="stylesheet" href="../static/css/dashboard-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -27,6 +27,12 @@
         <div class="main-content">
             <!-- Top Bar -->
             <div class="top-bar">
+                <div class="quotes-container">
+                    <p class="quote-text">"The only bad workout is the one that didn’t happen."</p>
+                    <p class="quote-text">"Sweat is just fat crying."</p>
+                    <p class="quote-text">"Push yourself because no one else is going to do it for you."</p>
+                    <p class="quote-text">"Success starts with self-discipline."</p>
+                </div>
                 <div class="profile-menu">
                     <button id="profileBtn" class="profile-icon">
                         <img src="../static/assets/images/Profile.png" class="prof" alt="Profile">
@@ -46,85 +52,91 @@
                 <h1>Edit Your <span>Profile</span></h1>
                 <p class="subtitle">Update your personal and fitness details below.</p>
 
-                <div class="profile-card">
-                    <div class="form-container">
-                        <div class="form-card">
-                            <h2 class="step-title">Profile Details</h2>
-                            <form id="profileForm">
-                                <!-- Basic Info -->
-                                <div class="input-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" id="name" name="name" value="{{ user.name }}" required placeholder="Enter your name">
-                                </div>
-                                <div class="input-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" value="{{ user.email }}" required placeholder="Enter your email">
-                                </div>
-                                <div class="input-group">
-                                    <label for="age">Age</label>
-                                    <input type="number" id="age" name="age" value="{{ profile.age if profile.age else '' }}" required min="1" max="120" placeholder="Enter your age">
-                                </div>
-                                <div class="input-group">
-                                    <label for="gender">Gender</label>
-                                    <select id="gender" name="gender" required>
-                                        <option value="" disabled>Select Gender</option>
-                                        <option value="Male" {{ 'selected' if profile.gender == 'Male' }}>Male</option>
-                                        <option value="Female" {{ 'selected' if profile.gender == 'Female' }}>Female</option>
-                                        <option value="Other" {{ 'selected' if profile.gender == 'Other' }}>Other</option>
-                                    </select>
-                                </div>
-
-                                <!-- Body Stats -->
-                                <div class="input-group">
-                                    <label for="height">Height (cm): <span id="heightValue">{{ profile.height if profile.height else '170' }}</span></label>
-                                    <input type="range" id="height" min="140" max="220" value="{{ profile.height if profile.height else '170' }}" name="height" oninput="document.getElementById('heightValue').textContent = this.value">
-                                </div>
-                                <div class="input-group">
-                                    <label for="weight">Weight (kg): <span id="weightValue">{{ profile.weight if profile.weight else '65' }}</span></label>
-                                    <input type="range" id="weight" min="30" max="150" value="{{ profile.weight if profile.weight else '65' }}" name="weight" oninput="document.getElementById('weightValue').textContent = this.value">
-                                </div>
-
-                                <!-- Fitness Goals -->
-                                <div class="input-group">
-                                    <label for="goal">Fitness Goal</label>
-                                    <select name="goal" id="goal" required>
-                                        <option value="" disabled>Select Goal</option>
-                                        <option value="Lose Weight" {{ 'selected' if profile.fitness_goal == 'Lose Weight' }}>Lose Weight</option>
-                                        <option value="Gain Muscle" {{ 'selected' if profile.fitness_goal == 'Gain Muscle' }}>Gain Muscle</option>
-                                        <option value="Stay Fit" {{ 'selected' if profile.fitness_goal == 'Stay Fit' }}>Stay Fit</option>
-                                    </select>
-                                </div>
-                                <div class="input-group">
-                                    <label for="target_weight">Target Weight (kg)</label>
-                                    <input type="number" id="target_weight" name="target_weight" value="{{ profile.target_weight if profile.target_weight else '' }}" required min="30" max="150" placeholder="Enter target weight">
-                                </div>
-
-                                <!-- Preferences -->
-                                <div class="input-group">
-                                    <label for="diet">Diet Preference</label>
-                                    <select id="diet" name="diet" required>
-                                        <option value="" disabled>Select Preference</option>
-                                        <option value="Vegetarian" {{ 'selected' if profile.diet_preference == 'Vegetarian' }}>Vegetarian</option>
-                                        <option value="Non-Vegetarian" {{ 'selected' if profile.diet_preference == 'Non-Vegetarian' }}>Non-Vegetarian</option>
-                                        <option value="Vegan" {{ 'selected' if profile.diet_preference == 'Vegan' }}>Vegan</option>
-                                    </select>
-                                </div>
-                                <div class="input-group">
-                                    <label for="workout_time">Workout Time/Day (min): <span id="workoutTime">{{ profile.workout_time if profile.workout_time else '30' }}</span></label>
-                                    <input type="range" id="workout_time" min="10" max="200" value="{{ profile.workout_time if profile.workout_time else '30' }}" name="workout_time" oninput="document.getElementById('workoutTime').textContent = this.value">
-                                </div>
-                                <div class="input-group">
-                                    <label for="workout_days">Workout Days/Week: <span id="workoutDays">{{ profile.workout_days if profile.workout_days else '3' }}</span></label>
-                                    <input type="range" id="workout_days" min="1" max="7" value="{{ profile.workout_days if profile.workout_days else '3' }}" name="workout_days" oninput="document.getElementById('workoutDays').textContent = this.value">
-                                </div>
-
-                                <div id="formError" class="error-text"></div>
-                                <div class="btn-group">
-                                    <button class="btn submit-btn" type="submit">Save Changes</button>
-                                </div>
-                            </form>
+                <!-- Profile Edit Cards -->
+                <div class="user-stats">
+                    <!-- Basic Info Card -->
+                    <div class="stat-card">
+                        <p class="stat-title">Basic Information</p>
+                        <div class="input-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" value="{{ user.name }}" required placeholder="Enter your name">
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" value="{{ user.email }}" required placeholder="Enter your email">
+                        </div>
+                        <div class="input-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" value="{{ profile.age if profile.age else '' }}" required min="1" max="120" placeholder="Enter your age">
+                        </div>
+                        <div class="input-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender" required>
+                                <option value="" disabled>Select Gender</option>
+                                <option value="Male" {{ 'selected' if profile.gender == 'Male' }}>Male</option>
+                                <option value="Female" {{ 'selected' if profile.gender == 'Female' }}>Female</option>
+                                <option value="Other" {{ 'selected' if profile.gender == 'Other' }}>Other</option>
+                            </select>
                         </div>
                     </div>
+
+                    <!-- Body Stats Card -->
+                    <div class="stat-card">
+                        <p class="stat-title">Body Statistics</p>
+                        <div class="input-group">
+                            <label for="height">Height (cm): <span id="heightValue">{{ profile.height if profile.height else '170' }}</span></label>
+                            <input type="range" id="height" min="140" max="220" value="{{ profile.height if profile.height else '170' }}" name="height" oninput="document.getElementById('heightValue').textContent = this.value">
+                        </div>
+                        <div class="input-group">
+                            <label for="weight">Weight (kg): <span id="weightValue">{{ profile.weight if profile.weight else '65' }}</span></label>
+                            <input type="range" id="weight" min="30" max="150" value="{{ profile.weight if profile.weight else '65' }}" name="weight" oninput="document.getElementById('weightValue').textContent = this.value">
+                        </div>
+                    </div>
+
+                    <!-- Fitness Goals Card -->
+                    <div class="stat-card">
+                        <p class="stat-title">Fitness Goals</p>
+                        <div class="input-group">
+                            <label for="goal">Fitness Goal</label>
+                            <select name="goal" id="goal" required>
+                                <option value="" disabled>Select Goal</option>
+                                <option value="Lose Weight" {{ 'selected' if profile.fitness_goal == 'Lose Weight' }}>Lose Weight</option>
+                                <option value="Gain Muscle" {{ 'selected' if profile.fitness_goal == 'Gain Muscle' }}>Gain Muscle</option>
+                                <option value="Stay Fit" {{ 'selected' if profile.fitness_goal == 'Stay Fit' }}>Stay Fit</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="target_weight">Target Weight (kg)</label>
+                            <input type="number" id="target_weight" name="target_weight" value="{{ profile.target_weight if profile.target_weight else '' }}" required min="30" max="150" placeholder="Enter target weight">
+                        </div>
+                    </div>
+
+                    <!-- Preferences Card -->
+                    <div class="stat-card">
+                        <p class="stat-title">Preferences</p>
+                        <div class="input-group">
+                            <label for="diet">Diet Preference</label>
+                            <select id="diet" name="diet" required>
+                                <option value="" disabled>Select Preference</option>
+                                <option value="Vegetarian" {{ 'selected' if profile.diet_preference == 'Vegetarian' }}>Vegetarian</option>
+                                <option value="Non-Vegetarian" {{ 'selected' if profile.diet_preference == 'Non-Vegetarian' }}>Non-Vegetarian</option>
+                                <option value="Vegan" {{ 'selected' if profile.diet_preference == 'Vegan' }}>Vegan</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="workout_time">Workout Time/Day (min): <span id="workoutTime">{{ profile.workout_time if profile.workout_time else '30' }}</span></label>
+                            <input type="range" id="workout_time" min="10" max="200" value="{{ profile.workout_time if profile.workout_time else '30' }}" name="workout_time" oninput="document.getElementById('workoutTime').textContent = this.value">
+                        </div>
+                        <div class="input-group">
+                            <label for="workout_days">Workout Days/Week: <span id="workoutDays">{{ profile.workout_days if profile.workout_days else '3' }}</span></label>
+                            <input type="range" id="workout_days" min="1" max="7" value="{{ profile.workout_days if profile.workout_days else '3' }}" name="workout_days" oninput="document.getElementById('workoutDays').textContent = this.value">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="formError" class="error-text"></div>
+                <div class="btn-group">
+                    <button class="btn submit-btn" type="button" id="saveChangesBtn">Save Changes</button>
                 </div>
             </div>
         </div>
